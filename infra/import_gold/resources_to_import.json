@@ -1,0 +1,9 @@
+[
+ {
+  "ResourceType": "AWS::S3::Bucket",
+  "LogicalResourceId": "Gold83B9B25C",
+  "ResourceIdentifier": {
+   "BucketName": "al-test-dl-gold"
+  }
+ }
+]

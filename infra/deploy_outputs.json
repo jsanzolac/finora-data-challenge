@@ -1,0 +1,20 @@
+{
+  "FinoraDqAuth": {
+    "ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146": "arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-users",
+    "ExportsOutputFnGetAttSessions8896A56DArn139254BE": "arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-sessions",
+    "ExportsOutputFnGetAttAuthC256A5ECArn117206AE": "arn:aws:lambda:us-west-2:962482423379:function:finora-dq-auth"
+  },
+  "FinoraDqApi": {
+    "ExportsOutputRefHttpApiF5A9A8A7F70B5BDD": "dx2tg0v3a8",
+    "ApiEndpoint": "https://dx2tg0v3a8.execute-api.us-west-2.amazonaws.com"
+  },
+  "FinoraDlEtl": {
+    "AlertTopicArn": "arn:aws:sns:us-west-2:962482423379:finora-dl-alerts",
+    "StateMachineArn": "arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest"
+  },
+  "FinoraDqWeb": {
+    "Url": "https://d1smzfxmkay9lx.cloudfront.net",
+    "SiteBucket": "finoradqweb-sitee53d7754-avnigxub3kvj",
+    "WebSource": "out"
+  }
+}

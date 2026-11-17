@@ -1,0 +1,14 @@
+{
+  "agent_id": "agent_7401m7nnq0dcew2tqtsk7e158k62",
+  "credit_floor": 6000,
+  "sessions_per_day": 5,
+  "max_conversation_s": 300,
+  "tool_ids": {
+    "get_briefing": "tool_1701m7nnpxztfwe8eb1shzqhzc42",
+    "ask": "tool_8701m7nnpye3fn1awr4twq9mm2gy",
+    "show_chart": "tool_0101m7nnpz4tfa78dkg2aza3jmct",
+    "highlight_kpi": "tool_7801m7nnpzgxfr6sdnyj50mj16st",
+    "go_to_page": "tool_6801m7nnq00xev39sbas66hh8pa6"
+  },
+  "retention_days": 0
+}

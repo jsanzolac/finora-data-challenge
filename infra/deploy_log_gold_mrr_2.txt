@@ -1,0 +1,36 @@
+
+✨  Synthesis time: 2.61s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building GlueGoldMrrLib
+FinoraDlEtl: success: Built GlueGoldMrrLib
+FinoraDlEtl: start: Building FinoraDlEtl Template
+FinoraDlEtl: success: Built FinoraDlEtl Template
+FinoraDlEtl: start: Publishing GlueGoldMrrLib (962482423379-us-west-2-fc8259ac)
+FinoraDlEtl: start: Publishing FinoraDlEtl Template (962482423379-us-west-2-d9160cf5)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: success: Published GlueGoldMrrLib (962482423379-us-west-2-fc8259ac)
+FinoraDlEtl: success: Published FinoraDlEtl Template (962482423379-us-west-2-d9160cf5)
+FinoraDlEtl: deploying... [1/1]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlEtl | 0/3 | 2:39:38 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl | 0/3 | 2:39:42 PM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | MrrJob 
+FinoraDlEtl | 1/3 | 2:39:44 PM | UPDATE_COMPLETE      | AWS::Glue::Job                   | MrrJob 
+FinoraDlEtl | 2/3 | 2:39:48 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 3/3 | 2:39:49 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 39.79s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish,finora-dl-gold-build,finora-dl-gold-mrr
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 42.39s
+

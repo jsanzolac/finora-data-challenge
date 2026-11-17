@@ -1,0 +1,6 @@
+{
+  "FinoraDlEtl": {
+    "AlertTopicArn": "arn:aws:sns:us-west-2:962482423379:finora-dl-alerts",
+    "StateMachineArn": "arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest"
+  }
+}

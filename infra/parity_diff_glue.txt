@@ -1,0 +1,140 @@
+# Golden parity: Lambda run r20261117T020252Z vs Glue run r20261117T041900Z (s3://al-test-dl-serving/dq/runs/)
+# Produced by scripts/compare_dq_runs.py on 2026-11-17T04:26:25Z. Record values are not reproduced here unless a page differs.
+
+# 1) strict: only run_id and timestamps normalized
+compared 40 files (summary.json + 39 record pages)
+--- old/summary.json
++++ new/summary.json
+@@ -8,7 +8,7 @@
+    "rows_excluded": 0,
+    "rows_flagged": 0,
+    "rows_read": 66674,
+-   "rules_evaluated": 8,
++   "rules_evaluated": 9,
+    "rules_failing": 0
+   },
+   {
+@@ -19,7 +19,7 @@
+    "rows_excluded": 0,
+    "rows_flagged": 5,
+    "rows_read": 34,
+-   "rules_evaluated": 7,
++   "rules_evaluated": 8,
+    "rules_failing": 0
+   },
+   {
+@@ -30,7 +30,7 @@
+    "rows_excluded": 1,
+    "rows_flagged": 0,
+    "rows_read": 1962,
+-   "rules_evaluated": 4,
++   "rules_evaluated": 5,
+    "rules_failing": 1
+   }
+  ],
+@@ -585,22 +585,22 @@
+    "layer": "silver_quality",
+    "results": {
+     "industry": {
+-     "compliance_pct": null,
+-     "evaluated": 0,
+-     "failed": 0,
+-     "status": "na"
+-    },
+-    "sm_spend": {
+-     "compliance_pct": null,
+-     "evaluated": 0,
+-     "failed": 0,
+-     "status": "na"
+-    },
+-    "transactions": {
+-     "compliance_pct": null,
+-     "evaluated": 0,
+-     "failed": 0,
+-     "status": "na"
++     "compliance_pct": 100.0,
++     "evaluated": 1961,
++     "failed": 0,
++     "status": "pass"
++    },
++    "sm_spend": {
++     "compliance_pct": 100.0,
++     "evaluated": 34,
++     "failed": 0,
++     "status": "pass"
++    },
++    "transactions": {
++     "compliance_pct": 100.0,
++     "evaluated": 66674,
++     "failed": 0,
++     "status": "pass"
+     }
+    },
+    "rule_id": "CDO-06a",
+@@ -620,22 +620,22 @@
+    "layer": "silver_quality",
+    "results": {
+     "industry": {
+-     "compliance_pct": null,
+-     "evaluated": 0,
+-     "failed": 0,
+-     "status": "na"
+-    },
+-    "sm_spend": {
+-     "compliance_pct": null,
+-     "evaluated": 0,
+-     "failed": 0,
+-     "status": "na"
+-    },
+-    "transactions": {
+-     "compliance_pct": null,
+-     "evaluated": 0,
+-     "failed": 0,
+-     "status": "na"
++     "compliance_pct": 100.0,
++     "evaluated": 1961,
++     "failed": 0,
++     "status": "pass"
++    },
++    "sm_spend": {
++     "compliance_pct": 100.0,
++     "evaluated": 34,
++     "failed": 0,
++     "status": "pass"
++    },
++    "transactions": {
++     "compliance_pct": 100.0,
++     "evaluated": 66674,
++     "failed": 0,
++     "status": "pass"
+     }
+    },
+    "rule_id": "CDO-06b",
+@@ -970,6 +970,13 @@
+    "run_id": "<run_id>",
+    "sm_spend": 100.0,
+    "transactions": 100.0
++  },
++  {
++   "as_of_month": "2024-10",
++   "industry": 99.95,
++   "run_id": "<run_id>",
++   "sm_spend": 100.0,
++   "transactions": 100.0
+   }
+  ]
+ }
+exit=1
+
+# 2) history-aware: the blocks that depend on run history, not on the data, are reported separately:
+#    CDO-06a/CDO-06b (na on a first run; the Glue run is the 2nd published run, so it compares with the Lambda run), the rules_evaluated they add, and trend
+compared 40 files (summary.json + 39 record pages)
+history-dependent blocks (reported, not diffed):
+{"new": {"datasets": {"industry": {"rules_evaluated": 1, "rules_failing": 0}, "sm_spend": {"rules_evaluated": 1, "rules_failing": 0}, "transactions": {"rules_evaluated": 1, "rules_failing": 0}}, "rules": {"CDO-06a": {"industry": {"compliance_pct": 100.0, "evaluated": 1961, "failed": 0, "status": "pass"}, "sm_spend": {"compliance_pct": 100.0, "evaluated": 34, "failed": 0, "status": "pass"}, "transactions": {"compliance_pct": 100.0, "evaluated": 66674, "failed": 0, "status": "pass"}}, "CDO-06b": {"industry": {"compliance_pct": 100.0, "evaluated": 1961, "failed": 0, "status": "pass"}, "sm_spend": {"compliance_pct": 100.0, "evaluated": 34, "failed": 0, "status": "pass"}, "transactions": {"compliance_pct": 100.0, "evaluated": 66674, "failed": 0, "status": "pass"}}}, "trend_len": 2}, "old": {"datasets": {"industry": {"rules_evaluated": 0, "rules_failing": 0}, "sm_spend": {"rules_evaluated": 0, "rules_failing": 0}, "transactions": {"rules_evaluated": 0, "rules_failing": 0}}, "rules": {"CDO-06a": {"industry": {"compliance_pct": null, "evaluated": 0, "failed": 0, "status": "na"}, "sm_spend": {"compliance_pct": null, "evaluated": 0, "failed": 0, "status": "na"}, "transactions": {"compliance_pct": null, "evaluated": 0, "failed": 0, "status": "na"}}, "CDO-06b": {"industry": {"compliance_pct": null, "evaluated": 0, "failed": 0, "status": "na"}, "sm_spend": {"compliance_pct": null, "evaluated": 0, "failed": 0, "status": "na"}, "transactions": {"compliance_pct": null, "evaluated": 0, "failed": 0, "status": "na"}}}, "trend_len": 1}}
+DIFF: empty
+exit=0
+
+# 3) offline: the Glue code path on local PySpark 3.5.4 (first run, no previous) vs the Lambda run
+compared 40 files (summary.json + 39 record pages)
+DIFF: empty
+exit=0

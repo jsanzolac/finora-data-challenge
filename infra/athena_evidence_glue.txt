@@ -1,0 +1,26 @@
+SELECT _run_id, count(*), sum(amount), sum(amount_value) FROM finora_silver.transactions GROUP BY 1
+r20261117T041900Z	66674	221441.504508	2214415045.08
+SELECT count(*) FROM finora_silver.industry WHERE _run_id='r20261117T041900Z'
+1961
+SELECT count(*), sum(spend), sum(spend_value) FROM finora_silver.sm_spend WHERE _run_id='r20261117T041900Z'
+238	77.818	7781800000
+SELECT hr_sensitive, count(*) FROM finora_silver.sm_spend GROUP BY hr_sensitive ORDER BY 1
+false	136	true	102
+SELECT count(*), sum(CASE WHEN is_new_logo THEN 1 ELSE 0 END), sum(CASE WHEN cohort_censoring='probable_left' THEN 1 ELSE 0 END) FROM finora_silver.customer
+1961	1541	43
+SELECT lifecycle_state, count(*) FROM finora_silver.customer_month GROUP BY 1 ORDER BY 2 DESC
+paying	31366	pre_acquisition	29321	churned	3811	new	1541	settled_gap	281	paused	231	reactivated	64	grace	59
+SELECT settlement_type, count(*) FROM finora_silver.gap WHERE settlement_type IS NOT NULL GROUP BY 1 ORDER BY 2 DESC
+arrears	155	prepay	47	split	9
+SELECT array_join(array_agg(customer_id ORDER BY customer_id), ',') FROM finora_silver.customer WHERE is_outlier_customer
+94,322
+SELECT rule_id, dataset_id, action, count(*) FROM finora_dq.findings WHERE NOT hr_sensitive GROUP BY 1,2,3 ORDER BY 1
+SB-10	sm_spend	flagged	5	SQ-02	industry	excluded	1
+SELECT dataset_id, count(*), max(source_line), array_join(max(failed_rules), ',') FROM finora_dq.excluded_rows WHERE NOT hr_sensitive GROUP BY 1
+industry	1	1963	SQ-02
+SELECT name, type, snapshot_id FROM "finora_silver"."transactions$refs" ORDER BY name
+main	BRANCH	7813859245337130562	r20261117T040928Z	TAG	9191455944940982526	r20261117T041900Z	TAG	7813859245337130562
+SELECT count(*) FROM "finora_silver"."transactions$snapshots"
+2
+SELECT _run_id, count(*) FROM finora_silver.transactions FOR VERSION AS OF 7813859245337130562 GROUP BY 1
+r20261117T041900Z	66674

@@ -1,0 +1,460 @@
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+start: Building FinoraDlStorage Template
+success: Built FinoraDlStorage Template
+start: Publishing FinoraDlStorage Template (962482423379-us-west-2-64865851)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDlStorage Template (962482423379-us-west-2-64865851)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDlStorage
+IAM Statement Changes
+┌───┬────────────────────────┬────────┬────────┬───────────┬──────────────────────────────────┐
+│   │ Resource               │ Effect │ Action │ Principal │ Condition                        │
+├───┼────────────────────────┼────────┼────────┼───────────┼──────────────────────────────────┤
+│ + │ ${AthenaResults.Arn}   │ Deny   │ s3:*   │ AWS:*     │ "Bool": {                        │
+│   │ ${AthenaResults.Arn}/* │        │        │           │   "aws:SecureTransport": "false" │
+│   │                        │        │        │           │ }                                │
+├───┼────────────────────────┼────────┼────────┼───────────┼──────────────────────────────────┤
+│ + │ ${Bronze.Arn}          │ Deny   │ s3:*   │ AWS:*     │ "Bool": {                        │
+│   │ ${Bronze.Arn}/*        │        │        │           │   "aws:SecureTransport": "false" │
+│   │                        │        │        │           │ }                                │
+├───┼────────────────────────┼────────┼────────┼───────────┼──────────────────────────────────┤
+│ + │ ${Serving.Arn}         │ Deny   │ s3:*   │ AWS:*     │ "Bool": {                        │
+│   │ ${Serving.Arn}/*       │        │        │           │   "aws:SecureTransport": "false" │
+│   │                        │        │        │           │ }                                │
+├───┼────────────────────────┼────────┼────────┼───────────┼──────────────────────────────────┤
+│ + │ ${Silver.Arn}          │ Deny   │ s3:*   │ AWS:*     │ "Bool": {                        │
+│   │ ${Silver.Arn}/*        │        │        │           │   "aws:SecureTransport": "false" │
+│   │                        │        │        │           │ }                                │
+├───┼────────────────────────┼────────┼────────┼───────────┼──────────────────────────────────┤
+│ + │ ${Staging.Arn}         │ Deny   │ s3:*   │ AWS:*     │ "Bool": {                        │
+│   │ ${Staging.Arn}/*       │        │        │           │   "aws:SecureTransport": "false" │
+│   │                        │        │        │           │ }                                │
+└───┴────────────────────────┴────────┴────────┴───────────┴──────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::S3::BucketPolicy Staging/Policy StagingPolicyB16183D3
+[+] AWS::S3::BucketPolicy Bronze/Policy BronzePolicy6362731E
+[+] AWS::S3::BucketPolicy Silver/Policy SilverPolicy819469C3
+[+] AWS::S3::Bucket Serving Serving7A42E1DA
+[+] AWS::S3::BucketPolicy Serving/Policy ServingPolicyC68E95C2
+[+] AWS::S3::Bucket AthenaResults AthenaResults99A60126
+[+] AWS::S3::BucketPolicy AthenaResults/Policy AthenaResultsPolicyC1D66A19
+[~] AWS::S3::Bucket Staging Staging12D1754E
+ ├─ [+] LifecycleConfiguration
+ │   └─ {"Rules":[{"AbortIncompleteMultipartUpload":{"DaysAfterInitiation":7},"Id":"noncurrent-and-multipart","NoncurrentVersionExpiration":{"NoncurrentDays":365},"Status":"Enabled"}]}
+ ├─ [+] NotificationConfiguration
+ │   └─ {"EventBridgeConfiguration":{"EventBridgeEnabled":true}}
+ ├─ [+] Tags
+ │   └─ [{"Key":"project","Value":"finora-dq"}]
+ └─ [+] VersioningConfiguration
+     └─ {"Status":"Enabled"}
+[~] AWS::S3::Bucket Bronze Bronze2BD6FD35
+ ├─ [+] LifecycleConfiguration
+ │   └─ {"Rules":[{"AbortIncompleteMultipartUpload":{"DaysAfterInitiation":7},"Id":"noncurrent-and-multipart","NoncurrentVersionExpiration":{"NoncurrentDays":365},"Status":"Enabled"}]}
+ ├─ [+] Tags
+ │   └─ [{"Key":"project","Value":"finora-dq"}]
+ └─ [+] VersioningConfiguration
+     └─ {"Status":"Enabled"}
+[~] AWS::S3::Bucket Silver Silver060FFE09
+ ├─ [+] LifecycleConfiguration
+ │   └─ {"Rules":[{"AbortIncompleteMultipartUpload":{"DaysAfterInitiation":7},"Id":"noncurrent-and-multipart","NoncurrentVersionExpiration":{"NoncurrentDays":30},"Status":"Enabled"}]}
+ ├─ [+] Tags
+ │   └─ [{"Key":"project","Value":"finora-dq"}]
+ └─ [+] VersioningConfiguration
+     └─ {"Status":"Enabled"}
+
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDlEtl
+IAM Statement Changes
+┌───┬──────────────────────────────────────────────────────────────┬────────┬───────────────────────────────┬──────────────────────────────────┬──────────────────────────────────┐
+│   │ Resource                                                     │ Effect │ Action                        │ Principal                        │ Condition                        │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${Alerts}                                                    │ Deny   │ sns:Publish                   │ *                                │ "Bool": {                        │
+│   │                                                              │        │                               │                                  │   "aws:SecureTransport": "false" │
+│   │                                                              │        │                               │                                  │ }                                │
+│ + │ ${Alerts}                                                    │ Allow  │ sns:Publish                   │ Service:events.amazonaws.com     │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${Ingest}                                                    │ Allow  │ states:StartExecution         │ AWS:${Ingest/EventsRole}         │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${Ingest/EventsRole.Arn}                                     │ Allow  │ sts:AssumeRole                │ Service:events.amazonaws.com     │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${Ingest/Role.Arn}                                           │ Allow  │ sts:AssumeRole                │ Service:states.amazonaws.com     │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${bronze_ingest.Arn}                                         │ Allow  │ lambda:InvokeFunction         │ AWS:${Ingest/Role}               │                                  │
+│   │ ${bronze_ingest.Arn}:*                                       │        │                               │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${bronze_ingest/ServiceRole.Arn}                             │ Allow  │ sts:AssumeRole                │ Service:lambda.amazonaws.com     │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${dq_publish.Arn}                                            │ Allow  │ lambda:InvokeFunction         │ AWS:${Ingest/Role}               │                                  │
+│   │ ${dq_publish.Arn}:*                                          │        │                               │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${dq_publish/ServiceRole.Arn}                                │ Allow  │ sts:AssumeRole                │ Service:lambda.amazonaws.com     │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${silver_build.Arn}                                          │ Allow  │ lambda:InvokeFunction         │ AWS:${Ingest/Role}               │                                  │
+│   │ ${silver_build.Arn}:*                                        │        │                               │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ ${silver_build/ServiceRole.Arn}                              │ Allow  │ sts:AssumeRole                │ Service:lambda.amazonaws.com     │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ *                                                            │ Allow  │ logs:CreateLogDelivery        │ AWS:${Ingest/Role}               │                                  │
+│   │                                                              │        │ logs:DeleteLogDelivery        │                                  │                                  │
+│   │                                                              │        │ logs:DescribeLogGroups        │                                  │                                  │
+│   │                                                              │        │ logs:DescribeResourcePolicies │                                  │                                  │
+│   │                                                              │        │ logs:GetLogDelivery           │                                  │                                  │
+│   │                                                              │        │ logs:ListLogDeliveries        │                                  │                                  │
+│   │                                                              │        │ logs:PutResourcePolicy        │                                  │                                  │
+│   │                                                              │        │ logs:UpdateLogDelivery        │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-bronze                 │ Allow  │ s3:Abort*                     │ AWS:${bronze_ingest/ServiceRole} │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-bronze/*               │        │ s3:DeleteObject*              │                                  │                                  │
+│   │                                                              │        │ s3:GetBucket*                 │                                  │                                  │
+│   │                                                              │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+│   │                                                              │        │ s3:PutObject                  │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectLegalHold         │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectRetention         │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectTagging           │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectVersionTagging    │                                  │                                  │
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-bronze                 │ Allow  │ s3:GetBucket*                 │ AWS:${silver_build/ServiceRole}  │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-bronze/*               │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-serving                │ Allow  │ s3:Abort*                     │ AWS:${dq_publish/ServiceRole}    │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-serving/dq/*           │        │ s3:DeleteObject*              │                                  │                                  │
+│   │                                                              │        │ s3:GetBucket*                 │                                  │                                  │
+│   │                                                              │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+│   │                                                              │        │ s3:PutObject                  │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectLegalHold         │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectRetention         │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectTagging           │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectVersionTagging    │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-serving                │ Allow  │ s3:GetBucket*                 │ AWS:${silver_build/ServiceRole}  │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-serving/dq/latest.json │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-silver                 │ Allow  │ s3:Abort*                     │ AWS:${silver_build/ServiceRole}  │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-silver/*               │        │ s3:DeleteObject*              │                                  │                                  │
+│   │                                                              │        │ s3:GetBucket*                 │                                  │                                  │
+│   │                                                              │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+│   │                                                              │        │ s3:PutObject                  │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectLegalHold         │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectRetention         │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectTagging           │                                  │                                  │
+│   │                                                              │        │ s3:PutObjectVersionTagging    │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-silver                 │ Allow  │ s3:GetBucket*                 │ AWS:${dq_publish/ServiceRole}    │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-silver/_runs/*         │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-staging                │ Allow  │ s3:ListBucket                 │ AWS:${bronze_ingest/ServiceRole} │                                  │
+├───┼──────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────┼──────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-staging                │ Allow  │ s3:GetBucket*                 │ AWS:${bronze_ingest/ServiceRole} │                                  │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-staging/*              │        │ s3:GetObject*                 │                                  │                                  │
+│   │                                                              │        │ s3:List*                      │                                  │                                  │
+└───┴──────────────────────────────────────────────────────────────┴────────┴───────────────────────────────┴──────────────────────────────────┴──────────────────────────────────┘
+IAM Policy Changes
+┌───┬──────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                     │ Managed Policy ARN                                                             │
+├───┼──────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${bronze_ingest/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+├───┼──────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${dq_publish/ServiceRole}    │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+├───┼──────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${silver_build/ServiceRole}  │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴──────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+
+Resources
+[+] AWS::Logs::LogGroup bronze_ingestLogs bronzeingestLogsA2A2F4BB
+[+] AWS::IAM::Role bronze_ingest/ServiceRole bronzeingestServiceRoleAE44872C
+[+] AWS::IAM::Policy bronze_ingest/ServiceRole/DefaultPolicy bronzeingestServiceRoleDefaultPolicy2E5B1C90
+[+] AWS::Lambda::Function bronze_ingest bronzeingestE45FB3FE
+[+] AWS::Logs::LogGroup silver_buildLogs silverbuildLogs3250F8D1
+[+] AWS::IAM::Role silver_build/ServiceRole silverbuildServiceRoleADB95048
+[+] AWS::IAM::Policy silver_build/ServiceRole/DefaultPolicy silverbuildServiceRoleDefaultPolicy0BEBE1B7
+[+] AWS::Lambda::Function silver_build silverbuild5F86E75A
+[+] AWS::Logs::LogGroup dq_publishLogs dqpublishLogsF642C029
+[+] AWS::IAM::Role dq_publish/ServiceRole dqpublishServiceRoleD7A8F9FD
+[+] AWS::IAM::Policy dq_publish/ServiceRole/DefaultPolicy dqpublishServiceRoleDefaultPolicyFCE1EC25
+[+] AWS::Lambda::Function dq_publish dqpublish2D5D3A45
+[+] AWS::SNS::Topic Alerts Alerts91F83244
+[+] AWS::SNS::TopicPolicy Alerts/Policy AlertsPolicy425C338D
+[+] AWS::Logs::LogGroup SfnLogs SfnLogs9D18D4A1
+[+] AWS::IAM::Role Ingest/Role IngestRoleEE92D549
+[+] AWS::IAM::Policy Ingest/Role/DefaultPolicy IngestRoleDefaultPolicy0FA274D7
+[+] AWS::StepFunctions::StateMachine Ingest Ingest4069586C
+[+] AWS::IAM::Role Ingest/EventsRole IngestEventsRoleD2751BEE
+[+] AWS::IAM::Policy Ingest/EventsRole/DefaultPolicy IngestEventsRoleDefaultPolicy9F5092AE
+[+] AWS::Events::Rule StagingObjectCreated StagingObjectCreated84FDC2BA
+[+] AWS::Events::Rule IngestFailed IngestFailed369C357E
+[+] AWS::Glue::Database finora_silver finorasilver
+[+] AWS::Glue::Database finora_dq finoradq
+[+] AWS::Glue::Table finora_silver_transactions finorasilvertransactions
+[+] AWS::Glue::Table finora_silver_industry finorasilverindustry
+[+] AWS::Glue::Table finora_silver_sm_spend finorasilversmspend
+[+] AWS::Glue::Table finora_silver_customer finorasilvercustomer
+[+] AWS::Glue::Table finora_silver_customer_month finorasilvercustomermonth
+[+] AWS::Glue::Table finora_silver_gap finorasilvergap
+[+] AWS::Glue::Table finora_silver_month_control finorasilvermonthcontrol
+[+] AWS::Glue::Table finora_silver_source_status finorasilversourcestatus
+[+] AWS::Glue::Table finora_silver_restatement_log finorasilverrestatementlog
+[+] AWS::Glue::Table finora_dq_findings finoradqfindings
+[+] AWS::Glue::Table finora_dq_excluded finoradqexcluded
+[+] AWS::Athena::WorkGroup WorkGroup WorkGroup
+
+Outputs
+[+] Output AlertTopicArn AlertTopicArn: {"Value":{"Ref":"Alerts91F83244"}}
+[+] Output StateMachineArn StateMachineArn: {"Value":{"Ref":"Ingest4069586C"}}
+
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDqAuth
+IAM Statement Changes
+┌───┬─────────────────────────┬────────┬─────────────────────────────┬──────────────────────────────┬───────────┐
+│   │ Resource                │ Effect │ Action                      │ Principal                    │ Condition │
+├───┼─────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────┼───────────┤
+│ + │ ${Auth/ServiceRole.Arn} │ Allow  │ sts:AssumeRole              │ Service:lambda.amazonaws.com │           │
+├───┼─────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────┼───────────┤
+│ + │ ${RateLimits.Arn}       │ Allow  │ dynamodb:BatchGetItem       │ AWS:${Auth/ServiceRole}      │           │
+│   │                         │        │ dynamodb:BatchWriteItem     │                              │           │
+│   │                         │        │ dynamodb:ConditionCheckItem │                              │           │
+│   │                         │        │ dynamodb:DeleteItem         │                              │           │
+│   │                         │        │ dynamodb:DescribeTable      │                              │           │
+│   │                         │        │ dynamodb:GetItem            │                              │           │
+│   │                         │        │ dynamodb:PutItem            │                              │           │
+│   │                         │        │ dynamodb:Query              │                              │           │
+│   │                         │        │ dynamodb:Scan               │                              │           │
+│   │                         │        │ dynamodb:UpdateItem         │                              │           │
+│ + │ ${RateLimits.Arn}       │ Allow  │ dynamodb:GetRecords         │ AWS:${Auth/ServiceRole}      │           │
+│   │                         │        │ dynamodb:GetShardIterator   │                              │           │
+├───┼─────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────┼───────────┤
+│ + │ ${Sessions.Arn}         │ Allow  │ dynamodb:BatchGetItem       │ AWS:${Auth/ServiceRole}      │           │
+│   │ ${Sessions.Arn}/index/* │        │ dynamodb:BatchWriteItem     │                              │           │
+│   │                         │        │ dynamodb:ConditionCheckItem │                              │           │
+│   │                         │        │ dynamodb:DeleteItem         │                              │           │
+│   │                         │        │ dynamodb:DescribeTable      │                              │           │
+│   │                         │        │ dynamodb:GetItem            │                              │           │
+│   │                         │        │ dynamodb:PutItem            │                              │           │
+│   │                         │        │ dynamodb:Query              │                              │           │
+│   │                         │        │ dynamodb:Scan               │                              │           │
+│   │                         │        │ dynamodb:UpdateItem         │                              │           │
+│ + │ ${Sessions.Arn}         │ Allow  │ dynamodb:GetRecords         │ AWS:${Auth/ServiceRole}      │           │
+│   │ ${Sessions.Arn}/index/* │        │ dynamodb:GetShardIterator   │                              │           │
+├───┼─────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────┼───────────┤
+│ + │ ${Users.Arn}            │ Allow  │ dynamodb:BatchGetItem       │ AWS:${Auth/ServiceRole}      │           │
+│   │                         │        │ dynamodb:BatchWriteItem     │                              │           │
+│   │                         │        │ dynamodb:ConditionCheckItem │                              │           │
+│   │                         │        │ dynamodb:DeleteItem         │                              │           │
+│   │                         │        │ dynamodb:DescribeTable      │                              │           │
+│   │                         │        │ dynamodb:GetItem            │                              │           │
+│   │                         │        │ dynamodb:PutItem            │                              │           │
+│   │                         │        │ dynamodb:Query              │                              │           │
+│   │                         │        │ dynamodb:Scan               │                              │           │
+│   │                         │        │ dynamodb:UpdateItem         │                              │           │
+│ + │ ${Users.Arn}            │ Allow  │ dynamodb:GetRecords         │ AWS:${Auth/ServiceRole}      │           │
+│   │                         │        │ dynamodb:GetShardIterator   │                              │           │
+└───┴─────────────────────────┴────────┴─────────────────────────────┴──────────────────────────────┴───────────┘
+IAM Policy Changes
+┌───┬─────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource            │ Managed Policy ARN                                                             │
+├───┼─────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Auth/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴─────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+
+Resources
+[+] AWS::DynamoDB::Table Users Users0A0EEA89
+[+] AWS::DynamoDB::Table Sessions Sessions8896A56D
+[+] AWS::DynamoDB::Table RateLimits RateLimits2BA5B3CC
+[+] AWS::Logs::LogGroup AuthLogs AuthLogs839647A4
+[+] AWS::IAM::Role Auth/ServiceRole AuthServiceRole77527A1E
+[+] AWS::IAM::Policy Auth/ServiceRole/DefaultPolicy AuthServiceRoleDefaultPolicyA38FE8A9
+[+] AWS::Lambda::Function Auth AuthC256A5EC
+
+Outputs
+[+] Output Exports/Output{"Fn::GetAtt":["Users0A0EEA89","Arn"]} ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146: {"Value":{"Fn::GetAtt":["Users0A0EEA89","Arn"]},"Export":{"Name":"FinoraDqAuth:ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146"}}
+[+] Output Exports/Output{"Fn::GetAtt":["Sessions8896A56D","Arn"]} ExportsOutputFnGetAttSessions8896A56DArn139254BE: {"Value":{"Fn::GetAtt":["Sessions8896A56D","Arn"]},"Export":{"Name":"FinoraDqAuth:ExportsOutputFnGetAttSessions8896A56DArn139254BE"}}
+[+] Output Exports/Output{"Fn::GetAtt":["AuthC256A5EC","Arn"]} ExportsOutputFnGetAttAuthC256A5ECArn117206AE: {"Value":{"Fn::GetAtt":["AuthC256A5EC","Arn"]},"Export":{"Name":"FinoraDqAuth:ExportsOutputFnGetAttAuthC256A5ECArn117206AE"}}
+
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDqApi
+IAM Statement Changes
+┌───┬─────────────────────────────────────────────────────────────────────────────────────────────┬────────┬─────────────────────────────┬──────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                                    │ Effect │ Action                      │ Principal                        │ Condition                                                                                                                                                 │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${DqApi.Arn}                                                                                │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/dq/runs"                                          │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+│ + │ ${DqApi.Arn}                                                                                │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/dq/summary"                                       │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+│ + │ ${DqApi.Arn}                                                                                │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/dq/rules/{rule_id}/datasets/{dataset_id}/records" │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${DqApi/ServiceRole.Arn}                                                                    │ Allow  │ sts:AssumeRole              │ Service:lambda.amazonaws.com     │                                                                                                                                                           │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::al-test-dl-serving                                               │ Allow  │ s3:GetBucket*               │ AWS:${DqApi/ServiceRole}         │                                                                                                                                                           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-serving/dq/*                                          │        │ s3:GetObject*               │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ s3:List*                    │                                  │                                                                                                                                                           │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttAuthC256A5ECArn117206AE"}             │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/auth/login"                                       │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttAuthC256A5ECArn117206AE"}             │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/auth/logout"                                      │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttAuthC256A5ECArn117206AE"}             │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/auth/session"                                     │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttAuthC256A5ECArn117206AE"}             │ Allow  │ lambda:InvokeFunction       │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                                                              │
+│   │                                                                                             │        │                             │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/auth/password"                                    │
+│   │                                                                                             │        │                             │                                  │ }                                                                                                                                                         │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttSessions8896A56DArn139254BE"}         │ Allow  │ dynamodb:BatchGetItem       │ AWS:${DqApi/ServiceRole}         │                                                                                                                                                           │
+│   │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttSessions8896A56DArn139254BE"}/index/* │        │ dynamodb:ConditionCheckItem │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:DescribeTable      │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:GetItem            │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:Query              │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:Scan               │                                  │                                                                                                                                                           │
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttSessions8896A56DArn139254BE"}         │ Allow  │ dynamodb:GetRecords         │ AWS:${DqApi/ServiceRole}         │                                                                                                                                                           │
+│   │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttSessions8896A56DArn139254BE"}/index/* │        │ dynamodb:GetShardIterator   │                                  │                                                                                                                                                           │
+├───┼─────────────────────────────────────────────────────────────────────────────────────────────┼────────┼─────────────────────────────┼──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146"}            │ Allow  │ dynamodb:BatchGetItem       │ AWS:${DqApi/ServiceRole}         │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:ConditionCheckItem │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:DescribeTable      │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:GetItem            │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:Query              │                                  │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:Scan               │                                  │                                                                                                                                                           │
+│ + │ {"Fn::ImportValue":"FinoraDqAuth:ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146"}            │ Allow  │ dynamodb:GetRecords         │ AWS:${DqApi/ServiceRole}         │                                                                                                                                                           │
+│   │                                                                                             │        │ dynamodb:GetShardIterator   │                                  │                                                                                                                                                           │
+└───┴─────────────────────────────────────────────────────────────────────────────────────────────┴────────┴─────────────────────────────┴──────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+IAM Policy Changes
+┌───┬──────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource             │ Managed Policy ARN                                                             │
+├───┼──────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${DqApi/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴──────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+
+Resources
+[+] AWS::Logs::LogGroup DqApiLogs DqApiLogsC7402C60
+[+] AWS::IAM::Role DqApi/ServiceRole DqApiServiceRoleA433639E
+[+] AWS::IAM::Policy DqApi/ServiceRole/DefaultPolicy DqApiServiceRoleDefaultPolicyA87369A7
+[+] AWS::Lambda::Function DqApi DqApi8C0F6B53
+[+] AWS::ApiGatewayV2::Api HttpApi HttpApiF5A9A8A7
+[+] AWS::ApiGatewayV2::Stage HttpApi/DefaultStage HttpApiDefaultStage3EEB07D6
+[+] AWS::ApiGatewayV2::Integration HttpApi/POST--api--auth--login/AuthInt HttpApiPOSTapiauthloginAuthIntE99F6CCA
+[+] AWS::Lambda::Permission HttpApi/POST--api--auth--login/AuthInt-Permission HttpApiPOSTapiauthloginAuthIntPermission63559FF5
+[+] AWS::ApiGatewayV2::Route HttpApi/POST--api--auth--login HttpApiPOSTapiauthloginBD4A2136
+[+] AWS::Lambda::Permission HttpApi/POST--api--auth--logout/AuthInt-Permission HttpApiPOSTapiauthlogoutAuthIntPermission7AE00DE7
+[+] AWS::ApiGatewayV2::Route HttpApi/POST--api--auth--logout HttpApiPOSTapiauthlogout8DF714A3
+[+] AWS::Lambda::Permission HttpApi/GET--api--auth--session/AuthInt-Permission HttpApiGETapiauthsessionAuthIntPermissionE96A58BB
+[+] AWS::ApiGatewayV2::Route HttpApi/GET--api--auth--session HttpApiGETapiauthsession7A6DA7F0
+[+] AWS::Lambda::Permission HttpApi/POST--api--auth--password/AuthInt-Permission HttpApiPOSTapiauthpasswordAuthIntPermissionB0541EC0
+[+] AWS::ApiGatewayV2::Route HttpApi/POST--api--auth--password HttpApiPOSTapiauthpassword7E350038
+[+] AWS::ApiGatewayV2::Integration HttpApi/GET--api--dq--runs/DqInt HttpApiGETapidqrunsDqInt6B75BBFA
+[+] AWS::Lambda::Permission HttpApi/GET--api--dq--runs/DqInt-Permission HttpApiGETapidqrunsDqIntPermissionBFE69F76
+[+] AWS::ApiGatewayV2::Route HttpApi/GET--api--dq--runs HttpApiGETapidqruns8FA85A5F
+[+] AWS::Lambda::Permission HttpApi/GET--api--dq--summary/DqInt-Permission HttpApiGETapidqsummaryDqIntPermissionB815BDA9
+[+] AWS::ApiGatewayV2::Route HttpApi/GET--api--dq--summary HttpApiGETapidqsummaryF9D9D093
+[+] AWS::Lambda::Permission HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records/DqInt-Permission HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsDqIntPermissionCD69CB60
+[+] AWS::ApiGatewayV2::Route HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsB4B1E218
+
+Outputs
+[+] Output ApiEndpoint ApiEndpoint: {"Value":{"Fn::GetAtt":["HttpApiF5A9A8A7","ApiEndpoint"]}}
+[+] Output Exports/Output{"Ref":"HttpApiF5A9A8A7"} ExportsOutputRefHttpApiF5A9A8A7F70B5BDD: {"Value":{"Ref":"HttpApiF5A9A8A7"},"Export":{"Name":"FinoraDqApi:ExportsOutputRefHttpApiF5A9A8A7F70B5BDD"}}
+
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDqWeb
+IAM Statement Changes
+┌───┬──────────────────────────────────────────────────────────────────────────────────────┬────────┬───────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                             │ Effect │ Action                        │ Principal                                                                            │ Condition                                                                                     │
+├───┼──────────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole.Arn} │ Allow  │ sts:AssumeRole                │ Service:lambda.amazonaws.com                                                         │                                                                                               │
+├───┼──────────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Site.Arn}                                                                          │ Deny   │ s3:*                          │ AWS:*                                                                                │ "Bool": {                                                                                     │
+│   │ ${Site.Arn}/*                                                                        │        │                               │                                                                                      │   "aws:SecureTransport": "false"                                                              │
+│   │                                                                                      │        │                               │                                                                                      │ }                                                                                             │
+│ + │ ${Site.Arn}                                                                          │ Allow  │ s3:Abort*                     │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole} │                                                                                               │
+│   │ ${Site.Arn}/*                                                                        │        │ s3:DeleteObject*              │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:GetBucket*                 │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:GetObject*                 │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:List*                      │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:PutObject                  │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:PutObjectLegalHold         │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:PutObjectRetention         │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:PutObjectTagging           │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:PutObjectVersionTagging    │                                                                                      │                                                                                               │
+├───┼──────────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Site.Arn}/*                                                                        │ Allow  │ s3:GetObject                  │ Service:cloudfront.amazonaws.com                                                     │ "StringEquals": {                                                                             │
+│   │                                                                                      │        │                               │                                                                                      │   "AWS:SourceArn": "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Dist}" │
+│   │                                                                                      │        │                               │                                                                                      │ }                                                                                             │
+├───┼──────────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ *                                                                                    │ Allow  │ cloudfront:CreateInvalidation │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole} │                                                                                               │
+│   │                                                                                      │        │ cloudfront:GetInvalidation    │                                                                                      │                                                                                               │
+├───┼──────────────────────────────────────────────────────────────────────────────────────┼────────┼───────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2               │ Allow  │ s3:GetBucket*                 │ AWS:${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole} │                                                                                               │
+│   │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2/*             │        │ s3:GetObject*                 │                                                                                      │                                                                                               │
+│   │                                                                                      │        │ s3:List*                      │                                                                                      │                                                                                               │
+└───┴──────────────────────────────────────────────────────────────────────────────────────┴────────┴───────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────┘
+IAM Policy Changes
+┌───┬──────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                                                                         │ Managed Policy ARN                                                             │
+├───┼──────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴──────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Parameters
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+
+Resources
+[+] AWS::S3::Bucket Site SiteE53D7754
+[+] AWS::S3::BucketPolicy Site/Policy SitePolicyC4000D7D
+[+] AWS::CloudFront::ResponseHeadersPolicy SecurityHeaders SecurityHeadersE66B69D3
+[+] AWS::CloudFront::Function CleanUrls CleanUrls64751B8A
+[+] AWS::CloudFront::Function NotFoundStatus NotFoundStatus90D027C2
+[+] AWS::CloudFront::OriginAccessControl Dist/Origin1/S3OriginAccessControl DistOrigin1S3OriginAccessControlF1706B20
+[+] AWS::CloudFront::Distribution Dist DistB3B78991
+[+] AWS::Lambda::LayerVersion StaticAssets/AwsCliLayer StaticAssetsAwsCliLayerFDFFB269
+[+] Custom::CDKBucketDeployment StaticAssets/CustomResource-512MiB StaticAssetsCustomResource512MiBA508FFD1
+[+] AWS::IAM::Role Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleBA21DBC1
+[+] AWS::IAM::Policy Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole/DefaultPolicy CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleDefaultPolicy96C3E726
+[+] AWS::Lambda::Function Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB6723FB92
+[+] AWS::Lambda::LayerVersion Content/AwsCliLayer ContentAwsCliLayer130A3479
+[+] Custom::CDKBucketDeployment Content/CustomResource-512MiB ContentCustomResource512MiB9FB392DB
+
+Outputs
+[+] Output Url Url: {"Value":{"Fn::Join":["",["https://",{"Fn::GetAtt":["DistB3B78991","DomainName"]}]]}}
+[+] Output SiteBucket SiteBucket: {"Value":{"Ref":"SiteE53D7754"}}
+[+] Output WebSource WebSource: {"Value":"out"}
+
+
+
+✨  Number of stacks with differences: 5
+

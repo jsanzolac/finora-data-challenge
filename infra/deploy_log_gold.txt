@@ -1,0 +1,138 @@
+# Gold build deploy log 2026-11-17T18:53:43Z (account 962482423379, us-west-2)
+## 1. FinoraDlStorage import-only change set import-gold-bucket: 1 change, Import Gold83B9B25C = al-test-dl-gold (AWS::S3::Bucket, DeletionPolicy Retain)
+IMPORT_COMPLETE	2026-11-17T18:53:45.070000+00:00
+Gold83B9B25C	al-test-dl-gold	UPDATE_COMPLETE
+## 2. cdk deploy FinoraDlStorage --exclusively
+
+✨  Synthesis time: 2.62s
+
+FinoraDlStorage: start: Building FinoraDlStorage Template
+FinoraDlStorage: success: Built FinoraDlStorage Template
+FinoraDlStorage: start: Publishing FinoraDlStorage Template (962482423379-us-west-2-7543dc27)
+FinoraDlStorage: success: Published FinoraDlStorage Template (962482423379-us-west-2-7543dc27)
+FinoraDlStorage: deploying... [1/1]
+FinoraDlStorage: creating CloudFormation changeset...
+FinoraDlStorage | 0/4 | 1:55:02 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack | FinoraDlStorage User Initiated
+FinoraDlStorage | 0/4 | 1:55:05 PM | UPDATE_IN_PROGRESS   | AWS::S3::Bucket            | Gold (Gold83B9B25C) 
+FinoraDlStorage | 1/4 | 1:55:29 PM | UPDATE_COMPLETE      | AWS::S3::Bucket            | Gold (Gold83B9B25C) 
+FinoraDlStorage | 1/4 | 1:55:30 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy      | Gold/Policy (GoldPolicy626D44B3) 
+FinoraDlStorage | 1/4 | 1:55:31 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy      | Gold/Policy (GoldPolicy626D44B3) Resource creation Initiated
+FinoraDlStorage | 2/4 | 1:55:31 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy      | Gold/Policy (GoldPolicy626D44B3) 
+FinoraDlStorage | 3/4 | 1:55:32 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack | FinoraDlStorage 
+FinoraDlStorage | 4/4 | 1:55:33 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack | FinoraDlStorage 
+
+ ✅  FinoraDlStorage
+
+✨  Deployment time: 47.28s
+
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlStorage/91bac8f0-e229-11f1-84f0-02ffc84bb275
+
+✨  Total time: 49.9s
+
+## 3. cdk deploy FinoraDlEtl --exclusively
+
+✨  Synthesis time: 2.62s
+
+FinoraDlEtl: start: Building GlueGoldLib
+FinoraDlEtl: success: Built GlueGoldLib
+FinoraDlEtl: start: Building GoldScript
+FinoraDlEtl: success: Built GoldScript
+FinoraDlEtl: start: Building FinoraDlEtl Template
+FinoraDlEtl: success: Built FinoraDlEtl Template
+FinoraDlEtl: start: Publishing FinoraDlEtl Template (962482423379-us-west-2-39d0c0f0)
+FinoraDlEtl: start: Publishing GlueGoldLib (962482423379-us-west-2-0285c70d)
+FinoraDlEtl: start: Publishing GoldScript (962482423379-us-west-2-75a6ea5a)
+FinoraDlEtl: success: Published GoldScript (962482423379-us-west-2-75a6ea5a)
+FinoraDlEtl: success: Published FinoraDlEtl Template (962482423379-us-west-2-39d0c0f0)
+FinoraDlEtl: success: Published GlueGoldLib (962482423379-us-west-2-0285c70d)
+FinoraDlEtl: deploying... [1/1]
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlEtl | 0/8 | 1:56:23 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl | 0/8 | 1:56:26 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | GoldRole (GoldRoleEB3F48DE) 
+FinoraDlEtl | 0/8 | 1:56:26 PM | CREATE_IN_PROGRESS   | AWS::Glue::Database              | finora_gold (finoragold) 
+FinoraDlEtl | 0/8 | 1:56:27 PM | CREATE_IN_PROGRESS   | AWS::Glue::Database              | finora_gold (finoragold) Resource creation Initiated
+FinoraDlEtl | 0/8 | 1:56:27 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | GoldRole (GoldRoleEB3F48DE) Resource creation Initiated
+FinoraDlEtl | 1/8 | 1:56:29 PM | CREATE_COMPLETE      | AWS::Glue::Database              | finora_gold (finoragold) 
+FinoraDlEtl | 2/8 | 1:56:45 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | GoldRole (GoldRoleEB3F48DE) 
+FinoraDlEtl | 2/8 | 1:56:45 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | GoldRole/DefaultPolicy (GoldRoleDefaultPolicyEF3BF4A8) 
+FinoraDlEtl | 2/8 | 1:56:46 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | GoldRole/DefaultPolicy (GoldRoleDefaultPolicyEF3BF4A8) Resource creation Initiated
+FinoraDlEtl | 3/8 | 1:57:02 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | GoldRole/DefaultPolicy (GoldRoleDefaultPolicyEF3BF4A8) 
+FinoraDlEtl | 3/8 | 1:57:03 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | GoldJob 
+FinoraDlEtl | 3/8 | 1:57:04 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | GoldJob Resource creation Initiated
+FinoraDlEtl | 4/8 | 1:57:11 PM | CREATE_COMPLETE      | AWS::Glue::Job                   | GoldJob 
+FinoraDlEtl | 5/8 | 1:57:12 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) 
+FinoraDlEtl | 6/8 | 1:57:12 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) 
+FinoraDlEtl | 6/8 | 1:57:12 PM | UPDATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 7/8 | 1:57:29 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 7/8 | 1:57:30 PM | UPDATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 8/8 | 1:57:43 PM | UPDATE_COMPLETE      | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 9/8 | 1:57:43 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) 
+FinoraDlEtl | 10/8 | 1:57:45 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 11/8 | 1:57:46 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 108.37s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish,finora-dl-gold-build
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 110.99s
+
+## 4. cdk deploy FinoraDqApi --exclusively
+
+✨  Synthesis time: 2.61s
+
+FinoraDqApi: start: Building DqApi/Code
+FinoraDqApi: success: Built DqApi/Code
+FinoraDqApi: start: Building FinoraDqApi Template
+FinoraDqApi: success: Built FinoraDqApi Template
+FinoraDqApi: start: Publishing FinoraDqApi Template (962482423379-us-west-2-7936a1aa)
+FinoraDqApi: start: Publishing DqApi/Code (962482423379-us-west-2-be08e973)
+FinoraDqApi: success: Published DqApi/Code (962482423379-us-west-2-be08e973)
+FinoraDqApi: success: Published FinoraDqApi Template (962482423379-us-west-2-7936a1aa)
+FinoraDqApi: deploying... [1/1]
+FinoraDqApi: creating CloudFormation changeset...
+FinoraDqApi |  0/14 | 1:58:39 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack     | FinoraDqApi User Initiated
+FinoraDqApi |  0/14 | 1:58:43 PM | UPDATE_IN_PROGRESS   | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) 
+FinoraDqApi |  1/14 | 1:58:59 PM | UPDATE_COMPLETE      | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) 
+FinoraDqApi |  1/14 | 1:59:00 PM | UPDATE_IN_PROGRESS   | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi |  2/14 | 1:59:14 PM | UPDATE_COMPLETE      | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--acq--scenarios/DqInt-Permission (HttpApiPOSTapiacqscenariosDqIntPermission6DCDA118) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--acq--summary/DqInt-Permission (HttpApiGETapiacqsummaryDqIntPermissionDEA36DA6) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--acq--scenarios/DqInt-Permission (HttpApiGETapiacqscenariosDqIntPermission97F06D0C) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--acq--summary (HttpApiGETapiacqsummary1E74A54D) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--acq--scenarios (HttpApiGETapiacqscenariosD31371C5) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--acq--scenarios (HttpApiPOSTapiacqscenariosCF74EA2F) 
+FinoraDqApi |  2/14 | 1:59:15 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--acq--summary/DqInt-Permission (HttpApiGETapiacqsummaryDqIntPermissionDEA36DA6) Resource creation Initiated
+FinoraDqApi |  2/14 | 1:59:16 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--acq--scenarios/DqInt-Permission (HttpApiPOSTapiacqscenariosDqIntPermission6DCDA118) Resource creation Initiated
+FinoraDqApi |  2/14 | 1:59:16 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--acq--scenarios/DqInt-Permission (HttpApiGETapiacqscenariosDqIntPermission97F06D0C) Resource creation Initiated
+FinoraDqApi |  3/14 | 1:59:16 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--acq--summary/DqInt-Permission (HttpApiGETapiacqsummaryDqIntPermissionDEA36DA6) 
+FinoraDqApi |  3/14 | 1:59:16 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--acq--summary (HttpApiGETapiacqsummary1E74A54D) Resource creation Initiated
+FinoraDqApi |  3/14 | 1:59:16 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--acq--scenarios (HttpApiGETapiacqscenariosD31371C5) Resource creation Initiated
+FinoraDqApi |  4/14 | 1:59:16 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/POST--api--acq--scenarios/DqInt-Permission (HttpApiPOSTapiacqscenariosDqIntPermission6DCDA118) 
+FinoraDqApi |  4/14 | 1:59:16 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--acq--scenarios (HttpApiPOSTapiacqscenariosCF74EA2F) Resource creation Initiated
+FinoraDqApi |  5/14 | 1:59:16 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--acq--scenarios/DqInt-Permission (HttpApiGETapiacqscenariosDqIntPermission97F06D0C) 
+FinoraDqApi |  6/14 | 1:59:16 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--acq--summary (HttpApiGETapiacqsummary1E74A54D) 
+FinoraDqApi |  7/14 | 1:59:17 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--acq--scenarios (HttpApiGETapiacqscenariosD31371C5) 
+FinoraDqApi |  8/14 | 1:59:17 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--acq--scenarios (HttpApiPOSTapiacqscenariosCF74EA2F) 
+FinoraDqApi |  9/14 | 1:59:18 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack     | FinoraDqApi 
+FinoraDqApi | 10/14 | 1:59:19 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack     | FinoraDqApi 
+
+ ✅  FinoraDqApi
+
+✨  Deployment time: 60.7s
+
+Outputs:
+FinoraDqApi.ApiEndpoint = https://dx2tg0v3a8.execute-api.us-west-2.amazonaws.com
+FinoraDqApi.ExportsOutputRefHttpApiF5A9A8A7F70B5BDD = dx2tg0v3a8
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqApi/0e4ae850-e22a-11f1-acef-06ffedd3c539
+
+✨  Total time: 63.31s
+

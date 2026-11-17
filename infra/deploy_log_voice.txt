@@ -1,0 +1,172 @@
+
+✨  Synthesis time: 3.5s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building GlueBriefingLib
+FinoraDlEtl: success: Built GlueBriefingLib
+FinoraDlEtl: start: Building BriefingScript
+FinoraDlEtl: success: Built BriefingScript
+FinoraDlEtl: start: Building FinoraDlEtl Template
+FinoraDlEtl: success: Built FinoraDlEtl Template
+FinoraDqAuth: start: Building Auth/Code
+FinoraDqAuth: success: Built Auth/Code
+FinoraDqAuth: start: Building FinoraDqAuth Template
+FinoraDqAuth: success: Built FinoraDqAuth Template
+FinoraDqApi: start: Building DqApi/Code
+FinoraDqApi: success: Built DqApi/Code
+FinoraDqApi: start: Building Agent/Code
+FinoraDqApi: success: Built Agent/Code
+FinoraDqApi: start: Building FinoraDqApi Template
+FinoraDqApi: success: Built FinoraDqApi Template
+FinoraDlEtl: start: Publishing FinoraDlEtl Template (962482423379-us-west-2-5dd80280)
+FinoraDqAuth: start: Publishing FinoraDqAuth Template (962482423379-us-west-2-5df155e1)
+FinoraDlEtl: start: Publishing GlueBriefingLib (962482423379-us-west-2-26dc8fdb)
+FinoraDlEtl: start: Publishing BriefingScript (962482423379-us-west-2-6f478f8a)
+FinoraDqAuth: start: Publishing Auth/Code (962482423379-us-west-2-aaa1adac)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDqAuth: success: Published FinoraDqAuth Template (962482423379-us-west-2-5df155e1)
+FinoraDqAuth: success: Published Auth/Code (962482423379-us-west-2-aaa1adac)
+FinoraDqAuth
+FinoraDqAuth: deploying... [2/3]
+FinoraDlEtl: success: Published BriefingScript (962482423379-us-west-2-6f478f8a)
+FinoraDlEtl: success: Published FinoraDlEtl Template (962482423379-us-west-2-5dd80280)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: success: Published GlueBriefingLib (962482423379-us-west-2-26dc8fdb)
+FinoraDqAuth: creating CloudFormation changeset...
+FinoraDqAuth | 0/4 | 4:17:09 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack | FinoraDqAuth User Initiated
+FinoraDqAuth | 0/4 | 4:17:11 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table       | AgentTokens (AgentTokens5886A422) 
+FinoraDqAuth | 0/4 | 4:17:12 PM | UPDATE_IN_PROGRESS   | AWS::Lambda::Function      | Auth (AuthC256A5EC) 
+FinoraDqAuth | 0/4 | 4:17:12 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table       | AgentTokens (AgentTokens5886A422) Resource creation Initiated
+FinoraDqAuth | 1/4 | 4:17:20 PM | UPDATE_COMPLETE      | AWS::Lambda::Function      | Auth (AuthC256A5EC) 
+FinoraDqAuth | 2/4 | 4:17:25 PM | CREATE_COMPLETE      | AWS::DynamoDB::Table       | AgentTokens (AgentTokens5886A422) 
+FinoraDqAuth | 3/4 | 4:17:28 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack | FinoraDqAuth 
+FinoraDqAuth | 4/4 | 4:17:29 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack | FinoraDqAuth 
+
+ ✅  FinoraDqAuth
+
+✨  Deployment time: 44.34s
+
+Outputs:
+FinoraDqAuth.ExportsOutputFnGetAttAgentTokens5886A422ArnC128385C = arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-agent-tokens
+FinoraDqAuth.ExportsOutputFnGetAttAuthC256A5ECArn117206AE = arn:aws:lambda:us-west-2:962482423379:function:finora-dq-auth
+FinoraDqAuth.ExportsOutputFnGetAttRateLimits2BA5B3CCArn9B34A288 = arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-rate-limits
+FinoraDqAuth.ExportsOutputFnGetAttSessions8896A56DArn139254BE = arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-sessions
+FinoraDqAuth.ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146 = arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-users
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqAuth/e48c4310-e229-11f1-b70c-02cf3023c5bd
+
+✨  Total time: 47.85s
+
+FinoraDlEtl
+FinoraDlEtl: deploying... [1/3]
+FinoraDqApi: start: Publishing DqApi/Code (962482423379-us-west-2-151e9364)
+FinoraDqApi: start: Publishing Agent/Code (962482423379-us-west-2-8189bd97)
+FinoraDqApi: start: Publishing FinoraDqApi Template (962482423379-us-west-2-6fac435d)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDqApi: success: Published DqApi/Code (962482423379-us-west-2-151e9364)
+FinoraDqApi: success: Published FinoraDqApi Template (962482423379-us-west-2-6fac435d)
+FinoraDqApi: success: Published Agent/Code (962482423379-us-west-2-8189bd97)
+FinoraDlEtl | 0/7 | 4:17:51 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl | 0/7 | 4:17:54 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | BriefingRole (BriefingRole8B14C4FF) 
+FinoraDlEtl | 0/7 | 4:17:55 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | BriefingRole (BriefingRole8B14C4FF) Resource creation Initiated
+FinoraDlEtl | 1/7 | 4:18:13 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | BriefingRole (BriefingRole8B14C4FF) 
+FinoraDlEtl | 1/7 | 4:18:14 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | BriefingRole/DefaultPolicy (BriefingRoleDefaultPolicyD5B8BFAB) 
+FinoraDlEtl | 1/7 | 4:18:15 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | BriefingRole/DefaultPolicy (BriefingRoleDefaultPolicyD5B8BFAB) Resource creation Initiated
+FinoraDlEtl | 2/7 | 4:18:30 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | BriefingRole/DefaultPolicy (BriefingRoleDefaultPolicyD5B8BFAB) 
+FinoraDlEtl | 2/7 | 4:18:31 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | BriefingJob 
+FinoraDlEtl | 2/7 | 4:18:32 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | BriefingJob Resource creation Initiated
+FinoraDlEtl | 3/7 | 4:18:34 PM | CREATE_COMPLETE      | AWS::Glue::Job                   | BriefingJob 
+FinoraDlEtl | 4/7 | 4:18:34 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) 
+FinoraDlEtl | 5/7 | 4:18:34 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) 
+FinoraDlEtl | 5/7 | 4:18:35 PM | UPDATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 6/7 | 4:18:51 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 6/7 | 4:18:53 PM | UPDATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 7/7 | 4:19:05 PM | UPDATE_COMPLETE      | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 8/7 | 4:19:06 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) 
+FinoraDlEtl | 9/7 | 4:19:07 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 10/7 | 4:19:08 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 100.11s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish,finora-dl-gold-build,finora-dl-gold-mrr,finora-dl-agent-briefing
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 103.61s
+
+FinoraDqApi
+FinoraDqApi: deploying... [3/3]
+FinoraDqApi: creating CloudFormation changeset...
+FinoraDqApi |  0/26 | 4:19:35 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack     | FinoraDqApi User Initiated
+FinoraDqApi |  0/26 | 4:19:38 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup            | AgentLogs (AgentLogs05C568C3) 
+FinoraDqApi |  0/26 | 4:19:38 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                 | Agent/ServiceRole (AgentServiceRoleCBF1B0E6) 
+FinoraDqApi |  0/26 | 4:19:38 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table           | AgentResults (AgentResultsB2F5BB12) 
+FinoraDqApi |  0/26 | 4:19:39 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup            | AgentLogs (AgentLogs05C568C3) Resource creation Initiated
+FinoraDqApi |  0/26 | 4:19:39 PM | UPDATE_IN_PROGRESS   | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi |  0/26 | 4:19:39 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                 | Agent/ServiceRole (AgentServiceRoleCBF1B0E6) Resource creation Initiated
+FinoraDqApi |  0/26 | 4:19:39 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table           | AgentResults (AgentResultsB2F5BB12) Resource creation Initiated
+FinoraDqApi |  1/26 | 4:19:47 PM | UPDATE_COMPLETE      | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi |  2/26 | 4:19:48 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup            | AgentLogs (AgentLogs05C568C3) 
+FinoraDqApi |  3/26 | 4:19:52 PM | CREATE_COMPLETE      | AWS::DynamoDB::Table           | AgentResults (AgentResultsB2F5BB12) 
+FinoraDqApi |  4/26 | 4:19:56 PM | CREATE_COMPLETE      | AWS::IAM::Role                 | Agent/ServiceRole (AgentServiceRoleCBF1B0E6) 
+FinoraDqApi |  4/26 | 4:19:57 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy               | Agent/ServiceRole/DefaultPolicy (AgentServiceRoleDefaultPolicy43B6DE6F) 
+FinoraDqApi |  4/26 | 4:19:58 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy               | Agent/ServiceRole/DefaultPolicy (AgentServiceRoleDefaultPolicy43B6DE6F) Resource creation Initiated
+FinoraDqApi |  5/26 | 4:20:13 PM | CREATE_COMPLETE      | AWS::IAM::Policy               | Agent/ServiceRole/DefaultPolicy (AgentServiceRoleDefaultPolicy43B6DE6F) 
+FinoraDqApi |  5/26 | 4:20:14 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function          | Agent (Agent255F68E9) 
+FinoraDqApi |  5/26 | 4:20:16 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function          | Agent (Agent255F68E9) Resource creation Initiated
+FinoraDqApi |  6/26 | 4:20:24 PM | CREATE_COMPLETE      | AWS::Lambda::Function          | Agent (Agent255F68E9) 
+FinoraDqApi |  6/26 | 4:20:24 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--agent--ask/AgentInt-Permission (HttpApiPOSTapiagentaskAgentIntPermission751D1819) 
+FinoraDqApi |  6/26 | 4:20:24 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--agent-session/AgentInt-Permission (HttpApiPOSTapiagentsessionAgentIntPermission53B550E7) 
+FinoraDqApi |  6/26 | 4:20:24 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--agent--results--{result_id}/AgentInt-Permission (HttpApiGETapiagentresultsresultidAgentIntPermission497DC6E2) 
+FinoraDqApi |  6/26 | 4:20:24 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--agent--briefing/AgentInt-Permission (HttpApiGETapiagentbriefingAgentIntPermission06639B01) 
+FinoraDqApi |  6/26 | 4:20:24 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Integration | HttpApi/POST--api--agent-session/AgentInt (HttpApiPOSTapiagentsessionAgentIntDE2E6B4E) 
+FinoraDqApi |  6/26 | 4:20:25 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--agent--ask/AgentInt-Permission (HttpApiPOSTapiagentaskAgentIntPermission751D1819) Resource creation Initiated
+FinoraDqApi |  6/26 | 4:20:25 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--agent--results--{result_id}/AgentInt-Permission (HttpApiGETapiagentresultsresultidAgentIntPermission497DC6E2) Resource creation Initiated
+FinoraDqApi |  6/26 | 4:20:25 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--agent--briefing/AgentInt-Permission (HttpApiGETapiagentbriefingAgentIntPermission06639B01) Resource creation Initiated
+FinoraDqApi |  6/26 | 4:20:25 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Integration | HttpApi/POST--api--agent-session/AgentInt (HttpApiPOSTapiagentsessionAgentIntDE2E6B4E) Resource creation Initiated
+FinoraDqApi |  6/26 | 4:20:26 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--agent-session/AgentInt-Permission (HttpApiPOSTapiagentsessionAgentIntPermission53B550E7) Resource creation Initiated
+FinoraDqApi |  7/26 | 4:20:26 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--agent--results--{result_id}/AgentInt-Permission (HttpApiGETapiagentresultsresultidAgentIntPermission497DC6E2) 
+FinoraDqApi |  8/26 | 4:20:26 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/POST--api--agent--ask/AgentInt-Permission (HttpApiPOSTapiagentaskAgentIntPermission751D1819) 
+FinoraDqApi |  9/26 | 4:20:26 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--agent--briefing/AgentInt-Permission (HttpApiGETapiagentbriefingAgentIntPermission06639B01) 
+FinoraDqApi | 10/26 | 4:20:26 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Integration | HttpApi/POST--api--agent-session/AgentInt (HttpApiPOSTapiagentsessionAgentIntDE2E6B4E) 
+FinoraDqApi | 11/26 | 4:20:26 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/POST--api--agent-session/AgentInt-Permission (HttpApiPOSTapiagentsessionAgentIntPermission53B550E7) 
+FinoraDqApi | 11/26 | 4:20:26 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--agent--briefing (HttpApiGETapiagentbriefingD4909C5A) 
+FinoraDqApi | 11/26 | 4:20:26 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--agent-session (HttpApiPOSTapiagentsession77D82F56) 
+FinoraDqApi | 11/26 | 4:20:26 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--agent--ask (HttpApiPOSTapiagentask6FE1AB5F) 
+FinoraDqApi | 11/26 | 4:20:26 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--agent--results--{result_id} (HttpApiGETapiagentresultsresultid054E9D21) 
+FinoraDqApi | 11/26 | 4:20:27 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--agent--results--{result_id} (HttpApiGETapiagentresultsresultid054E9D21) Resource creation Initiated
+FinoraDqApi | 11/26 | 4:20:27 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--agent-session (HttpApiPOSTapiagentsession77D82F56) Resource creation Initiated
+FinoraDqApi | 12/26 | 4:20:28 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--agent--results--{result_id} (HttpApiGETapiagentresultsresultid054E9D21) 
+FinoraDqApi | 13/26 | 4:20:28 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--agent-session (HttpApiPOSTapiagentsession77D82F56) 
+FinoraDqApi | 13/26 | 4:20:29 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--agent--ask (HttpApiPOSTapiagentask6FE1AB5F) Resource creation Initiated
+FinoraDqApi | 13/26 | 4:20:29 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--agent--briefing (HttpApiGETapiagentbriefingD4909C5A) Resource creation Initiated
+FinoraDqApi | 14/26 | 4:20:29 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--agent--ask (HttpApiPOSTapiagentask6FE1AB5F) 
+FinoraDqApi | 15/26 | 4:20:29 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--agent--briefing (HttpApiGETapiagentbriefingD4909C5A) 
+FinoraDqApi | 16/26 | 4:20:31 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack     | FinoraDqApi 
+FinoraDqApi | 17/26 | 4:20:31 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack     | FinoraDqApi 
+
+ ✅  FinoraDqApi
+
+✨  Deployment time: 81.57s
+
+Outputs:
+FinoraDqApi.AgentFunction = finora-dq-agent
+FinoraDqApi.ApiEndpoint = https://dx2tg0v3a8.execute-api.us-west-2.amazonaws.com
+FinoraDqApi.ExportsOutputRefHttpApiF5A9A8A7F70B5BDD = dx2tg0v3a8
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqApi/0e4ae850-e22a-11f1-acef-06ffedd3c539
+
+✨  Total time: 85.07s
+

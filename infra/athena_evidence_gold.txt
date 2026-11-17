@@ -1,0 +1,77 @@
+# verify_gold.py figures r20261117T190113Z
+gold run r20261117T190113Z (succeeded), silver run r20261117T190113Z, silver snapshots {'transactions': 3869339586064650957, 'industry': 4806321740320178982, 'sm_spend': 232251296381963404, 'customer': 6714543268628740384, 'customer_month': 1349245429868337976, 'month_control': 101978554049789714, 'source_status': 9103099341355974012}
+== row counts (finora_gold, main)
+  [ok] dim_month: 34
+  [ok] dim_industry: 8
+  [ok] dim_customer: 1961
+  [ok] dim_spend_category: 8
+  [ok] dim_funnel_stage: 7
+  [ok] fact_acquisition: 1584
+  [ok] fact_customer_month_revenue: 66674
+  [ok] fact_sm_spend: 238
+  [ok] agg_acquisition_month: 34
+  [ok] agg_won_month_industry: 198
+  [ok] agg_industry_profile: 18
+  [ok] agg_won_spend_lag_corr: 1848
+  [ok] gold_build_status: 1
+  [ok] fact_sm_spend by hr_sensitive: {'hr': '102', 'shared': '136'}
+  [ok] every row carries this run: 0
+== §12.2 / §12.3 headline figures
+  [ok] Won (user) / new logos: ('1584', '1541')
+  [ok] new revenue / of which multiples / new logos / run-rate: ('105482511.96', '10663744.35', '99728662.11', '99662644.41')
+  [ok] spend, 33 Won months: 7581800000
+  [ok] window start spend (Won NULL): {'won': None, 'spend': '200000000'}
+  [ok] fact_customer_month_revenue Σ amount_value / paid rows: {'v': '2214415045.08', 'paid': '32971'}
+== reconciliation to silver at its run snapshots (FOR VERSION AS OF)
+  [ok] GC-01 Won = silver customers with cohort, not left: {'silver': '1584', 'gold': '1584'}
+  [ok] GC-04 new revenue = silver first payments x 10,000: {'silver': '105482511.96', 'gold': '105482511.96'}
+  [ok] GC-05 spend cells differing from silver (count only): 0
+  [ok] GC-05 monthly totals = silver month_control.sm_value_total (mismatching months): 0
+  [ok] GC-06 revenue fact rows and Σ amount_value = silver: {'silver_rows': '66674', 'gold_rows': '66674', 'silver_v': '2214415045.08', 'gold_v': '2214415045.08'}
+  [ok] GC-02 new logos = silver customer.is_new_logo = month_control.new_logos: {'c': '1541', 'm': '1541', 'g': '1541'}
+== §12.5 funnel (v_funnel_period / v_funnel_month, base)
+  [ok] full period, user Won: [('NEW', '58928.571429', '128660.85'), ('WORKING', '47142.857143', '160826.06'), ('ENGAGED', '18857.142857', '402065.15'), ('SQL', '9428.571429', '804130.30'), ('DEMO', '6600.000000', '1148757.58'), ('PROPOSAL', '3960.000000', '1914595.96'), ('WON', '1584.000000', '4786489.90')]
+  [ok] full period, new logo: New / Won cost: {'new_n': '57328.869048', 'won_c': '4920051.91'}
+  [ok] 2024-10: New / Won: {'new': '1860.119048 / 107520.00', 'won': '50.000000 / 4000000.00'}
+  [ok] regimes and years: Won / cost per Won: {'2022': ('380', '8146315.79'), '2023': ('650', '3862615.38'), '2024': ('554', '3565884.48'), 'from_2023_06': ('978', '3047955.01'), 'pre_2023_06': ('606', '7592244.22')}
+  [ok] v_funnel_scenario_status: base valid: {'status': 'valid', 'failed_checks': ''}
+== correlations (§12.8, §7.5)
+  [ok] TOTAL, company, user Won (method, lag, r, n): [('diff', '0', '0.1412', '32'), ('diff', '1', '-0.1790', '32'), ('diff', '2', '-0.0895', '31'), ('diff', '3', '0.1377', '30'), ('level', '0', '-0.4795', '33'), ('level', '1', '-0.4964', '33'), ('level', '2', '-0.4190', '32'), ('level', '3', '-0.2609', '31'), ('within_regime', '0', '-0.1586', '33'), ('within_regime', '1', '-0.2523', '33'), ('within_regime', '2', '0.0363', '32'), ('within_regime', '3', '0.2266', '31')]
+  [ok] v_corr_signal_summary (signals): {('first_payment', 'diff', 'company'): '3', ('first_payment', 'diff', 'industry'): '11', ('first_payment', 'level', 'company'): '30', ('first_payment', 'level', 'industry'): '110', ('first_payment', 'within_regime', 'company'): '3', ('first_payment', 'within_regime', 'industry'): '17', ('new_logo', 'diff', 'company'): '3', ('new_logo', 'diff', 'industry'): '13', ('new_logo', 'level', 'company'): '32', ('new_logo', 'level', 'industry'): '123', ('new_logo', 'within_regime', 'company'): '3', ('new_logo', 'within_regime', 'industry'): '14'}
+  [ok] v_acquisition_month rows / v_sm_spend_shared rows: {'m': '33', 's': '136'}
+  [ok] gold_build_status: {'_run_id': 'r20261117T190113Z', '_silver_run_id': 'r20261117T190113Z', 'data_complete_through': '2024-10', 'base_rates_match_seed': 'true', 'controls_passed': 'true'}
+0 failures
+
+# verify_gold.py rate-edit 
+  [ok] cto_deploy_check_20261117 absent from v_funnel_period before the insert: []
+INSERT INTO finora_gold.funnel_conversion_rate
+SELECT 'cto_deploy_check_20261117', 'CTO deploy check: SQL to Demo at 80% (test, not a business assumption)', from_stage_code,
+       to_stage_code, CASE WHEN from_stage_code = 'SQL' THEN CAST('0.8000' AS DECIMAL(5,4)) ELSE rate END,
+       CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'cto-deploy-check',
+       'Deploy verification of the rate-edit flow, 2026-11-17; test scenario, not a business assumption'
+FROM finora_gold.v_funnel_rate_current WHERE scenario_id = 'base'
+  [ok] cto_deploy_check_20261117 in v_funnel_period on the next query (New, Won): [('NEW', '51562.500000'), ('WON', '1584.000000')]
+  [ok] cto_deploy_check_20261117 rows in v_funnel_month (2 definitions x 33 months x 7 stages): 462
+  [ok] §12.6 via the views: {'w': '1810.285714', 'c': '4188178.66'}
+  [ok] status: {'status': 'valid'}
+  [ok] base unchanged: {'n': '58928.571429'}
+0 failures
+
+# Iceberg metadata checks (Athena), gold run r20261117T190113Z
+dim_month refs: [('main', 'BRANCH', '8932245907416688578'), ('r20261117T190113Z', 'TAG', '8932245907416688578')]
+fact_sm_spend refs: [('main', 'BRANCH', '4418607155948918041'), ('r20261117T190113Z', 'TAG', '4418607155948918041')]
+gold_build_status refs: [('main', 'BRANCH', '2471003113368778351'), ('r20261117T190113Z', 'TAG', '2471003113368778351')]
+agg_won_spend_lag_corr refs: [('main', 'BRANCH', '2832639110179097369'), ('r20261117T190113Z', 'TAG', '2832639110179097369')]
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/Users/juananzola/alegra/infra/gold_athena_ddl.py", line 66, in run
+    raise RuntimeError(f"{qid} {state}: {q['Status'].get('StateChangeReason', '')[:800]}")
+RuntimeError: c3a9d425-ab97-456d-b729-3ce1433c988e FAILED: COLUMN_NOT_FOUND: line 1:8: Column 'partition' cannot be resolved or requester is not authorized to access requested resources
+fact_sm_spend data files: [{'hr_partition': 'false', 'files': '1', 'n': '136', 'files_with_spend_bounds': '0', 'files_with_month_key_bounds': '1'}, {'hr_partition': 'true', 'files': '1', 'n': '102', 'files_with_spend_bounds': '0', 'files_with_month_key_bounds': '1'}]
+funnel_conversion_rate snapshots: [('987657331643210322', 'append', '2026-11-17 19:00:54.636 UTC'), ('4567838978965780359', 'append', '2026-11-17 19:16:51.651 UTC')]
+rate rows: [{'scenario_id': 'base', 'changed_by': 'seed', 'n': '6'}, {'scenario_id': 'cto_deploy_check_20261117', 'changed_by': 'cto-deploy-check', 'n': '6'}]
+gold_build_status rate snapshot: [{'sid': '987657331643210322', 'rate_table_rows_sha256': '78afb700a0ec00d9416b422d9d1af2276029f35040c38ebc29c1e69a6f43af35'}]
+FOLLOW-UP evidence, silver sm_spend current data files (spend/spend_value/spend_raw bounds present?): [{'hr_partition': 'false', 'files': '1', 'files_with_spend_bounds': '1'}, {'hr_partition': 'true', 'files': '1', 'files_with_spend_bounds': '1'}]
+# levers on Athena, run r20261117T201211Z
+[{'period_code': 'pre_2023_06', 'rr': '55767.62', 'pb': '136.1', '_run_id': 'r20261117T201211Z'}, {'period_code': 'from_2023_06', 'rr': '42550.70', 'pb': '71.6', '_run_id': 'r20261117T201211Z'}]
+[{'cohort_half': '2022-H1', 'rr': '62673.51', 'm6': '0.9386'}, {'cohort_half': '2022-H2', 'rr': '61597.90', 'm6': '0.9079'}, {'cohort_half': '2023-H1', 'rr': '45109.09', 'm6': '0.9412'}, {'cohort_half': '2023-H2', 'rr': '39934.42', 'm6': '0.9524'}, {'cohort_half': '2024-H1', 'rr': '44945.08', 'm6': '0.9401'}, {'cohort_half': '2024-H2', 'rr': '43384.87', 'm6': None}]

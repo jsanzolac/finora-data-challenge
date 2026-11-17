@@ -1,0 +1,45 @@
+# gold_athena_ddl.py rate-table at 2026-11-17T19:00:48Z (workgroup finora-dl, account 962482423379)
+CREATE TABLE IF NOT EXISTS finora_gold.funnel_conversion_rate (
+  scenario_id string,
+  scenario_label string,
+  from_stage_code string,
+  to_stage_code string,
+  rate decimal(5,4),
+  changed_at timestamp,
+  changed_by string,
+  change_reason string
+)
+LOCATION 's3://al-test-dl-gold/iceberg/finora_gold/funnel_conversion_rate/'
+TBLPROPERTIES ('table_type'='ICEBERG', 'format'='parquet', 'write_compression'='zstd',
+  'vacuum_min_snapshots_to_keep'='2147483647', 'vacuum_max_snapshot_age_seconds'='3153600000')
+INSERT INTO finora_gold.funnel_conversion_rate (scenario_id, scenario_label, from_stage_code, to_stage_code, rate, changed_at, changed_by, change_reason)
+VALUES
+('base', 'Base (user rates 2026-11-17)', 'NEW', 'WORKING', CAST('0.8000' AS DECIMAL(5,4)), CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'seed', 'User definition 2026-11-17, docs/gold_acquisition_model.md'),
+('base', 'Base (user rates 2026-11-17)', 'WORKING', 'ENGAGED', CAST('0.4000' AS DECIMAL(5,4)), CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'seed', 'User definition 2026-11-17, docs/gold_acquisition_model.md'),
+('base', 'Base (user rates 2026-11-17)', 'ENGAGED', 'SQL', CAST('0.5000' AS DECIMAL(5,4)), CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'seed', 'User definition 2026-11-17, docs/gold_acquisition_model.md'),
+('base', 'Base (user rates 2026-11-17)', 'SQL', 'DEMO', CAST('0.7000' AS DECIMAL(5,4)), CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'seed', 'User definition 2026-11-17, docs/gold_acquisition_model.md'),
+('base', 'Base (user rates 2026-11-17)', 'DEMO', 'PROPOSAL', CAST('0.6000' AS DECIMAL(5,4)), CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'seed', 'User definition 2026-11-17, docs/gold_acquisition_model.md'),
+('base', 'Base (user rates 2026-11-17)', 'PROPOSAL', 'WON', CAST('0.4000' AS DECIMAL(5,4)), CAST(current_timestamp AT TIME ZONE 'UTC' AS timestamp(6)), 'seed', 'User definition 2026-11-17, docs/gold_acquisition_model.md')
+seeded base (6 rows)
+  base | DEMO | PROPOSAL | 0.6000 | 2026-11-17 19:00:53.999000 | seed | User definition 2026-11-17, docs/gold_acquisition_model.md
+  base | ENGAGED | SQL | 0.5000 | 2026-11-17 19:00:53.999000 | seed | User definition 2026-11-17, docs/gold_acquisition_model.md
+  base | NEW | WORKING | 0.8000 | 2026-11-17 19:00:53.999000 | seed | User definition 2026-11-17, docs/gold_acquisition_model.md
+  base | PROPOSAL | WON | 0.4000 | 2026-11-17 19:00:53.999000 | seed | User definition 2026-11-17, docs/gold_acquisition_model.md
+  base | SQL | DEMO | 0.7000 | 2026-11-17 19:00:53.999000 | seed | User definition 2026-11-17, docs/gold_acquisition_model.md
+  base | WORKING | ENGAGED | 0.4000 | 2026-11-17 19:00:53.999000 | seed | User definition 2026-11-17, docs/gold_acquisition_model.md
+
+# gold_athena_ddl.py views at 2026-11-17T19:12:15Z (workgroup finora-dl, account 962482423379)
+view finora_gold.v_funnel_rate_current: 6 rows (scanned 685 B)
+view finora_gold.v_funnel_scenario_status: 1 rows (scanned 1981 B)
+view finora_gold.v_funnel_month: 462 rows (scanned 2981 B)
+view finora_gold.v_funnel_period: 252 rows (scanned 4997 B)
+view finora_gold.v_funnel_scenario_compare: 36 rows (scanned 7663 B)
+view finora_gold.v_funnel_rate_sensitivity: 12 rows (scanned 3260 B)
+view finora_gold.v_acquisition_month: 33 rows (scanned 630 B)
+view finora_gold.v_acquisition_month_finance: 33 rows (scanned 875 B)
+view finora_gold.v_corr_signal_summary: 12 rows (scanned 407 B)
+view finora_gold.v_sm_spend_shared: 136 rows (scanned 0 B)
+
+# gold_athena_ddl.py views at 2026-11-17T20:21:39Z (workgroup finora-dl, account 962482423379)
+view finora_gold.v_acq_cohort_half: 12 rows (scanned 225 B)
+

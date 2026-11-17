@@ -1,0 +1,7 @@
+{
+  "app": ".venv/bin/python app.py",
+  "versionReporting": false,
+  "context": {
+    "@aws-cdk/core:checkSecretUsage": true
+  }
+}

@@ -1,0 +1,36 @@
+
+✨  Synthesis time: 2.88s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDqApi: start: Building Agent/Code
+FinoraDqApi: success: Built Agent/Code
+FinoraDqApi: start: Building FinoraDqApi Template
+FinoraDqApi: success: Built FinoraDqApi Template
+FinoraDqApi: start: Publishing Agent/Code (962482423379-us-west-2-9bc95549)
+FinoraDqApi: start: Publishing FinoraDqApi Template (962482423379-us-west-2-1689a322)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDqApi: success: Published FinoraDqApi Template (962482423379-us-west-2-1689a322)
+FinoraDqApi: success: Published Agent/Code (962482423379-us-west-2-9bc95549)
+FinoraDqApi: deploying... [1/1]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDqApi: creating CloudFormation changeset...
+FinoraDqApi | 0/8 | 4:22:12 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack     | FinoraDqApi User Initiated
+FinoraDqApi | 0/8 | 4:22:16 PM | UPDATE_IN_PROGRESS   | AWS::Lambda::Function          | Agent (Agent255F68E9) 
+FinoraDqApi | 1/8 | 4:22:28 PM | UPDATE_COMPLETE      | AWS::Lambda::Function          | Agent (Agent255F68E9) 
+FinoraDqApi | 2/8 | 4:22:30 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack     | FinoraDqApi 
+FinoraDqApi | 3/8 | 4:22:31 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack     | FinoraDqApi 
+
+ ✅  FinoraDqApi
+
+✨  Deployment time: 50.39s
+
+Outputs:
+FinoraDqApi.AgentFunction = finora-dq-agent
+FinoraDqApi.ApiEndpoint = https://dx2tg0v3a8.execute-api.us-west-2.amazonaws.com
+FinoraDqApi.ExportsOutputRefHttpApiF5A9A8A7F70B5BDD = dx2tg0v3a8
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqApi/0e4ae850-e22a-11f1-acef-06ffedd3c539
+
+✨  Total time: 53.27s
+

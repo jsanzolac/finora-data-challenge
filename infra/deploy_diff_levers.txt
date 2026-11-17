@@ -1,0 +1,16 @@
+# Levers deploy preview: cdk diff FinoraDlEtl --no-change-set --output cdk.out.levers (read-only)
+# Produced 2026-11-17T20:06:50Z, account 962482423379 (sts verified), us-west-2. User approval: "ship levers" (relayed by the coordinator).
+
+Stack FinoraDlEtl
+Resources
+[~] AWS::Glue::Job GoldJob GoldJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/66e628da3034aca975d9f740e69deb172c39df25305a0a7bbb5d5257ff9914dd.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/b17ee40ee0670e8c13df45373b63dc96ed48f7671368a8be85b5c178da1f835e.zip
+
+Omitted 1 changes because they are likely mangled non-ASCII characters. Use --strict to print them.
+
+
+✨  Number of stacks with differences: 1
+

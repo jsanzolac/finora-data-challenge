@@ -1,0 +1,155 @@
+# SB-11 final deploy preview: cdk diff --all --no-change-set (template-only, read-only: GetTemplate/DescribeStacks; no change set, no asset upload)
+# Produced 2026-11-17T15:07:41Z from infra/ with AWS_PROFILE=alegra-test, account 962482423379 (sts verified), us-west-2. cdk 2.1111.0; synth: 5 stacks OK.
+# Result: only FinoraDlEtl differs: 3 Glue DQ rulesets (in-place, Ruleset text) + 3 Glue jobs (in-place, --extra-py-files -> library zip d42b6c3d...). No IAM, Step Functions, EventBridge, SNS, Athena, Glue database or S3 bucket change; no replacement, no destroy. FinoraDlStorage, FinoraDqAuth, FinoraDqApi, FinoraDqWeb: no differences.
+# Ruleset check (glue get-data-quality-ruleset, read-only, vs cdk.out/FinoraDlEtl.template.json): each of the 3 rulesets differs in exactly 1 line, '# rules_version sha256:a0060ddfcacd93e7' -> 'sha256:a6dce7113e3fd468'. Rules themselves unchanged.
+# Supersedes infra/deploy_diff_sb11.txt (rules_version 7b047236ba7b7123, zip hash different) after the SB-11 Rule-cell markup fix in docs/approved_data_rules.md.
+# Note: the '?' in Producci?n / Tecnolog?a on the [-] side is how GetTemplate renders the deployed template; the live rulesets contain the correct characters.
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDlStorage
+There were no differences
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDlEtl
+Resources
+[~] AWS::Glue::DataQualityRuleset RulesetTransactions RulesetTransactions
+ └─ [~] Ruleset
+     ├─ [-] # finora-dl-transactions: Glue Data Quality rules for transactions, generated from etl/config/dl_rules.json
+# rules_version sha256:a0060ddfcacd93e7. Evaluated on the rows that pass stage A (CDO-01, SQ-02, SQ-01).
+Rules = [
+    # SQ-05 id_grammar
+    ColumnValues "ID" matches "^[1-9][0-9]*$" labels=["rule_id"="SQ-05", "check"="id_grammar"],
+    # SQ-06 month_end_date
+    CustomSql "select source_line from primary where month rlike '^(1[0-2]|[1-9])/(3[01]|[12][0-9]|[1-9])/([0-9]{4})$' and cast(split(month, '/')[2] as int) >= 1 and dayofmonth(last_day(make_date(cast(split(month, '/')[2] as int), cast(split(month, '/')[0] as int), 1))) = cast(split(month, '/')[1] as int)" labels=["rule_id"="SQ-06", "check"="month_end_date"],
+    # SQ-07a amount_grammar
+    ColumnValues "amount" matches "^-?[0-9]+([.][0-9]+)?$" labels=["rule_id"="SQ-07a", "check"="amount_grammar"],
+    # CDO-05 amount_precision
+    ColumnValues "amount" matches "^-?0*([1-9][0-9]{0,5})?([.][0-9]{0,6}0*)?$" labels=["rule_id"="CDO-05", "check"="amount_precision"],
+    # SQ-05 key_unique
+    IsPrimaryKey "ID" "month" labels=["rule_id"="SQ-05", "check"="key_unique"],
+    # SQ-07b amount_not_negative
+    ColumnValues "amount" not matches "^-.*[1-9].*$" labels=["rule_id"="SQ-07b", "check"="amount_not_negative"]
+]
+
+     └─ [+] # finora-dl-transactions: Glue Data Quality rules for transactions, generated from etl/config/dl_rules.json
+# rules_version sha256:a6dce7113e3fd468. Evaluated on the rows that pass stage A (CDO-01, SQ-02, SQ-01).
+Rules = [
+    # SQ-05 id_grammar
+    ColumnValues "ID" matches "^[1-9][0-9]*$" labels=["rule_id"="SQ-05", "check"="id_grammar"],
+    # SQ-06 month_end_date
+    CustomSql "select source_line from primary where month rlike '^(1[0-2]|[1-9])/(3[01]|[12][0-9]|[1-9])/([0-9]{4})$' and cast(split(month, '/')[2] as int) >= 1 and dayofmonth(last_day(make_date(cast(split(month, '/')[2] as int), cast(split(month, '/')[0] as int), 1))) = cast(split(month, '/')[1] as int)" labels=["rule_id"="SQ-06", "check"="month_end_date"],
+    # SQ-07a amount_grammar
+    ColumnValues "amount" matches "^-?[0-9]+([.][0-9]+)?$" labels=["rule_id"="SQ-07a", "check"="amount_grammar"],
+    # CDO-05 amount_precision
+    ColumnValues "amount" matches "^-?0*([1-9][0-9]{0,5})?([.][0-9]{0,6}0*)?$" labels=["rule_id"="CDO-05", "check"="amount_precision"],
+    # SQ-05 key_unique
+    IsPrimaryKey "ID" "month" labels=["rule_id"="SQ-05", "check"="key_unique"],
+    # SQ-07b amount_not_negative
+    ColumnValues "amount" not matches "^-.*[1-9].*$" labels=["rule_id"="SQ-07b", "check"="amount_not_negative"]
+]
+
+[~] AWS::Glue::DataQualityRuleset RulesetIndustry RulesetIndustry
+ └─ [~] Ruleset
+     ├─ [-] # finora-dl-industry: Glue Data Quality rules for industry, generated from etl/config/dl_rules.json
+# rules_version sha256:a0060ddfcacd93e7. Evaluated on the rows that pass stage A (CDO-01, SQ-02, SQ-01).
+Rules = [
+    # SQ-03 id_grammar
+    ColumnValues "ID" matches "^Cliente [1-9][0-9]*$" labels=["rule_id"="SQ-03", "check"="id_grammar"],
+    # SQ-03 id_unique
+    IsUnique "ID" labels=["rule_id"="SQ-03", "check"="id_unique"],
+    # SQ-04 industry_domain
+    ColumnValues "Industria_nfc" in ["Producci?n", "Restaurantes", "Retail", "Salud", "Servicios profesionales", "Tecnolog?a"] labels=["rule_id"="SQ-04", "check"="industry_domain"]
+]
+
+     └─ [+] # finora-dl-industry: Glue Data Quality rules for industry, generated from etl/config/dl_rules.json
+# rules_version sha256:a6dce7113e3fd468. Evaluated on the rows that pass stage A (CDO-01, SQ-02, SQ-01).
+Rules = [
+    # SQ-03 id_grammar
+    ColumnValues "ID" matches "^Cliente [1-9][0-9]*$" labels=["rule_id"="SQ-03", "check"="id_grammar"],
+    # SQ-03 id_unique
+    IsUnique "ID" labels=["rule_id"="SQ-03", "check"="id_unique"],
+    # SQ-04 industry_domain
+    ColumnValues "Industria_nfc" in ["Producción", "Restaurantes", "Retail", "Salud", "Servicios profesionales", "Tecnología"] labels=["rule_id"="SQ-04", "check"="industry_domain"]
+]
+
+[~] AWS::Glue::DataQualityRuleset RulesetSmSpend RulesetSmSpend
+ └─ [~] Ruleset
+     ├─ [-] # finora-dl-sm_spend: Glue Data Quality rules for sm_spend, generated from etl/config/dl_rules.json
+# rules_version sha256:a0060ddfcacd93e7. Evaluated on the rows that pass stage A (CDO-01, SQ-02, SQ-01).
+Rules = [
+    # SQ-09a month_grammar
+    ColumnValues "Month" matches "^[0-9]{4}-(0[1-9]|1[0-2])$" labels=["rule_id"="SQ-09a", "check"="month_grammar"],
+    # SQ-09a month_unique
+    IsUnique "Month" labels=["rule_id"="SQ-09a", "check"="month_unique"],
+    # SQ-10 PaidMedia
+    ColumnValues "PaidMedia" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="PaidMedia"],
+    # SQ-10 Travel
+    ColumnValues "Travel" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="Travel"],
+    # SQ-10 PublicidadNoWeb
+    ColumnValues "PublicidadNoWeb" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="PublicidadNoWeb"],
+    # SQ-10 Freelance
+    ColumnValues "Freelance" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="Freelance"],
+    # SQ-10 SoftwareTools
+    ColumnValues "SoftwareTools" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="SoftwareTools"],
+    # SQ-10 Team
+    ColumnValues "Team" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="Team"],
+    # SQ-10 PayrollExpenses
+    ColumnValues "PayrollExpenses" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="PayrollExpenses"]
+]
+
+     └─ [+] # finora-dl-sm_spend: Glue Data Quality rules for sm_spend, generated from etl/config/dl_rules.json
+# rules_version sha256:a6dce7113e3fd468. Evaluated on the rows that pass stage A (CDO-01, SQ-02, SQ-01).
+Rules = [
+    # SQ-09a month_grammar
+    ColumnValues "Month" matches "^[0-9]{4}-(0[1-9]|1[0-2])$" labels=["rule_id"="SQ-09a", "check"="month_grammar"],
+    # SQ-09a month_unique
+    IsUnique "Month" labels=["rule_id"="SQ-09a", "check"="month_unique"],
+    # SQ-10 PaidMedia
+    ColumnValues "PaidMedia" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="PaidMedia"],
+    # SQ-10 Travel
+    ColumnValues "Travel" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="Travel"],
+    # SQ-10 PublicidadNoWeb
+    ColumnValues "PublicidadNoWeb" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="PublicidadNoWeb"],
+    # SQ-10 Freelance
+    ColumnValues "Freelance" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="Freelance"],
+    # SQ-10 SoftwareTools
+    ColumnValues "SoftwareTools" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="SoftwareTools"],
+    # SQ-10 Team
+    ColumnValues "Team" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="Team"],
+    # SQ-10 PayrollExpenses
+    ColumnValues "PayrollExpenses" matches "^-?[$][0-9]{1,6}[.][0-9]{3}$" labels=["rule_id"="SQ-10", "check"="PayrollExpenses"]
+]
+
+[~] AWS::Glue::Job BronzeJob BronzeJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/3c5c352311574b615504be3d9fa37b7106256516f63c8f893e996166e686f5b0.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/d42b6c3d5200219f555a0471ce467b963f1aaa0bc9cef0657893275fd359c1f6.zip
+[~] AWS::Glue::Job SilverJob SilverJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/3c5c352311574b615504be3d9fa37b7106256516f63c8f893e996166e686f5b0.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/d42b6c3d5200219f555a0471ce467b963f1aaa0bc9cef0657893275fd359c1f6.zip
+[~] AWS::Glue::Job PublishJob PublishJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/3c5c352311574b615504be3d9fa37b7106256516f63c8f893e996166e686f5b0.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/d42b6c3d5200219f555a0471ce467b963f1aaa0bc9cef0657893275fd359c1f6.zip
+
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDqAuth
+There were no differences
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDqApi
+There were no differences
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Stack FinoraDqWeb
+There were no differences
+
+
+✨  Number of stacks with differences: 1
+

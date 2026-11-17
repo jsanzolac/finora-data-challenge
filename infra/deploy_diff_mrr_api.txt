@@ -1,0 +1,57 @@
+# MRR API deploy preview: cdk diff FinoraDqApi --no-change-set --output cdk.out.mrr-api (read-only)
+# Produced 2026-11-17T19:50:15Z, account 962482423379 (sts verified), us-west-2. User approval: "ship MRR" (relayed by the coordinator).
+
+Including dependency stacks: FinoraDqAuth
+Stack FinoraDqAuth
+There were no differences
+
+Stack FinoraDqApi
+IAM Statement Changes
+┌───┬───────────────────────────────────────┬────────┬───────────────────────┬──────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                              │ Effect │ Action                │ Principal                        │ Condition                                                                                                              │
+├───┼───────────────────────────────────────┼────────┼───────────────────────┼──────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${DqApi.Arn}                          │ Allow  │ lambda:InvokeFunction │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                           │
+│   │                                       │        │                       │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/mrr/summary"   │
+│   │                                       │        │                       │                                  │ }                                                                                                                      │
+│ + │ ${DqApi.Arn}                          │ Allow  │ lambda:InvokeFunction │ Service:apigateway.amazonaws.com │ "ArnLike": {                                                                                                           │
+│   │                                       │        │                       │                                  │   "AWS:SourceArn": "arn:${AWS::Partition}:execute-api:us-west-2:962482423379:${HttpApiF5A9A8A7}/*/*/api/mrr/movements" │
+│   │                                       │        │                       │                                  │ }                                                                                                                      │
+├───┼───────────────────────────────────────┼────────┼───────────────────────┼──────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ + │ arn:aws:s3:::al-test-dl-serving/mrr/* │ Allow  │ s3:GetObject          │ AWS:${DqApi/ServiceRole}         │                                                                                                                        │
+└───┴───────────────────────────────────────┴────────┴───────────────────────┴──────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[+] AWS::Lambda::Permission HttpApi/GET--api--mrr--summary/DqInt-Permission HttpApiGETapimrrsummaryDqIntPermission9B190E61
+[+] AWS::ApiGatewayV2::Route HttpApi/GET--api--mrr--summary HttpApiGETapimrrsummaryDBDF76B6
+[+] AWS::Lambda::Permission HttpApi/GET--api--mrr--movements/DqInt-Permission HttpApiGETapimrrmovementsDqIntPermissionECD84EE0
+[+] AWS::ApiGatewayV2::Route HttpApi/GET--api--mrr--movements HttpApiGETapimrrmovementsB23FDD93
+[~] AWS::IAM::Policy DqApi/ServiceRole/DefaultPolicy DqApiServiceRoleDefaultPolicyA87369A7
+ └─ [~] PolicyDocument
+     └─ [~] .Statement:
+         └─ @@ -154,6 +154,11 @@
+            [ ]   "Resource": "arn:aws:s3:::al-test-dl-athena-results"
+            [ ] },
+            [ ] {
+            [+]   "Action": "s3:GetObject",
+            [+]   "Effect": "Allow",
+            [+]   "Resource": "arn:aws:s3:::al-test-dl-serving/mrr/*"
+            [+] },
+            [+] {
+            [ ]   "Action": [
+            [ ]     "dynamodb:BatchGetItem",
+            [ ]     "dynamodb:Query",
+[~] AWS::Lambda::Function DqApi DqApi8C0F6B53
+ ├─ [~] Code
+ │   └─ [~] .S3Key:
+ │       ├─ [-] 1a5ca4fe6668b303aeec794b5a3479a8ed963b693c73e132d53e8db6bf8eecbd.zip
+ │       └─ [+] d6e5ec8aacb85172412c50dadcc6dec4914e606bdc5d63623a423ccd1973727f.zip
+ └─ [~] Metadata
+     └─ [~] .aws:asset:path:
+         ├─ [-] asset.1a5ca4fe6668b303aeec794b5a3479a8ed963b693c73e132d53e8db6bf8eecbd
+         └─ [+] asset.d6e5ec8aacb85172412c50dadcc6dec4914e606bdc5d63623a423ccd1973727f
+
+
+
+✨  Number of stacks with differences: 1
+

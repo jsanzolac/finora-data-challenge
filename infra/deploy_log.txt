@@ -1,0 +1,423 @@
+
+✨  Synthesis time: 3.18s
+
+FinoraDlStorage
+FinoraDlStorage: deploying... [1/5]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building bronze_ingest/Code
+FinoraDlEtl: success: Built bronze_ingest/Code
+FinoraDlEtl: start: Building FinoraDlEtl Template
+FinoraDlEtl: success: Built FinoraDlEtl Template
+FinoraDqAuth: start: Building Auth/Code
+FinoraDqAuth: success: Built Auth/Code
+FinoraDqAuth: start: Building FinoraDqAuth Template
+FinoraDqAuth: success: Built FinoraDqAuth Template
+FinoraDqApi: start: Building FinoraDqApi Template
+FinoraDqApi: success: Built FinoraDqApi Template
+FinoraDqWeb: start: Building StaticAssets/AwsCliLayer/Code
+FinoraDqWeb: success: Built StaticAssets/AwsCliLayer/Code
+FinoraDqWeb: start: Building Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/Code
+FinoraDqWeb: success: Built Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/Code
+FinoraDqWeb: start: Building StaticAssets/Asset1
+FinoraDqWeb: success: Built StaticAssets/Asset1
+FinoraDqWeb: start: Building Content/Asset1
+FinoraDqWeb: success: Built Content/Asset1
+FinoraDqWeb: start: Building FinoraDqWeb Template
+FinoraDqWeb: success: Built FinoraDqWeb Template
+FinoraDlEtl: start: Publishing bronze_ingest/Code (962482423379-us-west-2-588188cb)
+FinoraDlEtl: start: Publishing FinoraDlEtl Template (962482423379-us-west-2-e319d730)
+FinoraDqAuth: start: Publishing FinoraDqAuth Template (962482423379-us-west-2-770ab543)
+FinoraDqAuth: start: Publishing Auth/Code (962482423379-us-west-2-ecc0f088)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlStorage: creating CloudFormation changeset...
+FinoraDlEtl: success: Published bronze_ingest/Code (962482423379-us-west-2-588188cb)
+FinoraDqAuth: success: Published FinoraDqAuth Template (962482423379-us-west-2-770ab543)
+FinoraDlEtl: success: Published FinoraDlEtl Template (962482423379-us-west-2-e319d730)
+FinoraDlEtl
+FinoraDlEtl: deploying... [2/5]
+FinoraDqAuth: success: Published Auth/Code (962482423379-us-west-2-ecc0f088)
+FinoraDqAuth
+FinoraDqAuth: deploying... [3/5]
+FinoraDqAuth: creating CloudFormation changeset...
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlStorage |  0/12 | 8:55:03 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlStorage User Initiated
+FinoraDlStorage |  0/12 | 8:55:05 PM | CREATE_IN_PROGRESS   | AWS::S3::Bucket                  | AthenaResults (AthenaResults99A60126) 
+FinoraDlStorage |  0/12 | 8:55:05 PM | CREATE_IN_PROGRESS   | AWS::S3::Bucket                  | Serving (Serving7A42E1DA) 
+FinoraDqAuth | 0/8 | 8:54:58 PM | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDqAuth User Initiated
+FinoraDqAuth | 0/8 | 8:55:05 PM | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDqAuth User Initiated
+FinoraDqAuth | 0/8 | 8:55:07 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table             | Sessions (Sessions8896A56D) 
+FinoraDqAuth | 0/8 | 8:55:07 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table             | RateLimits (RateLimits2BA5B3CC) 
+FinoraDqAuth | 0/8 | 8:55:07 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table             | Users (Users0A0EEA89) 
+FinoraDqAuth | 0/8 | 8:55:07 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | AuthLogs (AuthLogs839647A4) 
+FinoraDqAuth | 0/8 | 8:55:07 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | Auth/ServiceRole (AuthServiceRole77527A1E) 
+FinoraDlEtl |  0/37 | 8:54:58 PM | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl |  0/37 | 8:55:05 PM | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlStorage |  0/12 | 8:55:05 PM | UPDATE_IN_PROGRESS   | AWS::S3::Bucket                  | Silver (Silver060FFE09) 
+FinoraDlStorage |  0/12 | 8:55:05 PM | UPDATE_IN_PROGRESS   | AWS::S3::Bucket                  | Bronze (Bronze2BD6FD35) 
+FinoraDlStorage |  0/12 | 8:55:06 PM | UPDATE_IN_PROGRESS   | AWS::S3::Bucket                  | Staging (Staging12D1754E) 
+FinoraDlStorage |  0/12 | 8:55:06 PM | CREATE_IN_PROGRESS   | AWS::S3::Bucket                  | Serving (Serving7A42E1DA) Resource creation Initiated
+FinoraDlStorage |  0/12 | 8:55:06 PM | CREATE_IN_PROGRESS   | AWS::S3::Bucket                  | AthenaResults (AthenaResults99A60126) Resource creation Initiated
+FinoraDqAuth | 0/8 | 8:55:07 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | AuthLogs (AuthLogs839647A4) Resource creation Initiated
+FinoraDqAuth | 0/8 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | Auth/ServiceRole (AuthServiceRole77527A1E) Resource creation Initiated
+FinoraDqAuth | 0/8 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table             | Users (Users0A0EEA89) Resource creation Initiated
+FinoraDqAuth | 0/8 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table             | Sessions (Sessions8896A56D) Resource creation Initiated
+FinoraDqAuth | 0/8 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table             | RateLimits (RateLimits2BA5B3CC) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | bronze_ingestLogs (bronzeingestLogsA2A2F4BB) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | bronze_ingest/ServiceRole (bronzeingestServiceRoleAE44872C) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | silver_build/ServiceRole (silverbuildServiceRoleADB95048) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::SNS::Topic                  | Alerts (Alerts91F83244) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Glue::Database              | finora_dq (finoradq) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | SfnLogs (SfnLogs9D18D4A1) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Glue::Database              | finora_silver (finorasilver) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | silver_buildLogs (silverbuildLogs3250F8D1) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | dq_publishLogs (dqpublishLogsF642C029) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | dq_publish/ServiceRole (dqpublishServiceRoleD7A8F9FD) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Athena::WorkGroup           | WorkGroup 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) 
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | bronze_ingestLogs (bronzeingestLogsA2A2F4BB) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | dq_publishLogs (dqpublishLogsF642C029) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | silver_buildLogs (silverbuildLogs3250F8D1) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::SNS::Topic                  | Alerts (Alerts91F83244) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | SfnLogs (SfnLogs9D18D4A1) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:08 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::Glue::Database              | finora_silver (finorasilver) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::Glue::Database              | finora_dq (finoradq) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | bronze_ingest/ServiceRole (bronzeingestServiceRoleAE44872C) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | dq_publish/ServiceRole (dqpublishServiceRoleD7A8F9FD) Resource creation Initiated
+FinoraDlEtl |  0/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::Athena::WorkGroup           | WorkGroup Resource creation Initiated
+FinoraDlEtl |  1/37 | 8:55:09 PM | CREATE_COMPLETE      | AWS::SNS::Topic                  | Alerts (Alerts91F83244) 
+FinoraDlEtl |  2/37 | 8:55:09 PM | CREATE_COMPLETE      | AWS::Athena::WorkGroup           | WorkGroup 
+FinoraDlEtl |  2/37 | 8:55:09 PM | CREATE_IN_PROGRESS   | AWS::SNS::TopicPolicy            | Alerts/Policy (AlertsPolicy425C338D) 
+FinoraDlEtl |  2/37 | 8:55:10 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | silver_build/ServiceRole (silverbuildServiceRoleADB95048) Resource creation Initiated
+FinoraDlEtl |  2/37 | 8:55:10 PM | CREATE_IN_PROGRESS   | AWS::SNS::TopicPolicy            | Alerts/Policy (AlertsPolicy425C338D) Resource creation Initiated
+FinoraDlEtl |  3/37 | 8:55:10 PM | CREATE_COMPLETE      | AWS::Glue::Database              | finora_dq (finoradq) 
+FinoraDlEtl |  4/37 | 8:55:10 PM | CREATE_COMPLETE      | AWS::Glue::Database              | finora_silver (finorasilver) 
+FinoraDlEtl |  5/37 | 8:55:10 PM | CREATE_COMPLETE      | AWS::SNS::TopicPolicy            | Alerts/Policy (AlertsPolicy425C338D) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_dq_findings (finoradqfindings) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_dq_excluded (finoradqexcluded) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_month_control (finorasilvermonthcontrol) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_gap (finorasilvergap) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_sm_spend (finorasilversmspend) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_source_status (finorasilversourcestatus) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_customer_month (finorasilvercustomermonth) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_customer (finorasilvercustomer) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_industry (finorasilverindustry) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_restatement_log (finorasilverrestatementlog) 
+FinoraDlEtl |  5/37 | 8:55:11 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_transactions (finorasilvertransactions) 
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_industry (finorasilverindustry) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_dq_excluded (finoradqexcluded) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_source_status (finorasilversourcestatus) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_transactions (finorasilvertransactions) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_sm_spend (finorasilversmspend) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_dq_findings (finoradqfindings) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_restatement_log (finorasilverrestatementlog) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_customer (finorasilvercustomer) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_month_control (finorasilvermonthcontrol) Resource creation Initiated
+FinoraDlEtl |  5/37 | 8:55:12 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_gap (finorasilvergap) Resource creation Initiated
+FinoraDlEtl |  6/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_source_status (finorasilversourcestatus) 
+FinoraDlEtl |  7/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_dq_findings (finoradqfindings) 
+FinoraDlEtl |  8/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_dq_excluded (finoradqexcluded) 
+FinoraDlEtl |  9/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_sm_spend (finorasilversmspend) 
+FinoraDlEtl | 10/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_industry (finorasilverindustry) 
+FinoraDlEtl | 11/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_transactions (finorasilvertransactions) 
+FinoraDlEtl | 12/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_restatement_log (finorasilverrestatementlog) 
+FinoraDlEtl | 13/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_month_control (finorasilvermonthcontrol) 
+FinoraDlEtl | 14/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_customer (finorasilvercustomer) 
+FinoraDlEtl | 14/37 | 8:55:13 PM | CREATE_IN_PROGRESS   | AWS::Glue::Table                 | finora_silver_customer_month (finorasilvercustomermonth) Resource creation Initiated
+FinoraDlEtl | 15/37 | 8:55:13 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_gap (finorasilvergap) 
+FinoraDlEtl | 16/37 | 8:55:14 PM | CREATE_COMPLETE      | AWS::Glue::Table                 | finora_silver_customer_month (finorasilvercustomermonth) 
+FinoraDqAuth | 0/8 | 8:55:16 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | AuthLogs (AuthLogs839647A4) Eventual consistency check initiated
+FinoraDqAuth | 1/8 | 8:55:16 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | AuthLogs (AuthLogs839647A4) 
+FinoraDlEtl | 16/37 | 8:55:17 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | silver_buildLogs (silverbuildLogs3250F8D1) Eventual consistency check initiated
+FinoraDlEtl | 16/37 | 8:55:17 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | dq_publishLogs (dqpublishLogsF642C029) Eventual consistency check initiated
+FinoraDlEtl | 16/37 | 8:55:17 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | bronze_ingestLogs (bronzeingestLogsA2A2F4BB) Eventual consistency check initiated
+FinoraDlEtl | 16/37 | 8:55:17 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | SfnLogs (SfnLogs9D18D4A1) Eventual consistency check initiated
+FinoraDlEtl | 17/37 | 8:55:17 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | bronze_ingestLogs (bronzeingestLogsA2A2F4BB) 
+FinoraDlEtl | 18/37 | 8:55:17 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | dq_publishLogs (dqpublishLogsF642C029) 
+FinoraDlEtl | 19/37 | 8:55:17 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | silver_buildLogs (silverbuildLogs3250F8D1) 
+FinoraDlEtl | 20/37 | 8:55:17 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | SfnLogs (SfnLogs9D18D4A1) 
+FinoraDlStorage |  1/12 | 8:55:20 PM | CREATE_COMPLETE      | AWS::S3::Bucket                  | AthenaResults (AthenaResults99A60126) 
+FinoraDlStorage |  2/12 | 8:55:20 PM | CREATE_COMPLETE      | AWS::S3::Bucket                  | Serving (Serving7A42E1DA) 
+FinoraDlStorage |  2/12 | 8:55:21 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | AthenaResults/Policy (AthenaResultsPolicyC1D66A19) 
+FinoraDlStorage |  2/12 | 8:55:21 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Serving/Policy (ServingPolicyC68E95C2) 
+FinoraDlStorage |  2/12 | 8:55:22 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | AthenaResults/Policy (AthenaResultsPolicyC1D66A19) Resource creation Initiated
+FinoraDlStorage |  2/12 | 8:55:22 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Serving/Policy (ServingPolicyC68E95C2) Resource creation Initiated
+FinoraDlStorage |  3/12 | 8:55:22 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy            | AthenaResults/Policy (AthenaResultsPolicyC1D66A19) 
+FinoraDlStorage |  4/12 | 8:55:23 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy            | Serving/Policy (ServingPolicyC68E95C2) 
+FinoraDqAuth | 2/8 | 8:55:22 PM | CREATE_COMPLETE      | AWS::DynamoDB::Table             | RateLimits (RateLimits2BA5B3CC) 
+FinoraDqAuth | 3/8 | 8:55:24 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | Auth/ServiceRole (AuthServiceRole77527A1E) 
+FinoraDlEtl | 21/37 | 8:55:25 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) 
+FinoraDlEtl | 22/37 | 8:55:25 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) 
+FinoraDlEtl | 23/37 | 8:55:25 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | bronze_ingest/ServiceRole (bronzeingestServiceRoleAE44872C) 
+FinoraDlEtl | 24/37 | 8:55:25 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | dq_publish/ServiceRole (dqpublishServiceRoleD7A8F9FD) 
+FinoraDlEtl | 24/37 | 8:55:26 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | bronze_ingest/ServiceRole/DefaultPolicy (bronzeingestServiceRoleDefaultPolicy2E5B1C90) 
+FinoraDlEtl | 24/37 | 8:55:26 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | dq_publish/ServiceRole/DefaultPolicy (dqpublishServiceRoleDefaultPolicyFCE1EC25) 
+FinoraDlEtl | 25/37 | 8:55:26 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | silver_build/ServiceRole (silverbuildServiceRoleADB95048) 
+FinoraDlEtl | 25/37 | 8:55:27 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | bronze_ingest/ServiceRole/DefaultPolicy (bronzeingestServiceRoleDefaultPolicy2E5B1C90) Resource creation Initiated
+FinoraDlEtl | 25/37 | 8:55:27 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | dq_publish/ServiceRole/DefaultPolicy (dqpublishServiceRoleDefaultPolicyFCE1EC25) Resource creation Initiated
+FinoraDlEtl | 25/37 | 8:55:27 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | silver_build/ServiceRole/DefaultPolicy (silverbuildServiceRoleDefaultPolicy0BEBE1B7) 
+FinoraDlEtl | 25/37 | 8:55:28 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | silver_build/ServiceRole/DefaultPolicy (silverbuildServiceRoleDefaultPolicy0BEBE1B7) Resource creation Initiated
+FinoraDlStorage |  5/12 | 8:55:29 PM | UPDATE_COMPLETE      | AWS::S3::Bucket                  | Bronze (Bronze2BD6FD35) 
+FinoraDlStorage |  6/12 | 8:55:29 PM | UPDATE_COMPLETE      | AWS::S3::Bucket                  | Silver (Silver060FFE09) 
+FinoraDlStorage |  6/12 | 8:55:29 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Bronze/Policy (BronzePolicy6362731E) 
+FinoraDlStorage |  7/12 | 8:55:30 PM | UPDATE_COMPLETE      | AWS::S3::Bucket                  | Staging (Staging12D1754E) 
+FinoraDqAuth | 4/8 | 8:55:31 PM | CREATE_COMPLETE      | AWS::DynamoDB::Table             | Users (Users0A0EEA89) 
+FinoraDqAuth | 5/8 | 8:55:31 PM | CREATE_COMPLETE      | AWS::DynamoDB::Table             | Sessions (Sessions8896A56D) 
+FinoraDlStorage |  7/12 | 8:55:30 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Silver/Policy (SilverPolicy819469C3) 
+FinoraDlStorage |  7/12 | 8:55:30 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Bronze/Policy (BronzePolicy6362731E) Resource creation Initiated
+FinoraDlStorage |  7/12 | 8:55:31 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Staging/Policy (StagingPolicyB16183D3) 
+FinoraDlStorage |  8/12 | 8:55:31 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy            | Bronze/Policy (BronzePolicy6362731E) 
+FinoraDlStorage |  8/12 | 8:55:31 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Silver/Policy (SilverPolicy819469C3) Resource creation Initiated
+FinoraDlStorage |  9/12 | 8:55:31 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy            | Silver/Policy (SilverPolicy819469C3) 
+FinoraDlStorage |  9/12 | 8:55:31 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy            | Staging/Policy (StagingPolicyB16183D3) Resource creation Initiated
+FinoraDlStorage | 10/12 | 8:55:32 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy            | Staging/Policy (StagingPolicyB16183D3) 
+FinoraDlStorage | 11/12 | 8:55:32 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlStorage 
+FinoraDqAuth | 5/8 | 8:55:33 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | Auth/ServiceRole/DefaultPolicy (AuthServiceRoleDefaultPolicyA38FE8A9) 
+FinoraDqAuth | 5/8 | 8:55:34 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | Auth/ServiceRole/DefaultPolicy (AuthServiceRoleDefaultPolicyA38FE8A9) Resource creation Initiated
+FinoraDlStorage | 12/12 | 8:55:33 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlStorage 
+
+ ✅  FinoraDlStorage
+
+✨  Deployment time: 46.34s
+
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlStorage/91bac8f0-e229-11f1-84f0-02ffc84bb275
+
+✨  Total time: 49.52s
+
+FinoraDlEtl | 26/37 | 8:55:42 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | bronze_ingest/ServiceRole/DefaultPolicy (bronzeingestServiceRoleDefaultPolicy2E5B1C90) 
+FinoraDlEtl | 27/37 | 8:55:42 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | dq_publish/ServiceRole/DefaultPolicy (dqpublishServiceRoleDefaultPolicyFCE1EC25) 
+FinoraDlEtl | 27/37 | 8:55:43 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | bronze_ingest (bronzeingestE45FB3FE) 
+FinoraDlEtl | 28/37 | 8:55:43 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | silver_build/ServiceRole/DefaultPolicy (silverbuildServiceRoleDefaultPolicy0BEBE1B7) 
+FinoraDlEtl | 28/37 | 8:55:43 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | dq_publish (dqpublish2D5D3A45) 
+FinoraDlEtl | 28/37 | 8:55:44 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | silver_build (silverbuild5F86E75A) 
+FinoraDlEtl | 28/37 | 8:55:44 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | bronze_ingest (bronzeingestE45FB3FE) Resource creation Initiated
+FinoraDlEtl | 28/37 | 8:55:45 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | dq_publish (dqpublish2D5D3A45) Resource creation Initiated
+FinoraDlEtl | 28/37 | 8:55:45 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | silver_build (silverbuild5F86E75A) Resource creation Initiated
+FinoraDqAuth | 6/8 | 8:55:49 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | Auth/ServiceRole/DefaultPolicy (AuthServiceRoleDefaultPolicyA38FE8A9) 
+FinoraDqAuth | 6/8 | 8:55:50 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | Auth (AuthC256A5EC) 
+FinoraDqAuth | 6/8 | 8:55:51 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function            | Auth (AuthC256A5EC) Resource creation Initiated
+FinoraDlEtl | 29/37 | 8:55:52 PM | CREATE_COMPLETE      | AWS::Lambda::Function            | bronze_ingest (bronzeingestE45FB3FE) 
+FinoraDlEtl | 30/37 | 8:55:53 PM | CREATE_COMPLETE      | AWS::Lambda::Function            | dq_publish (dqpublish2D5D3A45) 
+FinoraDlEtl | 31/37 | 8:55:53 PM | CREATE_COMPLETE      | AWS::Lambda::Function            | silver_build (silverbuild5F86E75A) 
+FinoraDlEtl | 31/37 | 8:55:54 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 31/37 | 8:55:55 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) Resource creation Initiated
+FinoraDqAuth | 7/8 | 8:55:59 PM | CREATE_COMPLETE      | AWS::Lambda::Function            | Auth (AuthC256A5EC) 
+FinoraDqAuth | 8/8 | 8:56:01 PM | CREATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDqAuth 
+
+ ✅  FinoraDqAuth
+
+✨  Deployment time: 65.96s
+
+Outputs:
+FinoraDqAuth.ExportsOutputFnGetAttAuthC256A5ECArn117206AE = arn:aws:lambda:us-west-2:962482423379:function:finora-dq-auth
+FinoraDqAuth.ExportsOutputFnGetAttSessions8896A56DArn139254BE = arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-sessions
+FinoraDqAuth.ExportsOutputFnGetAttUsers0A0EEA89Arn6658B146 = arn:aws:dynamodb:us-west-2:962482423379:table/finora-dq-users
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqAuth/e48c4310-e229-11f1-b70c-02cf3023c5bd
+
+✨  Total time: 69.14s
+
+FinoraDqApi: start: Publishing FinoraDqApi Template (962482423379-us-west-2-fb67d3d8)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDqApi: success: Published FinoraDqApi Template (962482423379-us-west-2-fb67d3d8)
+FinoraDqApi
+FinoraDqApi: deploying... [4/5]
+FinoraDqApi: creating CloudFormation changeset...
+FinoraDlEtl | 32/37 | 8:56:10 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 32/37 | 8:56:12 PM | CREATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 32/37 | 8:56:13 PM | CREATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) Resource creation Initiated
+FinoraDlEtl | 32/37 | 8:56:13 PM | CREATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) Eventual consistency check initiated
+FinoraDlEtl | 32/37 | 8:56:14 PM | CREATE_IN_PROGRESS   | AWS::Events::Rule                | IngestFailed (IngestFailed369C357E) 
+FinoraDlEtl | 32/37 | 8:56:14 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) 
+FinoraDlEtl | 32/37 | 8:56:14 PM | CREATE_IN_PROGRESS   | AWS::Events::Rule                | StagingObjectCreated (StagingObjectCreated84FDC2BA) 
+FinoraDlEtl | 32/37 | 8:56:15 PM | CREATE_IN_PROGRESS   | AWS::Events::Rule                | IngestFailed (IngestFailed369C357E) Resource creation Initiated
+FinoraDlEtl | 32/37 | 8:56:15 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) Resource creation Initiated
+FinoraDlEtl | 32/37 | 8:56:15 PM | CREATE_IN_PROGRESS   | AWS::Events::Rule                | StagingObjectCreated (StagingObjectCreated84FDC2BA) Resource creation Initiated
+FinoraDqApi |  0/23 | 8:56:08 PM | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack     | FinoraDqApi User Initiated
+FinoraDqApi |  0/23 | 8:56:17 PM | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack     | FinoraDqApi User Initiated
+FinoraDqApi |  0/23 | 8:56:19 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                 | DqApi/ServiceRole (DqApiServiceRoleA433639E) 
+FinoraDqApi |  0/23 | 8:56:19 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Api         | HttpApi (HttpApiF5A9A8A7) 
+FinoraDqApi |  0/23 | 8:56:19 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup            | DqApiLogs (DqApiLogsC7402C60) 
+FinoraDqApi |  0/23 | 8:56:20 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup            | DqApiLogs (DqApiLogsC7402C60) Resource creation Initiated
+FinoraDqApi |  0/23 | 8:56:20 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                 | DqApi/ServiceRole (DqApiServiceRoleA433639E) Resource creation Initiated
+FinoraDqApi |  0/23 | 8:56:21 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Api         | HttpApi (HttpApiF5A9A8A7) Resource creation Initiated
+FinoraDqApi |  1/23 | 8:56:21 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Api         | HttpApi (HttpApiF5A9A8A7) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--auth--password/AuthInt-Permission (HttpApiPOSTapiauthpasswordAuthIntPermissionB0541EC0) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Integration | HttpApi/POST--api--auth--login/AuthInt (HttpApiPOSTapiauthloginAuthIntE99F6CCA) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Stage       | HttpApi/DefaultStage (HttpApiDefaultStage3EEB07D6) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--auth--login/AuthInt-Permission (HttpApiPOSTapiauthloginAuthIntPermission63559FF5) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--auth--logout/AuthInt-Permission (HttpApiPOSTapiauthlogoutAuthIntPermission7AE00DE7) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--auth--session/AuthInt-Permission (HttpApiGETapiauthsessionAuthIntPermissionE96A58BB) 
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--auth--login/AuthInt-Permission (HttpApiPOSTapiauthloginAuthIntPermission63559FF5) Resource creation Initiated
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Integration | HttpApi/POST--api--auth--login/AuthInt (HttpApiPOSTapiauthloginAuthIntE99F6CCA) Resource creation Initiated
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--auth--logout/AuthInt-Permission (HttpApiPOSTapiauthlogoutAuthIntPermission7AE00DE7) Resource creation Initiated
+FinoraDqApi |  1/23 | 8:56:22 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/POST--api--auth--password/AuthInt-Permission (HttpApiPOSTapiauthpasswordAuthIntPermissionB0541EC0) Resource creation Initiated
+FinoraDqApi |  1/23 | 8:56:23 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--auth--session/AuthInt-Permission (HttpApiGETapiauthsessionAuthIntPermissionE96A58BB) Resource creation Initiated
+FinoraDqApi |  1/23 | 8:56:23 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Stage       | HttpApi/DefaultStage (HttpApiDefaultStage3EEB07D6) Resource creation Initiated
+FinoraDqApi |  2/23 | 8:56:23 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/POST--api--auth--login/AuthInt-Permission (HttpApiPOSTapiauthloginAuthIntPermission63559FF5) 
+FinoraDqApi |  3/23 | 8:56:23 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Integration | HttpApi/POST--api--auth--login/AuthInt (HttpApiPOSTapiauthloginAuthIntE99F6CCA) 
+FinoraDqApi |  4/23 | 8:56:23 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/POST--api--auth--logout/AuthInt-Permission (HttpApiPOSTapiauthlogoutAuthIntPermission7AE00DE7) 
+FinoraDqApi |  5/23 | 8:56:23 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/POST--api--auth--password/AuthInt-Permission (HttpApiPOSTapiauthpasswordAuthIntPermissionB0541EC0) 
+FinoraDqApi |  6/23 | 8:56:23 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--auth--session/AuthInt-Permission (HttpApiGETapiauthsessionAuthIntPermissionE96A58BB) 
+FinoraDqApi |  7/23 | 8:56:23 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Stage       | HttpApi/DefaultStage (HttpApiDefaultStage3EEB07D6) 
+FinoraDqApi |  7/23 | 8:56:23 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--auth--session (HttpApiGETapiauthsession7A6DA7F0) 
+FinoraDqApi |  7/23 | 8:56:23 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--password (HttpApiPOSTapiauthpassword7E350038) 
+FinoraDqApi |  7/23 | 8:56:23 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--logout (HttpApiPOSTapiauthlogout8DF714A3) 
+FinoraDqApi |  7/23 | 8:56:23 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--login (HttpApiPOSTapiauthloginBD4A2136) 
+FinoraDqApi |  7/23 | 8:56:24 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--auth--session (HttpApiGETapiauthsession7A6DA7F0) Resource creation Initiated
+FinoraDqApi |  7/23 | 8:56:24 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--login (HttpApiPOSTapiauthloginBD4A2136) Resource creation Initiated
+FinoraDqApi |  7/23 | 8:56:24 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--logout (HttpApiPOSTapiauthlogout8DF714A3) Resource creation Initiated
+FinoraDqApi |  8/23 | 8:56:25 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--logout (HttpApiPOSTapiauthlogout8DF714A3) 
+FinoraDqApi |  9/23 | 8:56:25 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--auth--session (HttpApiGETapiauthsession7A6DA7F0) 
+FinoraDqApi | 10/23 | 8:56:25 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--login (HttpApiPOSTapiauthloginBD4A2136) 
+FinoraDlEtl | 33/37 | 8:56:29 PM | CREATE_COMPLETE      | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDqApi | 10/23 | 8:56:28 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--password (HttpApiPOSTapiauthpassword7E350038) Resource creation Initiated
+FinoraDqApi | 11/23 | 8:56:28 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/POST--api--auth--password (HttpApiPOSTapiauthpassword7E350038) 
+FinoraDqApi | 11/23 | 8:56:29 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup            | DqApiLogs (DqApiLogsC7402C60) Eventual consistency check initiated
+FinoraDqApi | 12/23 | 8:56:29 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup            | DqApiLogs (DqApiLogsC7402C60) 
+FinoraDlEtl | 34/37 | 8:56:30 PM | CREATE_COMPLETE      | AWS::IAM::Policy               | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) 
+FinoraDqApi | 13/23 | 8:56:36 PM | CREATE_COMPLETE      | AWS::IAM::Role                 | DqApi/ServiceRole (DqApiServiceRoleA433639E) 
+FinoraDqApi | 13/23 | 8:56:37 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) 
+FinoraDqApi | 13/23 | 8:56:38 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) Resource creation Initiated
+FinoraDqApi | 14/23 | 8:56:53 PM | CREATE_COMPLETE      | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) 
+FinoraDqApi | 14/23 | 8:56:54 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi | 14/23 | 8:56:56 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) Resource creation Initiated
+FinoraDqApi | 15/23 | 8:57:03 PM | CREATE_COMPLETE      | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi | 15/23 | 8:57:04 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records/DqInt-Permission (HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsDqIntPermissionCD69CB60) 
+FinoraDqApi | 15/23 | 8:57:04 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--dq--summary/DqInt-Permission (HttpApiGETapidqsummaryDqIntPermissionB815BDA9) 
+FinoraDqApi | 15/23 | 8:57:04 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--dq--runs/DqInt-Permission (HttpApiGETapidqrunsDqIntPermissionBFE69F76) 
+FinoraDqApi | 15/23 | 8:57:04 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Integration | HttpApi/GET--api--dq--runs/DqInt (HttpApiGETapidqrunsDqInt6B75BBFA) 
+FinoraDqApi | 15/23 | 8:57:05 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records/DqInt-Permission (HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsDqIntPermissionCD69CB60) Resource creation Initiated
+FinoraDqApi | 15/23 | 8:57:05 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--dq--summary/DqInt-Permission (HttpApiGETapidqsummaryDqIntPermissionB815BDA9) Resource creation Initiated
+FinoraDqApi | 15/23 | 8:57:05 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--dq--runs/DqInt-Permission (HttpApiGETapidqrunsDqIntPermissionBFE69F76) Resource creation Initiated
+FinoraDqApi | 15/23 | 8:57:05 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Integration | HttpApi/GET--api--dq--runs/DqInt (HttpApiGETapidqrunsDqInt6B75BBFA) Resource creation Initiated
+FinoraDqApi | 16/23 | 8:57:05 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records/DqInt-Permission (HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsDqIntPermissionCD69CB60) 
+FinoraDqApi | 17/23 | 8:57:05 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--dq--summary/DqInt-Permission (HttpApiGETapidqsummaryDqIntPermissionB815BDA9) 
+FinoraDqApi | 18/23 | 8:57:05 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--dq--runs/DqInt-Permission (HttpApiGETapidqrunsDqIntPermissionBFE69F76) 
+FinoraDqApi | 19/23 | 8:57:05 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Integration | HttpApi/GET--api--dq--runs/DqInt (HttpApiGETapidqrunsDqInt6B75BBFA) 
+FinoraDqApi | 19/23 | 8:57:06 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--summary (HttpApiGETapidqsummaryF9D9D093) 
+FinoraDqApi | 19/23 | 8:57:06 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--runs (HttpApiGETapidqruns8FA85A5F) 
+FinoraDqApi | 19/23 | 8:57:06 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records (HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsB4B1E218) 
+FinoraDqApi | 19/23 | 8:57:07 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--summary (HttpApiGETapidqsummaryF9D9D093) Resource creation Initiated
+FinoraDqApi | 19/23 | 8:57:07 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records (HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsB4B1E218) Resource creation Initiated
+FinoraDqApi | 19/23 | 8:57:07 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--runs (HttpApiGETapidqruns8FA85A5F) Resource creation Initiated
+FinoraDqApi | 20/23 | 8:57:07 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--summary (HttpApiGETapidqsummaryF9D9D093) 
+FinoraDqApi | 21/23 | 8:57:07 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--rules--{rule_id}--datasets--{dataset_id}--records (HttpApiGETapidqrulesruleiddatasetsdatasetidrecordsB4B1E218) 
+FinoraDqApi | 22/23 | 8:57:08 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--dq--runs (HttpApiGETapidqruns8FA85A5F) 
+FinoraDqApi | 23/23 | 8:57:09 PM | CREATE_COMPLETE      | AWS::CloudFormation::Stack     | FinoraDqApi 
+
+ ✅  FinoraDqApi
+
+✨  Deployment time: 68.98s
+
+Outputs:
+FinoraDqApi.ApiEndpoint = https://dx2tg0v3a8.execute-api.us-west-2.amazonaws.com
+FinoraDqApi.ExportsOutputRefHttpApiF5A9A8A7F70B5BDD = dx2tg0v3a8
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqApi/0e4ae850-e22a-11f1-acef-06ffedd3c539
+
+✨  Total time: 72.16s
+
+FinoraDqWeb: start: Publishing StaticAssets/AwsCliLayer/Code (962482423379-us-west-2-6ada58c6)
+FinoraDqWeb: start: Publishing Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/Code (962482423379-us-west-2-ee9af7d7)
+FinoraDqWeb: start: Publishing StaticAssets/Asset1 (962482423379-us-west-2-e9b08a8b)
+FinoraDqWeb: start: Publishing Content/Asset1 (962482423379-us-west-2-b0cc0678)
+FinoraDqWeb: start: Publishing FinoraDqWeb Template (962482423379-us-west-2-33630b4a)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDqWeb: success: Published Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/Code (962482423379-us-west-2-ee9af7d7)
+FinoraDqWeb: success: Published FinoraDqWeb Template (962482423379-us-west-2-33630b4a)
+FinoraDqWeb: success: Published Content/Asset1 (962482423379-us-west-2-b0cc0678)
+FinoraDqWeb: success: Published StaticAssets/Asset1 (962482423379-us-west-2-e9b08a8b)
+FinoraDlEtl | 35/37 | 8:57:16 PM | CREATE_COMPLETE      | AWS::Events::Rule              | IngestFailed (IngestFailed369C357E) 
+FinoraDlEtl | 36/37 | 8:57:16 PM | CREATE_COMPLETE      | AWS::Events::Rule              | StagingObjectCreated (StagingObjectCreated84FDC2BA) 
+FinoraDlEtl | 37/37 | 8:57:17 PM | CREATE_COMPLETE      | AWS::CloudFormation::Stack     | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 147.11s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 150.29s
+
+FinoraDqWeb: success: Published StaticAssets/AwsCliLayer/Code (962482423379-us-west-2-6ada58c6)
+FinoraDqWeb
+FinoraDqWeb: deploying... [5/5]
+FinoraDqWeb: creating CloudFormation changeset...
+FinoraDqWeb |  0/15 | 8:57:38 PM | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack             | FinoraDqWeb User Initiated
+FinoraDqWeb |  0/15 | 8:57:45 PM | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack             | FinoraDqWeb User Initiated
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::ResponseHeadersPolicy | SecurityHeaders (SecurityHeadersE66B69D3) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Function              | CleanUrls (CleanUrls64751B8A) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::Lambda::LayerVersion              | Content/AwsCliLayer (ContentAwsCliLayer130A3479) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::Lambda::LayerVersion              | StaticAssets/AwsCliLayer (StaticAssetsAwsCliLayerFDFFB269) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Function              | NotFoundStatus (NotFoundStatus90D027C2) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::S3::Bucket                        | Site (SiteE53D7754) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::OriginAccessControl   | Dist/Origin1/S3OriginAccessControl (DistOrigin1S3OriginAccessControlF1706B20) 
+FinoraDqWeb |  0/15 | 8:57:48 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                         | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleBA21DBC1) 
+FinoraDqWeb |  0/15 | 8:57:49 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::OriginAccessControl   | Dist/Origin1/S3OriginAccessControl (DistOrigin1S3OriginAccessControlF1706B20) Resource creation Initiated
+FinoraDqWeb |  0/15 | 8:57:49 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                         | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleBA21DBC1) Resource creation Initiated
+FinoraDqWeb |  0/15 | 8:57:49 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::ResponseHeadersPolicy | SecurityHeaders (SecurityHeadersE66B69D3) Resource creation Initiated
+FinoraDqWeb |  0/15 | 8:57:49 PM | CREATE_IN_PROGRESS   | AWS::S3::Bucket                        | Site (SiteE53D7754) Resource creation Initiated
+FinoraDqWeb |  1/15 | 8:57:49 PM | CREATE_COMPLETE      | AWS::CloudFront::OriginAccessControl   | Dist/Origin1/S3OriginAccessControl (DistOrigin1S3OriginAccessControlF1706B20) 
+FinoraDqWeb |  2/15 | 8:57:49 PM | CREATE_COMPLETE      | AWS::CloudFront::ResponseHeadersPolicy | SecurityHeaders (SecurityHeadersE66B69D3) 
+FinoraDqWeb |  2/15 | 8:57:50 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Function              | CleanUrls (CleanUrls64751B8A) Resource creation Initiated
+FinoraDqWeb |  2/15 | 8:57:50 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Function              | NotFoundStatus (NotFoundStatus90D027C2) Resource creation Initiated
+FinoraDqWeb |  3/15 | 8:57:51 PM | CREATE_COMPLETE      | AWS::CloudFront::Function              | CleanUrls (CleanUrls64751B8A) 
+FinoraDqWeb |  4/15 | 8:57:51 PM | CREATE_COMPLETE      | AWS::CloudFront::Function              | NotFoundStatus (NotFoundStatus90D027C2) 
+FinoraDqWeb |  4/15 | 8:57:57 PM | CREATE_IN_PROGRESS   | AWS::Lambda::LayerVersion              | StaticAssets/AwsCliLayer (StaticAssetsAwsCliLayerFDFFB269) Resource creation Initiated
+FinoraDqWeb |  5/15 | 8:57:57 PM | CREATE_COMPLETE      | AWS::Lambda::LayerVersion              | StaticAssets/AwsCliLayer (StaticAssetsAwsCliLayerFDFFB269) 
+FinoraDqWeb |  5/15 | 8:57:58 PM | CREATE_IN_PROGRESS   | AWS::Lambda::LayerVersion              | Content/AwsCliLayer (ContentAwsCliLayer130A3479) Resource creation Initiated
+FinoraDqWeb |  6/15 | 8:57:59 PM | CREATE_COMPLETE      | AWS::Lambda::LayerVersion              | Content/AwsCliLayer (ContentAwsCliLayer130A3479) 
+FinoraDqWeb |  7/15 | 8:58:02 PM | CREATE_COMPLETE      | AWS::S3::Bucket                        | Site (SiteE53D7754) 
+FinoraDqWeb |  7/15 | 8:58:05 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Distribution          | Dist (DistB3B78991) 
+FinoraDqWeb |  8/15 | 8:58:05 PM | CREATE_COMPLETE      | AWS::IAM::Role                         | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleBA21DBC1) 
+FinoraDqWeb |  8/15 | 8:58:06 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                       | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole/DefaultPolicy (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleDefaultPolicy96C3E726) 
+FinoraDqWeb |  8/15 | 8:58:07 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                       | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole/DefaultPolicy (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleDefaultPolicy96C3E726) Resource creation Initiated
+FinoraDqWeb |  8/15 | 8:58:07 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Distribution          | Dist (DistB3B78991) Resource creation Initiated
+FinoraDqWeb |  8/15 | 8:58:08 PM | CREATE_IN_PROGRESS   | AWS::CloudFront::Distribution          | Dist (DistB3B78991) Eventual consistency check initiated
+FinoraDqWeb |  9/15 | 8:58:23 PM | CREATE_COMPLETE      | AWS::IAM::Policy                       | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB/ServiceRole/DefaultPolicy (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiBServiceRoleDefaultPolicy96C3E726) 
+FinoraDqWeb |  9/15 | 8:58:24 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB6723FB92) 
+FinoraDqWeb |  9/15 | 8:58:26 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB6723FB92) Resource creation Initiated
+FinoraDqWeb |  9/15 | 8:58:27 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB6723FB92) Eventual consistency check initiated
+FinoraDqWeb | 10/15 | 8:58:32 PM | CREATE_COMPLETE      | AWS::Lambda::Function                  | Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB (CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C512MiB6723FB92) 
+FinoraDqWeb | 10/15 | 8:58:32 PM | CREATE_IN_PROGRESS   | Custom::CDKBucketDeployment            | StaticAssets/CustomResource-512MiB/Default (StaticAssetsCustomResource512MiBA508FFD1) 
+FinoraDqWeb | 10/15 | 8:58:46 PM | CREATE_IN_PROGRESS   | Custom::CDKBucketDeployment            | StaticAssets/CustomResource-512MiB/Default (StaticAssetsCustomResource512MiBA508FFD1) Resource creation Initiated
+FinoraDqWeb | 11/15 | 8:58:46 PM | CREATE_COMPLETE      | Custom::CDKBucketDeployment            | StaticAssets/CustomResource-512MiB/Default (StaticAssetsCustomResource512MiBA508FFD1) 
+FinoraDqWeb | 12/15 | 9:01:11 PM | CREATE_COMPLETE      | AWS::CloudFront::Distribution          | Dist (DistB3B78991) 
+FinoraDqWeb | 12/15 | 9:01:12 PM | CREATE_IN_PROGRESS   | Custom::CDKBucketDeployment            | Content/CustomResource-512MiB/Default (ContentCustomResource512MiB9FB392DB) 
+FinoraDqWeb | 12/15 | 9:01:12 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy                  | Site/Policy (SitePolicyC4000D7D) 
+FinoraDqWeb | 12/15 | 9:01:13 PM | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy                  | Site/Policy (SitePolicyC4000D7D) Resource creation Initiated
+FinoraDqWeb | 13/15 | 9:01:13 PM | CREATE_COMPLETE      | AWS::S3::BucketPolicy                  | Site/Policy (SitePolicyC4000D7D) 
+FinoraDqWeb | 13/15 | 9:01:46 PM | CREATE_IN_PROGRESS   | Custom::CDKBucketDeployment            | Content/CustomResource-512MiB/Default (ContentCustomResource512MiB9FB392DB) Resource creation Initiated
+FinoraDqWeb | 14/15 | 9:01:47 PM | CREATE_COMPLETE      | Custom::CDKBucketDeployment            | Content/CustomResource-512MiB/Default (ContentCustomResource512MiB9FB392DB) 
+FinoraDqWeb | 15/15 | 9:01:48 PM | CREATE_COMPLETE      | AWS::CloudFormation::Stack             | FinoraDqWeb 
+
+ ✅  FinoraDqWeb
+
+✨  Deployment time: 257.98s
+
+Outputs:
+FinoraDqWeb.SiteBucket = finoradqweb-sitee53d7754-avnigxub3kvj
+FinoraDqWeb.Url = https://d1smzfxmkay9lx.cloudfront.net
+FinoraDqWeb.WebSource = out
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqWeb/43c4c9b0-e22a-11f1-b7d4-060fd086e369
+
+✨  Total time: 261.15s
+
+exit 0

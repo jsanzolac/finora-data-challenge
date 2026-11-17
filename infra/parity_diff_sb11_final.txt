@@ -1,0 +1,132 @@
+# SB-11 final parity: live run r20261117T041900Z (pre-SB-11) vs live run r20261117T150932Z (SB-11 deployed, execution sb11-rebuild-1), both s3://al-test-dl-serving/dq/runs/ (read-only)
+# Produced by scripts/compare_dq_runs.py on 2026-11-17T15:17:47Z. Record values are not reproduced: no common record page differs (39 of 39 identical); the new SB-11 page is listed by name only (22 records, 11 pairs, 10 customers).
+
+# 1) strict: only run_id and timestamps normalized
+compared 40 files (summary.json + 40 record pages)
+files only in old: []
+files only in new: ['records/SB-11/transactions/page-1.json']
+--- old/summary.json
++++ new/summary.json
+@@ -6,7 +6,7 @@
+    "rank": 1,
+    "row_compliance_pct": 100.0,
+    "rows_excluded": 0,
+-   "rows_flagged": 0,
++   "rows_flagged": 22,
+    "rows_read": 66674,
+    "rules_evaluated": 9,
+    "rules_failing": 0
+@@ -842,6 +842,39 @@
+   {
+    "action": "flag",
+    "applies_to": [
++    "transactions"
++   ],
++   "counts_toward_compliance": false,
++   "description": "Two consecutive months m and m+1 of one customer are an uneven split when, with x the native `amount` and b = x_{m−1}: (1) months m−1, m, m+1 and m+2 are all known-paid (`amount` > 0), so the four-month window holds no hole and no unpaid month; (2) none of the four months has a `settlement_type`, whether from SB-06 or from an uneven split already tagged; (3) x_{m+2} = b; (4) x_m ≠ b; (5) x_m + x_{m+1} = 2 × b. Every test is an exact Decimal equality with no tolerance. This is not a versioned parameter: `amount_normalized` = b below is exact only because the sum is exact. Windows are tested from the earliest m upward, and a tagged month is never re-tagged. Both months get `settlement_type` = `uneven_split`, `settlement_confidence` = `high`, `amount_normalized` = b (which equals (x_m + x_{m+1}) ÷ 2 exactly) and the new column `uneven_split_start_month` = m as `YYYY-MM` (NULL on every other panel row). `is_catch_up` and `is_prepaid` stay false, and `lifecycle_state` stays `paying`. Both included rows are flagged with `failed_columns` [`amount`] and reason `UNEVEN_SPLIT: <m> and <m+1> sum to twice the amount of <m−1> and <m+2>`. Nothing else changes: `amount`, `amount_value`, `is_paying`, revenue totals, medians, first paid amounts, lifecycle states and the `gap` table. A pair is decided only once month m+2 is delivered, so a later delivery can tag it retroactively (CTO-10). Runs of 3 or more months and pairs whose two baselines differ are not covered (deferred, Q17)",
++   "inferred": true,
++   "kind": "row",
++   "layer": "silver_business",
++   "results": {
++    "industry": {
++     "compliance_pct": null,
++     "evaluated": 0,
++     "failed": 0,
++     "status": "na"
++    },
++    "sm_spend": {
++     "compliance_pct": null,
++     "evaluated": 0,
++     "failed": 0,
++     "status": "na"
++    },
++    "transactions": {
++     "compliance_pct": 99.97,
++     "evaluated": 66674,
++     "failed": 22,
++     "status": "warn"
++    }
++   },
++   "rule_id": "SB-11",
++   "title": "Uneven split of a two-month total"
++  },
++  {
++   "action": "flag",
++   "applies_to": [
+     "sm_spend"
+    ],
+    "counts_toward_compliance": false,
+@@ -977,6 +1010,13 @@
+    "run_id": "<run_id>",
+    "sm_spend": 100.0,
+    "transactions": 100.0
++  },
++  {
++   "as_of_month": "2024-10",
++   "industry": 99.95,
++   "run_id": "<run_id>",
++   "sm_spend": 100.0,
++   "transactions": 100.0
+   }
+  ]
+ }
+exit=1 (expected: SB-11 rule block, transactions.rows_flagged 0 -> 22, new records/SB-11/transactions/page-1.json, plus one more trend entry because this is the 3rd published run)
+
+# 2) history-aware: CDO-06a/b (pass on both runs), the rules_evaluated they add and trend (2 -> 3 entries) reported separately
+compared 40 files (summary.json + 40 record pages)
+history-dependent blocks (reported, not diffed):
+{"new": {"datasets": {"industry": {"rules_evaluated": 1, "rules_failing": 0}, "sm_spend": {"rules_evaluated": 1, "rules_failing": 0}, "transactions": {"rules_evaluated": 1, "rules_failing": 0}}, "rules": {"CDO-06a": {"industry": {"compliance_pct": 100.0, "evaluated": 1961, "failed": 0, "status": "pass"}, "sm_spend": {"compliance_pct": 100.0, "evaluated": 34, "failed": 0, "status": "pass"}, "transactions": {"compliance_pct": 100.0, "evaluated": 66674, "failed": 0, "status": "pass"}}, "CDO-06b": {"industry": {"compliance_pct": 100.0, "evaluated": 1961, "failed": 0, "status": "pass"}, "sm_spend": {"compliance_pct": 100.0, "evaluated": 34, "failed": 0, "status": "pass"}, "transactions": {"compliance_pct": 100.0, "evaluated": 66674, "failed": 0, "status": "pass"}}}, "trend_len": 3}, "old": {"datasets": {"industry": {"rules_evaluated": 1, "rules_failing": 0}, "sm_spend": {"rules_evaluated": 1, "rules_failing": 0}, "transactions": {"rules_evaluated": 1, "rules_failing": 0}}, "rules": {"CDO-06a": {"industry": {"compliance_pct": 100.0, "evaluated": 1961, "failed": 0, "status": "pass"}, "sm_spend": {"compliance_pct": 100.0, "evaluated": 34, "failed": 0, "status": "pass"}, "transactions": {"compliance_pct": 100.0, "evaluated": 66674, "failed": 0, "status": "pass"}}, "CDO-06b": {"industry": {"compliance_pct": 100.0, "evaluated": 1961, "failed": 0, "status": "pass"}, "sm_spend": {"compliance_pct": 100.0, "evaluated": 34, "failed": 0, "status": "pass"}, "transactions": {"compliance_pct": 100.0, "evaluated": 66674, "failed": 0, "status": "pass"}}}, "trend_len": 2}}
+files only in old: []
+files only in new: ['records/SB-11/transactions/page-1.json']
+--- old/summary.json
++++ new/summary.json
+@@ -6,7 +6,7 @@
+    "rank": 1,
+    "row_compliance_pct": 100.0,
+    "rows_excluded": 0,
+-   "rows_flagged": 0,
++   "rows_flagged": 22,
+    "rows_read": 66674,
+    "rules_evaluated": 8,
+    "rules_failing": 0
+@@ -802,6 +802,39 @@
+   {
+    "action": "flag",
+    "applies_to": [
++    "transactions"
++   ],
++   "counts_toward_compliance": false,
++   "description": "Two consecutive months m and m+1 of one customer are an uneven split when, with x the native `amount` and b = x_{m−1}: (1) months m−1, m, m+1 and m+2 are all known-paid (`amount` > 0), so the four-month window holds no hole and no unpaid month; (2) none of the four months has a `settlement_type`, whether from SB-06 or from an uneven split already tagged; (3) x_{m+2} = b; (4) x_m ≠ b; (5) x_m + x_{m+1} = 2 × b. Every test is an exact Decimal equality with no tolerance. This is not a versioned parameter: `amount_normalized` = b below is exact only because the sum is exact. Windows are tested from the earliest m upward, and a tagged month is never re-tagged. Both months get `settlement_type` = `uneven_split`, `settlement_confidence` = `high`, `amount_normalized` = b (which equals (x_m + x_{m+1}) ÷ 2 exactly) and the new column `uneven_split_start_month` = m as `YYYY-MM` (NULL on every other panel row). `is_catch_up` and `is_prepaid` stay false, and `lifecycle_state` stays `paying`. Both included rows are flagged with `failed_columns` [`amount`] and reason `UNEVEN_SPLIT: <m> and <m+1> sum to twice the amount of <m−1> and <m+2>`. Nothing else changes: `amount`, `amount_value`, `is_paying`, revenue totals, medians, first paid amounts, lifecycle states and the `gap` table. A pair is decided only once month m+2 is delivered, so a later delivery can tag it retroactively (CTO-10). Runs of 3 or more months and pairs whose two baselines differ are not covered (deferred, Q17)",
++   "inferred": true,
++   "kind": "row",
++   "layer": "silver_business",
++   "results": {
++    "industry": {
++     "compliance_pct": null,
++     "evaluated": 0,
++     "failed": 0,
++     "status": "na"
++    },
++    "sm_spend": {
++     "compliance_pct": null,
++     "evaluated": 0,
++     "failed": 0,
++     "status": "na"
++    },
++    "transactions": {
++     "compliance_pct": 99.97,
++     "evaluated": 66674,
++     "failed": 22,
++     "status": "warn"
++    }
++   },
++   "rule_id": "SB-11",
++   "title": "Uneven split of a two-month total"
++  },
++  {
++   "action": "flag",
++   "applies_to": [
+     "sm_spend"
+    ],
+    "counts_toward_compliance": false,
+exit=1 (expected: SB-11 rule block, transactions.rows_flagged 0 -> 22, new records/SB-11/transactions/page-1.json; nothing else)

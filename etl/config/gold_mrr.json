@@ -1,0 +1,315 @@
+{
+ "database": "finora_gold",
+ "gold_model_version": "sha256:9c84385c857586b914e055a7d8b2428cd0c11aedb3e9e45014b8d925992e5dac",
+ "industries": [
+  {
+   "industry_code": "RESTAURANTS",
+   "industry_key": 1
+  },
+  {
+   "industry_code": "MANUFACTURING",
+   "industry_key": 2
+  },
+  {
+   "industry_code": "RETAIL",
+   "industry_key": 3
+  },
+  {
+   "industry_code": "TECHNOLOGY",
+   "industry_key": 4
+  },
+  {
+   "industry_code": "PROFESSIONAL_SERVICES",
+   "industry_key": 5
+  },
+  {
+   "industry_code": "HEALTHCARE",
+   "industry_key": 6
+  },
+  {
+   "industry_code": "UNKNOWN",
+   "industry_key": -1
+  },
+  {
+   "industry_code": "UNMAPPED",
+   "industry_key": -2
+  }
+ ],
+ "lines": [
+  {
+   "driver": null,
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Opening MRR",
+   "line": "opening",
+   "line_order": 0,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "New",
+   "line": "new",
+   "line_order": 1,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Reactivation",
+   "line": "reactivation",
+   "line_order": 2,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Expansion",
+   "line": "expansion",
+   "line_order": 3,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Contraction",
+   "line": "contraction",
+   "line_order": 4,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Churn",
+   "line": "churn",
+   "line_order": 5,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": "GLD-MRR-02.pause",
+   "is_inferred": true,
+   "label": "Pause (unpaid, not churn)",
+   "line": "pause",
+   "line_order": 6,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": "GLD-MRR-02.resume",
+   "is_inferred": true,
+   "label": "Resume after a pause",
+   "line": "resume",
+   "line_order": 7,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "behaviour",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Unpaid, in grace (provisional)",
+   "line": "grace_drop",
+   "line_order": 8,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "pricing",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "List-price changes",
+   "line": "list_price_change",
+   "line_order": 9,
+   "observable_on_cash_proxy": false,
+   "section": "mrr"
+  },
+  {
+   "driver": "pricing",
+   "inference_rule": "GLD-MRR-01",
+   "is_inferred": true,
+   "label": "Price steps (inferred)",
+   "line": "inferred_price_step",
+   "line_order": 10,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "discount",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Discounts started",
+   "line": "discount_start",
+   "line_order": 11,
+   "observable_on_cash_proxy": false,
+   "section": "mrr"
+  },
+  {
+   "driver": "discount",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Discount changes",
+   "line": "discount_change",
+   "line_order": 12,
+   "observable_on_cash_proxy": false,
+   "section": "mrr"
+  },
+  {
+   "driver": "discount",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Discount base effect",
+   "line": "discount_base_effect",
+   "line_order": 13,
+   "observable_on_cash_proxy": false,
+   "section": "mrr"
+  },
+  {
+   "driver": "discount",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Discounts ended",
+   "line": "discount_end",
+   "line_order": 14,
+   "observable_on_cash_proxy": false,
+   "section": "mrr"
+  },
+  {
+   "driver": "discount",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Discounts released on churn",
+   "line": "discount_released_on_churn",
+   "line_order": 15,
+   "observable_on_cash_proxy": false,
+   "section": "mrr"
+  },
+  {
+   "driver": "timing",
+   "inference_rule": "GLD-MRR-02.7b",
+   "is_inferred": true,
+   "label": "Prepaid first invoice (inferred)",
+   "line": "first_payment_multiple",
+   "line_order": 16,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": null,
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Closing MRR",
+   "line": "closing",
+   "line_order": 17,
+   "observable_on_cash_proxy": true,
+   "section": "mrr"
+  },
+  {
+   "driver": "timing",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Arrears (paid later)",
+   "line": "timing_arrears",
+   "line_order": 20,
+   "observable_on_cash_proxy": true,
+   "section": "cash"
+  },
+  {
+   "driver": "timing",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Prepayments",
+   "line": "timing_prepay",
+   "line_order": 21,
+   "observable_on_cash_proxy": true,
+   "section": "cash"
+  },
+  {
+   "driver": "timing",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Split payments",
+   "line": "timing_split",
+   "line_order": 22,
+   "observable_on_cash_proxy": true,
+   "section": "cash"
+  },
+  {
+   "driver": "timing",
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Uneven splits",
+   "line": "timing_uneven_split",
+   "line_order": 23,
+   "observable_on_cash_proxy": true,
+   "section": "cash"
+  },
+  {
+   "driver": "timing",
+   "inference_rule": null,
+   "is_inferred": true,
+   "label": "Late price step catch-up (inferred)",
+   "line": "timing_late_price_step",
+   "line_order": 24,
+   "observable_on_cash_proxy": true,
+   "section": "cash"
+  },
+  {
+   "driver": null,
+   "inference_rule": null,
+   "is_inferred": false,
+   "label": "Collected (cash)",
+   "line": "collected",
+   "line_order": 25,
+   "observable_on_cash_proxy": true,
+   "section": "cash"
+  }
+ ],
+ "model_doc": "docs/mrr_discounts_model.md §6",
+ "params": {
+  "active_states": [
+   "new",
+   "paying",
+   "reactivated",
+   "settled_gap"
+  ],
+  "first_payment_multiples": [
+   2,
+   3
+  ],
+  "flag_return_months": [
+   1,
+   2,
+   3
+  ],
+  "mrr_basis": "cash_proxy",
+  "no_item": "-",
+  "null_reason_cash_proxy": "no_billing_data",
+  "page_size": 200,
+  "price_step_states": [
+   "paying"
+  ],
+  "timing_types": [
+   "arrears",
+   "prepay",
+   "split",
+   "uneven_split",
+   "late_price_step"
+  ]
+ },
+ "spec_sha256": "579c702150bed7639121d3b536b7eab0b3b9ef0da67aaaff6c918354db008860",
+ "unmapped_industry_key": -2,
+ "version": 1
+}

@@ -1,0 +1,48 @@
+
+✨  Synthesis time: 2.97s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building GlueLib
+FinoraDlEtl: success: Built GlueLib
+FinoraDlEtl: start: Building FinoraDlEtl Template
+FinoraDlEtl: success: Built FinoraDlEtl Template
+FinoraDlEtl: start: Publishing FinoraDlEtl Template (962482423379-us-west-2-3d00fabb)
+FinoraDlEtl: start: Publishing GlueLib (962482423379-us-west-2-abe616d0)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: success: Published FinoraDlEtl Template (962482423379-us-west-2-3d00fabb)
+FinoraDlEtl: success: Published GlueLib (962482423379-us-west-2-abe616d0)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+FinoraDlEtl: deploying... [1/1]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlEtl | 0/8 | 10:08:46 AM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl | 0/8 | 10:08:50 AM | UPDATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetIndustry 
+FinoraDlEtl | 0/8 | 10:08:50 AM | UPDATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetTransactions 
+FinoraDlEtl | 0/8 | 10:08:50 AM | UPDATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetSmSpend 
+FinoraDlEtl | 0/8 | 10:08:50 AM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | BronzeJob 
+FinoraDlEtl | 0/8 | 10:08:50 AM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | PublishJob 
+FinoraDlEtl | 1/8 | 10:08:51 AM | UPDATE_COMPLETE      | AWS::Glue::DataQualityRuleset    | RulesetIndustry 
+FinoraDlEtl | 2/8 | 10:08:52 AM | UPDATE_COMPLETE      | AWS::Glue::DataQualityRuleset    | RulesetTransactions 
+FinoraDlEtl | 3/8 | 10:08:52 AM | UPDATE_COMPLETE      | AWS::Glue::Job                   | PublishJob 
+FinoraDlEtl | 4/8 | 10:08:52 AM | UPDATE_COMPLETE      | AWS::Glue::Job                   | BronzeJob 
+FinoraDlEtl | 5/8 | 10:08:56 AM | UPDATE_COMPLETE      | AWS::Glue::DataQualityRuleset    | RulesetSmSpend 
+FinoraDlEtl | 5/8 | 10:08:57 AM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | SilverJob 
+FinoraDlEtl | 6/8 | 10:08:59 AM | UPDATE_COMPLETE      | AWS::Glue::Job                   | SilverJob 
+FinoraDlEtl | 7/8 | 10:09:03 AM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 8/8 | 10:09:04 AM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 35.09s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 38.05s
+

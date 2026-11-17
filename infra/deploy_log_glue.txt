@@ -1,0 +1,178 @@
+
+✨  Synthesis time: 2.92s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building GlueLib
+FinoraDlEtl: success: Built GlueLib
+FinoraDlEtl: start: Building BronzeScript
+FinoraDlEtl: success: Built BronzeScript
+FinoraDlEtl: start: Building SilverScript
+FinoraDlEtl: success: Built SilverScript
+FinoraDlEtl: start: Building PublishScript
+FinoraDlEtl: success: Built PublishScript
+FinoraDlEtl: start: Publishing SilverScript (962482423379-us-west-2-c4495a22)
+FinoraDlEtl: start: Publishing PublishScript (962482423379-us-west-2-fb83a5eb)
+FinoraDlEtl: start: Publishing GlueLib (962482423379-us-west-2-1b0960ac)
+FinoraDlEtl: start: Publishing BronzeScript (962482423379-us-west-2-5535ee4e)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: success: Published PublishScript (962482423379-us-west-2-fb83a5eb)
+FinoraDlEtl: success: Published SilverScript (962482423379-us-west-2-c4495a22)
+FinoraDlEtl: success: Published BronzeScript (962482423379-us-west-2-5535ee4e)
+FinoraDlEtl: success: Published GlueLib (962482423379-us-west-2-1b0960ac)
+FinoraDlEtl: deploying... [1/1]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlEtl |  0/44 | 11:06:50 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetIndustry 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | SilverRole (SilverRoleD923E7A6) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetTransactions 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | BronzeRole (BronzeRole3C84DFB4) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | PublishRole (PublishRoleF42F66B6) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | GlueErrorLogs (GlueErrorLogsF5961714) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | GlueOutputLogs (GlueOutputLogsF3725861) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | GlueJobLogs (GlueJobLogsD624DCDD) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | CREATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetSmSpend 
+FinoraDlEtl |  0/44 | 11:06:53 PM | UPDATE_IN_PROGRESS   | AWS::Glue::Database              | finora_dq (finoradq) 
+FinoraDlEtl |  0/44 | 11:06:53 PM | UPDATE_IN_PROGRESS   | AWS::Glue::Database              | finora_silver (finorasilver) 
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | GlueErrorLogs (GlueErrorLogsF5961714) Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | BronzeRole (BronzeRole3C84DFB4) Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | PublishRole (PublishRoleF42F66B6) Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | GlueOutputLogs (GlueOutputLogsF3725861) Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | SilverRole (SilverRoleD923E7A6) Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup              | GlueJobLogs (GlueJobLogsD624DCDD) Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetSmSpend Resource creation Initiated
+FinoraDlEtl |  0/44 | 11:06:54 PM | CREATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetTransactions Resource creation Initiated
+FinoraDlEtl |  1/44 | 11:06:55 PM | UPDATE_COMPLETE      | AWS::Glue::Database              | finora_silver (finorasilver) 
+FinoraDlEtl |  2/44 | 11:06:55 PM | UPDATE_COMPLETE      | AWS::Glue::Database              | finora_dq (finoradq) 
+FinoraDlEtl |  3/44 | 11:06:55 PM | CREATE_COMPLETE      | AWS::Glue::DataQualityRuleset    | RulesetTransactions 
+FinoraDlEtl |  4/44 | 11:06:55 PM | CREATE_COMPLETE      | AWS::Glue::DataQualityRuleset    | RulesetSmSpend 
+FinoraDlEtl |  4/44 | 11:06:55 PM | CREATE_IN_PROGRESS   | AWS::Glue::DataQualityRuleset    | RulesetIndustry Resource creation Initiated
+FinoraDlEtl |  5/44 | 11:06:56 PM | CREATE_COMPLETE      | AWS::Glue::DataQualityRuleset    | RulesetIndustry 
+FinoraDlEtl |  6/44 | 11:07:03 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | GlueOutputLogs (GlueOutputLogsF3725861) 
+FinoraDlEtl |  7/44 | 11:07:03 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | GlueErrorLogs (GlueErrorLogsF5961714) 
+FinoraDlEtl |  8/44 | 11:07:03 PM | CREATE_COMPLETE      | AWS::Logs::LogGroup              | GlueJobLogs (GlueJobLogsD624DCDD) 
+FinoraDlEtl |  9/44 | 11:07:12 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | PublishRole (PublishRoleF42F66B6) 
+FinoraDlEtl | 10/44 | 11:07:12 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | BronzeRole (BronzeRole3C84DFB4) 
+FinoraDlEtl | 11/44 | 11:07:12 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | SilverRole (SilverRoleD923E7A6) 
+FinoraDlEtl | 11/44 | 11:07:12 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | PublishRole/DefaultPolicy (PublishRoleDefaultPolicy9257B12D) 
+FinoraDlEtl | 11/44 | 11:07:12 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | BronzeRole/DefaultPolicy (BronzeRoleDefaultPolicy49EACFED) 
+FinoraDlEtl | 11/44 | 11:07:12 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | SilverRole/DefaultPolicy (SilverRoleDefaultPolicy5945D639) 
+FinoraDlEtl | 11/44 | 11:07:13 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | PublishRole/DefaultPolicy (PublishRoleDefaultPolicy9257B12D) Resource creation Initiated
+FinoraDlEtl | 11/44 | 11:07:13 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | BronzeRole/DefaultPolicy (BronzeRoleDefaultPolicy49EACFED) Resource creation Initiated
+FinoraDlEtl | 11/44 | 11:07:13 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | SilverRole/DefaultPolicy (SilverRoleDefaultPolicy5945D639) Resource creation Initiated
+FinoraDlEtl | 12/44 | 11:07:28 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | PublishRole/DefaultPolicy (PublishRoleDefaultPolicy9257B12D) 
+FinoraDlEtl | 13/44 | 11:07:28 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | BronzeRole/DefaultPolicy (BronzeRoleDefaultPolicy49EACFED) 
+FinoraDlEtl | 14/44 | 11:07:29 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | SilverRole/DefaultPolicy (SilverRoleDefaultPolicy5945D639) 
+FinoraDlEtl | 14/44 | 11:07:29 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | PublishJob 
+FinoraDlEtl | 14/44 | 11:07:30 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | BronzeJob 
+FinoraDlEtl | 14/44 | 11:07:30 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | SilverJob 
+FinoraDlEtl | 14/44 | 11:07:30 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | BronzeJob Resource creation Initiated
+FinoraDlEtl | 14/44 | 11:07:30 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | PublishJob Resource creation Initiated
+FinoraDlEtl | 14/44 | 11:07:30 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | SilverJob Resource creation Initiated
+FinoraDlEtl | 15/44 | 11:07:32 PM | CREATE_COMPLETE      | AWS::Glue::Job                   | PublishJob 
+FinoraDlEtl | 16/44 | 11:07:32 PM | CREATE_COMPLETE      | AWS::Glue::Job                   | BronzeJob 
+FinoraDlEtl | 17/44 | 11:07:32 PM | CREATE_COMPLETE      | AWS::Glue::Job                   | SilverJob 
+FinoraDlEtl | 18/44 | 11:07:33 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) 
+FinoraDlEtl | 19/44 | 11:07:33 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) 
+FinoraDlEtl | 19/44 | 11:07:34 PM | UPDATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 20/44 | 11:07:50 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 20/44 | 11:07:51 PM | UPDATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 21/44 | 11:08:03 PM | UPDATE_COMPLETE      | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 22/44 | 11:08:04 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) 
+FinoraDlEtl | 23/44 | 11:08:05 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Lambda::Function            | dqpublish2D5D3A45 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilversmspend 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilverindustry 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilvergap 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilvercustomermonth 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finoradqfindings 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finoradqexcluded 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilvermonthcontrol 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Lambda::Function            | silverbuild5F86E75A 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilversourcestatus 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Lambda::Function            | bronzeingestE45FB3FE 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilvercustomer 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilverrestatementlog 
+FinoraDlEtl | 23/44 | 11:08:06 PM | DELETE_IN_PROGRESS   | AWS::Glue::Table                 | finorasilvertransactions 
+FinoraDlEtl | 24/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finoradqexcluded 
+FinoraDlEtl | 25/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilversourcestatus 
+FinoraDlEtl | 26/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finoradqfindings 
+FinoraDlEtl | 27/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilvercustomer 
+FinoraDlEtl | 28/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilvergap 
+FinoraDlEtl | 29/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilvertransactions 
+FinoraDlEtl | 30/44 | 11:08:07 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilverindustry 
+FinoraDlEtl | 31/44 | 11:08:09 PM | DELETE_COMPLETE      | AWS::Lambda::Function            | dqpublish2D5D3A45 
+FinoraDlEtl | 32/44 | 11:08:09 PM | DELETE_COMPLETE      | AWS::Lambda::Function            | bronzeingestE45FB3FE 
+FinoraDlEtl | 33/44 | 11:08:09 PM | DELETE_COMPLETE      | AWS::Lambda::Function            | silverbuild5F86E75A 
+FinoraDlEtl | 33/44 | 11:08:10 PM | DELETE_IN_PROGRESS   | AWS::IAM::Policy                 | dqpublishServiceRoleDefaultPolicyFCE1EC25 
+FinoraDlEtl | 33/44 | 11:08:10 PM | DELETE_IN_PROGRESS   | AWS::IAM::Policy                 | bronzeingestServiceRoleDefaultPolicy2E5B1C90 
+FinoraDlEtl | 33/44 | 11:08:10 PM | DELETE_IN_PROGRESS   | AWS::IAM::Policy                 | silverbuildServiceRoleDefaultPolicy0BEBE1B7 
+FinoraDlEtl | 33/44 | 11:08:10 PM | DELETE_SKIPPED       | AWS::Logs::LogGroup              | bronzeingestLogsA2A2F4BB 
+FinoraDlEtl | 33/44 | 11:08:10 PM | DELETE_SKIPPED       | AWS::Logs::LogGroup              | dqpublishLogsF642C029 
+FinoraDlEtl | 33/44 | 11:08:10 PM | DELETE_SKIPPED       | AWS::Logs::LogGroup              | silverbuildLogs3250F8D1 
+FinoraDlEtl | 34/44 | 11:08:10 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilverrestatementlog 
+FinoraDlEtl | 35/44 | 11:08:11 PM | DELETE_COMPLETE      | AWS::IAM::Policy                 | bronzeingestServiceRoleDefaultPolicy2E5B1C90 
+FinoraDlEtl | 35/44 | 11:08:11 PM | DELETE_IN_PROGRESS   | AWS::IAM::Role                   | bronzeingestServiceRoleAE44872C 
+FinoraDlEtl | 36/44 | 11:08:12 PM | DELETE_COMPLETE      | AWS::IAM::Policy                 | dqpublishServiceRoleDefaultPolicyFCE1EC25 
+FinoraDlEtl | 36/44 | 11:08:12 PM | DELETE_IN_PROGRESS   | AWS::IAM::Role                   | dqpublishServiceRoleD7A8F9FD 
+FinoraDlEtl | 37/44 | 11:08:12 PM | DELETE_COMPLETE      | AWS::IAM::Policy                 | silverbuildServiceRoleDefaultPolicy0BEBE1B7 
+FinoraDlEtl | 38/44 | 11:08:12 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilversmspend 
+FinoraDlEtl | 39/44 | 11:08:12 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilvercustomermonth 
+FinoraDlEtl | 40/44 | 11:08:12 PM | DELETE_COMPLETE      | AWS::Glue::Table                 | finorasilvermonthcontrol 
+FinoraDlEtl | 40/44 | 11:08:12 PM | DELETE_IN_PROGRESS   | AWS::IAM::Role                   | silverbuildServiceRoleADB95048 
+FinoraDlEtl | 41/44 | 11:08:23 PM | DELETE_COMPLETE      | AWS::IAM::Role                   | dqpublishServiceRoleD7A8F9FD 
+FinoraDlEtl | 42/44 | 11:08:25 PM | DELETE_COMPLETE      | AWS::IAM::Role                   | silverbuildServiceRoleADB95048 
+FinoraDlEtl | 43/44 | 11:08:25 PM | DELETE_COMPLETE      | AWS::IAM::Role                   | bronzeingestServiceRoleAE44872C 
+FinoraDlEtl | 44/44 | 11:08:25 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 115.09s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 118.01s
+
+
+✨  Synthesis time: 2.61s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building GlueLib
+FinoraDlEtl: success: Built GlueLib
+FinoraDlEtl: start: Publishing GlueLib (962482423379-us-west-2-58b460ae)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: success: Published GlueLib (962482423379-us-west-2-58b460ae)
+FinoraDlEtl: deploying... [1/1]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlEtl | 0/5 | 11:18:43 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl | 0/5 | 11:18:46 PM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | PublishJob 
+FinoraDlEtl | 0/5 | 11:18:46 PM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | SilverJob 
+FinoraDlEtl | 0/5 | 11:18:47 PM | UPDATE_IN_PROGRESS   | AWS::Glue::Job                   | BronzeJob 
+FinoraDlEtl | 1/5 | 11:18:48 PM | UPDATE_COMPLETE      | AWS::Glue::Job                   | PublishJob 
+FinoraDlEtl | 2/5 | 11:18:48 PM | UPDATE_COMPLETE      | AWS::Glue::Job                   | SilverJob 
+FinoraDlEtl | 3/5 | 11:18:48 PM | UPDATE_COMPLETE      | AWS::Glue::Job                   | BronzeJob 
+FinoraDlEtl | 4/5 | 11:18:52 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 5/5 | 11:18:53 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 32.27s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 34.88s
+

@@ -1,0 +1,35 @@
+# Excluded on request
+docs/pitch_5min_es.md
+
+# Dependencies and virtual environments
+node_modules/
+.venv/
+venv/
+
+# Build and deploy artifacts
+infra/cdk.out*/
+infra/build/
+dashboard/.next/
+dashboard/out/
+dashboard/out-mock/
+dashboard/test-results/
+dashboard/playwright-report/
+dashboard/tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local crash logs and OS files
+*.log
+replay_pid*.log
+hs_err_pid*.log
+.DS_Store
+
+# Secrets (never commit)
+.env
+.env.*
+*.pem
+*.key

@@ -1,0 +1,524 @@
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+start: Building FinoraDlStorage Template
+success: Built FinoraDlStorage Template
+start: Publishing FinoraDlStorage Template (962482423379-us-west-2-64865851)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDlStorage Template (962482423379-us-west-2-64865851)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDlStorage
+There were no differences
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+start: Building FinoraDlEtl Template
+success: Built FinoraDlEtl Template
+start: Publishing FinoraDlEtl Template (962482423379-us-west-2-5a5a4c81)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDlEtl Template (962482423379-us-west-2-5a5a4c81)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDlEtl
+IAM Statement Changes
+┌───┬───────────────────────────────────────────────────────────────────────────────┬────────┬────────────────────────────┬──────────────────────────────────┬───────────┐
+│   │ Resource                                                                      │ Effect │ Action                     │ Principal                        │ Condition │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ ${BronzeRole.Arn}                                                             │ Allow  │ sts:AssumeRole             │ Service:glue.amazonaws.com       │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ ${PublishRole.Arn}                                                            │ Allow  │ sts:AssumeRole             │ Service:glue.amazonaws.com       │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ ${SilverRole.Arn}                                                             │ Allow  │ sts:AssumeRole             │ Service:glue.amazonaws.com       │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ ${bronze_ingest.Arn}                                                          │ Allow  │ lambda:InvokeFunction      │ AWS:${Ingest/Role}               │           │
+│   │ ${bronze_ingest.Arn}:*                                                        │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ ${bronze_ingest/ServiceRole.Arn}                                              │ Allow  │ sts:AssumeRole             │ Service:lambda.amazonaws.com     │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ ${dq_publish.Arn}                                                             │ Allow  │ lambda:InvokeFunction      │ AWS:${Ingest/Role}               │           │
+│   │ ${dq_publish.Arn}:*                                                           │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ ${dq_publish/ServiceRole.Arn}                                                 │ Allow  │ sts:AssumeRole             │ Service:lambda.amazonaws.com     │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ ${silver_build.Arn}                                                           │ Allow  │ lambda:InvokeFunction      │ AWS:${Ingest/Role}               │           │
+│   │ ${silver_build.Arn}:*                                                         │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ ${silver_build/ServiceRole.Arn}                                               │ Allow  │ sts:AssumeRole             │ Service:lambda.amazonaws.com     │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ *                                                                             │ Allow  │ glue:PublishDataQuality    │ AWS:${SilverRole}                │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:${AWS::Partition}:glue:us-west-2:962482423379:job/finora-dl-bronze-ingest │ Allow  │ glue:BatchStopJobRun       │ AWS:${Ingest/Role}               │           │
+│   │                                                                               │        │ glue:GetJobRun             │                                  │           │
+│   │                                                                               │        │ glue:GetJobRuns            │                                  │           │
+│   │                                                                               │        │ glue:StartJobRun           │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:${AWS::Partition}:glue:us-west-2:962482423379:job/finora-dl-dq-publish    │ Allow  │ glue:BatchStopJobRun       │ AWS:${Ingest/Role}               │           │
+│   │                                                                               │        │ glue:GetJobRun             │                                  │           │
+│   │                                                                               │        │ glue:GetJobRuns            │                                  │           │
+│   │                                                                               │        │ glue:StartJobRun           │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:${AWS::Partition}:glue:us-west-2:962482423379:job/finora-dl-silver-build  │ Allow  │ glue:BatchStopJobRun       │ AWS:${Ingest/Role}               │           │
+│   │                                                                               │        │ glue:GetJobRun             │                                  │           │
+│   │                                                                               │        │ glue:GetJobRuns            │                                  │           │
+│   │                                                                               │        │ glue:StartJobRun           │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-bronze                                  │ Allow  │ s3:Abort*                  │ AWS:${bronze_ingest/ServiceRole} │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-bronze/*                                │        │ s3:DeleteObject*           │                                  │           │
+│   │                                                                               │        │ s3:GetBucket*              │                                  │           │
+│   │                                                                               │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+│   │                                                                               │        │ s3:PutObject               │                                  │           │
+│   │                                                                               │        │ s3:PutObjectLegalHold      │                                  │           │
+│   │                                                                               │        │ s3:PutObjectRetention      │                                  │           │
+│   │                                                                               │        │ s3:PutObjectTagging        │                                  │           │
+│   │                                                                               │        │ s3:PutObjectVersionTagging │                                  │           │
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-bronze                                  │ Allow  │ s3:GetBucket*              │ AWS:${silver_build/ServiceRole}  │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-bronze/*                                │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-serving                                 │ Allow  │ s3:Abort*                  │ AWS:${dq_publish/ServiceRole}    │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-serving/dq/*                            │        │ s3:DeleteObject*           │                                  │           │
+│   │                                                                               │        │ s3:GetBucket*              │                                  │           │
+│   │                                                                               │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+│   │                                                                               │        │ s3:PutObject               │                                  │           │
+│   │                                                                               │        │ s3:PutObjectLegalHold      │                                  │           │
+│   │                                                                               │        │ s3:PutObjectRetention      │                                  │           │
+│   │                                                                               │        │ s3:PutObjectTagging        │                                  │           │
+│   │                                                                               │        │ s3:PutObjectVersionTagging │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-serving                                 │ Allow  │ s3:GetBucket*              │ AWS:${silver_build/ServiceRole}  │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-serving/dq/latest.json                  │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-silver                                  │ Allow  │ s3:Abort*                  │ AWS:${silver_build/ServiceRole}  │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-silver/*                                │        │ s3:DeleteObject*           │                                  │           │
+│   │                                                                               │        │ s3:GetBucket*              │                                  │           │
+│   │                                                                               │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+│   │                                                                               │        │ s3:PutObject               │                                  │           │
+│   │                                                                               │        │ s3:PutObjectLegalHold      │                                  │           │
+│   │                                                                               │        │ s3:PutObjectRetention      │                                  │           │
+│   │                                                                               │        │ s3:PutObjectTagging        │                                  │           │
+│   │                                                                               │        │ s3:PutObjectVersionTagging │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-silver                                  │ Allow  │ s3:GetBucket*              │ AWS:${dq_publish/ServiceRole}    │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-silver/_runs/*                          │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-staging                                 │ Allow  │ s3:ListBucket              │ AWS:${bronze_ingest/ServiceRole} │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ - │ arn:${AWS::Partition}:s3:::al-test-dl-staging                                 │ Allow  │ s3:GetBucket*              │ AWS:${bronze_ingest/ServiceRole} │           │
+│   │ arn:${AWS::Partition}:s3:::al-test-dl-staging/*                               │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2        │ Allow  │ s3:GetBucket*              │ AWS:${BronzeRole}                │           │
+│   │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2/*      │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+│ + │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2        │ Allow  │ s3:GetBucket*              │ AWS:${SilverRole}                │           │
+│   │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2/*      │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+│ + │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2        │ Allow  │ s3:GetBucket*              │ AWS:${PublishRole}               │           │
+│   │ arn:${AWS::Partition}:s3:::cdk-hnb659fds-assets-962482423379-us-west-2/*      │        │ s3:GetObject*              │                                  │           │
+│   │                                                                               │        │ s3:List*                   │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:glue:us-west-2:962482423379:catalog                                   │ Allow  │ glue:CreateTable           │ AWS:${SilverRole}                │           │
+│   │ arn:aws:glue:us-west-2:962482423379:database/finora_dq                        │        │ glue:GetDatabase           │                                  │           │
+│   │ arn:aws:glue:us-west-2:962482423379:database/finora_silver                    │        │ glue:GetTable              │                                  │           │
+│   │ arn:aws:glue:us-west-2:962482423379:table/finora_dq/*                         │        │ glue:GetTables             │                                  │           │
+│   │ arn:aws:glue:us-west-2:962482423379:table/finora_silver/*                     │        │ glue:UpdateTable           │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:glue:us-west-2:962482423379:dataQualityRuleset/finora-dl-industry     │ Allow  │ glue:GetDataQualityRuleset │ AWS:${SilverRole}                │           │
+│   │ arn:aws:glue:us-west-2:962482423379:dataQualityRuleset/finora-dl-sm_spend     │        │                            │                                  │           │
+│   │ arn:aws:glue:us-west-2:962482423379:dataQualityRuleset/finora-dl-transactions │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/error:*          │ Allow  │ logs:CreateLogStream       │ AWS:${BronzeRole}                │           │
+│   │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/finora-dl:*      │        │ logs:DescribeLogStreams    │                                  │           │
+│   │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/output:*         │        │ logs:PutLogEvents          │                                  │           │
+│ + │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/error:*          │ Allow  │ logs:CreateLogStream       │ AWS:${SilverRole}                │           │
+│   │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/finora-dl:*      │        │ logs:DescribeLogStreams    │                                  │           │
+│   │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/output:*         │        │ logs:PutLogEvents          │                                  │           │
+│ + │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/error:*          │ Allow  │ logs:CreateLogStream       │ AWS:${PublishRole}               │           │
+│   │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/finora-dl:*      │        │ logs:DescribeLogStreams    │                                  │           │
+│   │ arn:aws:logs:us-west-2:962482423379:log-group:/aws-glue/jobs/output:*         │        │ logs:PutLogEvents          │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-bronze                                                │ Allow  │ s3:ListBucket              │ AWS:${SilverRole}                │           │
+│   │ arn:aws:s3:::al-test-dl-serving                                               │        │                            │                                  │           │
+│   │ arn:aws:s3:::al-test-dl-silver                                                │        │                            │                                  │           │
+│ + │ arn:aws:s3:::al-test-dl-bronze                                                │ Allow  │ s3:ListBucket              │ AWS:${PublishRole}               │           │
+│   │ arn:aws:s3:::al-test-dl-serving                                               │        │                            │                                  │           │
+│   │ arn:aws:s3:::al-test-dl-silver                                                │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-bronze                                                │ Allow  │ s3:ListBucket              │ AWS:${BronzeRole}                │           │
+│   │ arn:aws:s3:::al-test-dl-staging                                               │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-bronze/*                                              │ Allow  │ s3:GetObject               │ AWS:${BronzeRole}                │           │
+│   │                                                                               │        │ s3:PutObject               │                                  │           │
+│ + │ arn:aws:s3:::al-test-dl-bronze/*                                              │ Allow  │ s3:GetObject               │ AWS:${SilverRole}                │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-bronze/_runs/*                                        │ Allow  │ s3:GetObject               │ AWS:${PublishRole}               │           │
+│   │ arn:aws:s3:::al-test-dl-silver/_runs/*                                        │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-serving/dq/*                                          │ Allow  │ s3:GetObject               │ AWS:${PublishRole}               │           │
+│   │                                                                               │        │ s3:PutObject               │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-serving/dq/latest.json                                │ Allow  │ s3:GetObject               │ AWS:${SilverRole}                │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-silver/_glue_tmp/*                                    │ Allow  │ s3:GetObject               │ AWS:${SilverRole}                │           │
+│   │ arn:aws:s3:::al-test-dl-silver/_runs/*                                        │        │ s3:PutObject               │                                  │           │
+│   │ arn:aws:s3:::al-test-dl-silver/iceberg/*                                      │        │                            │                                  │           │
+├───┼───────────────────────────────────────────────────────────────────────────────┼────────┼────────────────────────────┼──────────────────────────────────┼───────────┤
+│ + │ arn:aws:s3:::al-test-dl-staging/industry/*                                    │ Allow  │ s3:GetObject               │ AWS:${BronzeRole}                │           │
+│   │ arn:aws:s3:::al-test-dl-staging/s_and_m/*                                     │        │ s3:GetObjectVersion        │                                  │           │
+│   │ arn:aws:s3:::al-test-dl-staging/transactions/*                                │        │                            │                                  │           │
+└───┴───────────────────────────────────────────────────────────────────────────────┴────────┴────────────────────────────┴──────────────────────────────────┴───────────┘
+IAM Policy Changes
+┌───┬──────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                     │ Managed Policy ARN                                                             │
+├───┼──────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ - │ ${bronze_ingest/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+├───┼──────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ - │ ${dq_publish/ServiceRole}    │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+├───┼──────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ - │ ${silver_build/ServiceRole}  │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴──────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Resources
+[-] AWS::Logs::LogGroup bronze_ingestLogs bronzeingestLogsA2A2F4BB orphan
+[-] AWS::IAM::Role bronze_ingest/ServiceRole bronzeingestServiceRoleAE44872C destroy
+[-] AWS::IAM::Policy bronze_ingest/ServiceRole/DefaultPolicy bronzeingestServiceRoleDefaultPolicy2E5B1C90 destroy
+[-] AWS::Lambda::Function bronze_ingest bronzeingestE45FB3FE destroy
+[-] AWS::Logs::LogGroup silver_buildLogs silverbuildLogs3250F8D1 orphan
+[-] AWS::IAM::Role silver_build/ServiceRole silverbuildServiceRoleADB95048 destroy
+[-] AWS::IAM::Policy silver_build/ServiceRole/DefaultPolicy silverbuildServiceRoleDefaultPolicy0BEBE1B7 destroy
+[-] AWS::Lambda::Function silver_build silverbuild5F86E75A destroy
+[-] AWS::Logs::LogGroup dq_publishLogs dqpublishLogsF642C029 orphan
+[-] AWS::IAM::Role dq_publish/ServiceRole dqpublishServiceRoleD7A8F9FD destroy
+[-] AWS::IAM::Policy dq_publish/ServiceRole/DefaultPolicy dqpublishServiceRoleDefaultPolicyFCE1EC25 destroy
+[-] AWS::Lambda::Function dq_publish dqpublish2D5D3A45 destroy
+[-] AWS::Glue::Table finora_silver_transactions finorasilvertransactions destroy
+[-] AWS::Glue::Table finora_silver_industry finorasilverindustry destroy
+[-] AWS::Glue::Table finora_silver_sm_spend finorasilversmspend destroy
+[-] AWS::Glue::Table finora_silver_customer finorasilvercustomer destroy
+[-] AWS::Glue::Table finora_silver_customer_month finorasilvercustomermonth destroy
+[-] AWS::Glue::Table finora_silver_gap finorasilvergap destroy
+[-] AWS::Glue::Table finora_silver_month_control finorasilvermonthcontrol destroy
+[-] AWS::Glue::Table finora_silver_source_status finorasilversourcestatus destroy
+[-] AWS::Glue::Table finora_silver_restatement_log finorasilverrestatementlog destroy
+[-] AWS::Glue::Table finora_dq_findings finoradqfindings destroy
+[-] AWS::Glue::Table finora_dq_excluded finoradqexcluded destroy
+[+] AWS::Logs::LogGroup GlueJobLogs GlueJobLogsD624DCDD
+[+] AWS::Logs::LogGroup GlueOutputLogs GlueOutputLogsF3725861
+[+] AWS::Logs::LogGroup GlueErrorLogs GlueErrorLogsF5961714
+[+] AWS::IAM::Role BronzeRole BronzeRole3C84DFB4
+[+] AWS::IAM::Policy BronzeRole/DefaultPolicy BronzeRoleDefaultPolicy49EACFED
+[+] AWS::IAM::Role SilverRole SilverRoleD923E7A6
+[+] AWS::IAM::Policy SilverRole/DefaultPolicy SilverRoleDefaultPolicy5945D639
+[+] AWS::IAM::Role PublishRole PublishRoleF42F66B6
+[+] AWS::IAM::Policy PublishRole/DefaultPolicy PublishRoleDefaultPolicy9257B12D
+[+] AWS::Glue::DataQualityRuleset RulesetTransactions RulesetTransactions
+[+] AWS::Glue::DataQualityRuleset RulesetIndustry RulesetIndustry
+[+] AWS::Glue::DataQualityRuleset RulesetSmSpend RulesetSmSpend
+[+] AWS::Glue::Job BronzeJob BronzeJob
+[+] AWS::Glue::Job SilverJob SilverJob
+[+] AWS::Glue::Job PublishJob PublishJob
+[~] AWS::IAM::Role Ingest/Role IngestRoleEE92D549
+ └─ [+] DependsOn
+     └─ ["BronzeJob","PublishJob","SilverJob"]
+[~] AWS::IAM::Policy Ingest/Role/DefaultPolicy IngestRoleDefaultPolicy0FA274D7
+ ├─ [~] PolicyDocument
+ │   └─ [~] .Statement:
+ │       └─ @@ -1,81 +1,66 @@
+ │          [ ] [
+ │          [ ]   {
+ │          [-]     "Action": "lambda:InvokeFunction",
+ │          [+]     "Action": [
+ │          [+]       "glue:StartJobRun",
+ │          [+]       "glue:GetJobRun",
+ │          [+]       "glue:GetJobRuns",
+ │          [+]       "glue:BatchStopJobRun"
+ │          [+]     ],
+ │          [ ]     "Effect": "Allow",
+ │          [-]     "Resource": [
+ │          [-]       {
+ │          [-]         "Fn::GetAtt": [
+ │          [-]           "bronzeingestE45FB3FE",
+ │          [-]           "Arn"
+ │          [+]     "Resource": {
+ │          [+]       "Fn::Join": [
+ │          [+]         "",
+ │          [+]         [
+ │          [+]           "arn:",
+ │          [+]           {
+ │          [+]             "Ref": "AWS::Partition"
+ │          [+]           },
+ │          [+]           ":glue:us-west-2:962482423379:job/finora-dl-bronze-ingest"
+ │          [ ]         ]
+ │          [-]       },
+ │          [-]       {
+ │          [-]         "Fn::Join": [
+ │          [-]           "",
+ │          [-]           [
+ │          [-]             {
+ │          [-]               "Fn::GetAtt": [
+ │          [-]                 "bronzeingestE45FB3FE",
+ │          [-]                 "Arn"
+ │          [-]               ]
+ │          [-]             },
+ │          [-]             ":*"
+ │          [-]           ]
+ │          [-]         ]
+ │          [-]       }
+ │          [-]     ]
+ │          [+]       ]
+ │          [+]     }
+ │          [ ]   },
+ │          [ ]   {
+ │          [-]     "Action": "lambda:InvokeFunction",
+ │          [+]     "Action": [
+ │          [+]       "glue:StartJobRun",
+ │          [+]       "glue:GetJobRun",
+ │          [+]       "glue:GetJobRuns",
+ │          [+]       "glue:BatchStopJobRun"
+ │          [+]     ],
+ │          [ ]     "Effect": "Allow",
+ │          [-]     "Resource": [
+ │          [-]       {
+ │          [-]         "Fn::GetAtt": [
+ │          [-]           "silverbuild5F86E75A",
+ │          [-]           "Arn"
+ │          [+]     "Resource": {
+ │          [+]       "Fn::Join": [
+ │          [+]         "",
+ │          [+]         [
+ │          [+]           "arn:",
+ │          [+]           {
+ │          [+]             "Ref": "AWS::Partition"
+ │          [+]           },
+ │          [+]           ":glue:us-west-2:962482423379:job/finora-dl-silver-build"
+ │          [ ]         ]
+ │          [-]       },
+ │          [-]       {
+ │          [-]         "Fn::Join": [
+ │          [-]           "",
+ │          [-]           [
+ │          [-]             {
+ │          [-]               "Fn::GetAtt": [
+ │          [-]                 "silverbuild5F86E75A",
+ │          [-]                 "Arn"
+ │          [-]               ]
+ │          [-]             },
+ │          [-]             ":*"
+ │          [-]           ]
+ │          [-]         ]
+ │          [-]       }
+ │          [-]     ]
+ │          [+]       ]
+ │          [+]     }
+ │          [ ]   },
+ │          [ ]   {
+ │          [-]     "Action": "lambda:InvokeFunction",
+ │          [+]     "Action": [
+ │          [+]       "glue:StartJobRun",
+ │          [+]       "glue:GetJobRun",
+ │          [+]       "glue:GetJobRuns",
+ │          [+]       "glue:BatchStopJobRun"
+ │          [+]     ],
+ │          [ ]     "Effect": "Allow",
+ │          [-]     "Resource": [
+ │          [-]       {
+ │          [-]         "Fn::GetAtt": [
+ │          [-]           "dqpublish2D5D3A45",
+ │          [-]           "Arn"
+ │          [+]     "Resource": {
+ │          [+]       "Fn::Join": [
+ │          [+]         "",
+ │          [+]         [
+ │          [+]           "arn:",
+ │          [+]           {
+ │          [+]             "Ref": "AWS::Partition"
+ │          [+]           },
+ │          [+]           ":glue:us-west-2:962482423379:job/finora-dl-dq-publish"
+ │          [ ]         ]
+ │          [-]       },
+ │          [-]       {
+ │          [-]         "Fn::Join": [
+ │          [-]           "",
+ │          [-]           [
+ │          [-]             {
+ │          [-]               "Fn::GetAtt": [
+ │          [-]                 "dqpublish2D5D3A45",
+ │          [-]                 "Arn"
+ │          [-]               ]
+ │          [-]             },
+ │          [-]             ":*"
+ │          [-]           ]
+ │          [-]         ]
+ │          [-]       }
+ │          [-]     ]
+ │          [+]       ]
+ │          [+]     }
+ │          [ ]   },
+ │          [ ]   {
+ │          [ ]     "Action": [
+ └─ [+] DependsOn
+     └─ ["BronzeJob","PublishJob","SilverJob"]
+[~] AWS::StepFunctions::StateMachine Ingest Ingest4069586C
+ ├─ [~] DefinitionString
+ │   └─ [~] .Fn::Join:
+ │       └─ @@ -1,34 +1,22 @@
+ │          [ ] [
+ │          [ ]   "",
+ │          [ ]   [
+ │          [-]     "{\"StartAt\":\"BronzeIngest\",\"States\":{\"BronzeIngest\":{\"Next\":\"SilverBuild\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ClientExecutionTimeoutException\",\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2},{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\",\"Lambda.TooManyRequestsException\"],\"IntervalSeconds\":5,\"MaxAttempts\":4,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.error\",\"Next\":\"RunFailed\"}],\"Type\":\"Task\",\"Resource\":\"",
+ │          [+]     "{\"StartAt\":\"SplitStartTime\",\"States\":{\"SplitStartTime\":{\"Type\":\"Pass\",\"Parameters\":{\"parts.$\":\"States.StringSplit($$.Execution.StartTime, '-:T.Z')\",\"event.$\":\"$\"},\"Next\":\"RunIds\"},\"RunIds\":{\"Type\":\"Pass\",\"Parameters\":{\"run_id.$\":\"States.Format('r{}{}{}T{}{}{}Z', States.ArrayGetItem($.parts, 0), States.ArrayGetItem($.parts, 1), States.ArrayGetItem($.parts, 2), States.ArrayGetItem($.parts, 3), States.ArrayGetItem($.parts, 4), States.ArrayGetItem($.parts, 5))\",\"started_at.$\":\"States.Format('{}-{}-{}T{}:{}:{}Z', States.ArrayGetItem($.parts, 0), States.ArrayGetItem($.parts, 1), States.ArrayGetItem($.parts, 2), States.ArrayGetItem($.parts, 3), States.ArrayGetItem($.parts, 4), States.ArrayGetItem($.parts, 5))\",\"event.$\":\"$.event\"},\"Next\":\"BronzeIngest\"},\"BronzeIngest\":{\"Next\":\"SilverBuild\",\"Retry\":[{\"ErrorEquals\":[\"Glue.ConcurrentRunsExceededException\"],\"IntervalSeconds\":60,\"MaxAttempts\":20,\"BackoffRate\":1.5,\"MaxDelaySeconds\":300,\"JitterStrategy\":\"FULL\"},{\"ErrorEquals\":[\"Glue.AWSGlueException\",\"Glue.InternalServiceException\",\"Glue.OperationTimeoutException\",\"Glue.ThrottlingException\"],\"IntervalSeconds\":10,\"MaxAttempts\":3,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.error\",\"Next\":\"RunFailed\"}],\"Type\":\"Task\",\"ResultPath\":\"$.bronze\",\"ResultSelector\":{\"JobRunId.$\":\"$.Id\",\"JobRunState.$\":\"$.JobRunState\",\"ExecutionTime.$\":\"$.ExecutionTime\"},\"Resource\":\"arn:",
+ │          [ ]     {
+ │          [-]       "Fn::GetAtt": [
+ │          [-]         "bronzeingestE45FB3FE",
+ │          [-]         "Arn"
+ │          [-]       ]
+ │          [+]       "Ref": "AWS::Partition"
+ │          [ ]     },
+ │          [-]     "\"},\"SilverBuild\":{\"Next\":\"DqPublish\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ClientExecutionTimeoutException\",\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2},{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\",\"Lambda.TooManyRequestsException\"],\"IntervalSeconds\":5,\"MaxAttempts\":4,\"BackoffRate\":2},{\"ErrorEquals\":[\"LockBusy\"],\"IntervalSeconds\":20,\"MaxAttempts\":30,\"BackoffRate\":1.2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.error\",\"Next\":\"RecordFailedRun\"}],\"Type\":\"Task\",\"ResultPath\":\"$.silver\",\"Resource\":\"",
+ │          [+]     ":states:::glue:startJobRun.sync\",\"Parameters\":{\"JobName\":\"finora-dl-bronze-ingest\",\"Arguments\":{\"--run_id.$\":\"$.run_id\",\"--started_at.$\":\"$.started_at\",\"--event.$\":\"States.JsonToString($.event)\"}}},\"SilverBuild\":{\"Next\":\"DqPublish\",\"Retry\":[{\"ErrorEquals\":[\"Glue.ConcurrentRunsExceededException\"],\"IntervalSeconds\":60,\"MaxAttempts\":20,\"BackoffRate\":1.5,\"MaxDelaySeconds\":300,\"JitterStrategy\":\"FULL\"},{\"ErrorEquals\":[\"Glue.AWSGlueException\",\"Glue.InternalServiceException\",\"Glue.OperationTimeoutException\",\"Glue.ThrottlingException\"],\"IntervalSeconds\":10,\"MaxAttempts\":3,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.error\",\"Next\":\"RecordFailedRun\"}],\"Type\":\"Task\",\"ResultPath\":\"$.silver\",\"ResultSelector\":{\"JobRunId.$\":\"$.Id\",\"JobRunState.$\":\"$.JobRunState\",\"ExecutionTime.$\":\"$.ExecutionTime\"},\"Resource\":\"arn:",
+ │          [ ]     {
+ │          [-]       "Fn::GetAtt": [
+ │          [-]         "silverbuild5F86E75A",
+ │          [-]         "Arn"
+ │          [-]       ]
+ │          [+]       "Ref": "AWS::Partition"
+ │          [ ]     },
+ │          [-]     "\"},\"DqPublish\":{\"Next\":\"Published\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ClientExecutionTimeoutException\",\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2},{\"ErrorEquals\":[\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\",\"Lambda.TooManyRequestsException\"],\"IntervalSeconds\":5,\"MaxAttempts\":4,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.error\",\"Next\":\"RecordFailedRun\"}],\"Type\":\"Task\",\"ResultPath\":\"$.publish\",\"Resource\":\"",
+ │          [+]     ":states:::glue:startJobRun.sync\",\"Parameters\":{\"JobName\":\"finora-dl-silver-build\",\"Arguments\":{\"--run_id.$\":\"$.run_id\",\"--started_at.$\":\"$.started_at\"}}},\"DqPublish\":{\"Next\":\"Published\",\"Retry\":[{\"ErrorEquals\":[\"Glue.ConcurrentRunsExceededException\"],\"IntervalSeconds\":60,\"MaxAttempts\":20,\"BackoffRate\":1.5,\"MaxDelaySeconds\":300,\"JitterStrategy\":\"FULL\"},{\"ErrorEquals\":[\"Glue.AWSGlueException\",\"Glue.InternalServiceException\",\"Glue.OperationTimeoutException\",\"Glue.ThrottlingException\"],\"IntervalSeconds\":10,\"MaxAttempts\":3,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.error\",\"Next\":\"RecordFailedRun\"}],\"Type\":\"Task\",\"ResultPath\":\"$.publish\",\"ResultSelector\":{\"JobRunId.$\":\"$.Id\",\"JobRunState.$\":\"$.JobRunState\",\"ExecutionTime.$\":\"$.ExecutionTime\"},\"Resource\":\"arn:",
+ │          [ ]     {
+ │          [-]       "Fn::GetAtt": [
+ │          [-]         "dqpublish2D5D3A45",
+ │          [-]         "Arn"
+ │          [-]       ]
+ │          [+]       "Ref": "AWS::Partition"
+ │          [ ]     },
+ │          [-]     "\"},\"Published\":{\"Type\":\"Succeed\"},\"RecordFailedRun\":{\"Next\":\"RunFailed\",\"Retry\":[{\"ErrorEquals\":[\"Lambda.ClientExecutionTimeoutException\",\"Lambda.ServiceException\",\"Lambda.AWSLambdaException\",\"Lambda.SdkClientException\"],\"IntervalSeconds\":2,\"MaxAttempts\":6,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.record_error\",\"Next\":\"RunFailed\"}],\"Type\":\"Task\",\"ResultPath\":null,\"Resource\":\"",
+ │          [+]     ":states:::glue:startJobRun.sync\",\"Parameters\":{\"JobName\":\"finora-dl-dq-publish\",\"Arguments\":{\"--run_id.$\":\"$.run_id\",\"--started_at.$\":\"$.started_at\",\"--mode\":\"published\"}}},\"Published\":{\"Type\":\"Succeed\"},\"RecordFailedRun\":{\"Next\":\"RunFailed\",\"Retry\":[{\"ErrorEquals\":[\"Glue.ConcurrentRunsExceededException\"],\"IntervalSeconds\":60,\"MaxAttempts\":20,\"BackoffRate\":1.5,\"MaxDelaySeconds\":300,\"JitterStrategy\":\"FULL\"},{\"ErrorEquals\":[\"Glue.AWSGlueException\",\"Glue.InternalServiceException\",\"Glue.OperationTimeoutException\",\"Glue.ThrottlingException\"],\"IntervalSeconds\":10,\"MaxAttempts\":3,\"BackoffRate\":2}],\"Catch\":[{\"ErrorEquals\":[\"States.ALL\"],\"ResultPath\":\"$.record_error\",\"Next\":\"RunFailed\"}],\"Type\":\"Task\",\"ResultPath\":null,\"ResultSelector\":{\"JobRunId.$\":\"$.Id\",\"JobRunState.$\":\"$.JobRunState\",\"ExecutionTime.$\":\"$.ExecutionTime\"},\"Resource\":\"arn:",
+ │          [ ]     {
+ │          [-]       "Fn::GetAtt": [
+ │          [-]         "dqpublish2D5D3A45",
+ │          [-]         "Arn"
+ │          [-]       ]
+ │          [+]       "Ref": "AWS::Partition"
+ │          [ ]     },
+ │          [-]     "\",\"Parameters\":{\"mode\":\"failed\",\"run_id.$\":\"$.run_id\",\"started_at.$\":\"$.started_at\",\"ingested.$\":\"$.ingested\"}},\"RunFailed\":{\"Type\":\"Fail\",\"Cause\":\"A run control or pipeline step failed; the previous publish stays live\"}},\"TimeoutSeconds\":3600}"
+ │          [+]     ":states:::glue:startJobRun.sync\",\"Parameters\":{\"JobName\":\"finora-dl-dq-publish\",\"Arguments\":{\"--run_id.$\":\"$.run_id\",\"--started_at.$\":\"$.started_at\",\"--mode\":\"failed\"}}},\"RunFailed\":{\"Type\":\"Fail\",\"Cause\":\"A run control or pipeline step failed; the previous publish stays live\"}},\"TimeoutSeconds\":10800}"
+ │          [ ]   ]
+ │          [ ] ]
+ └─ [~] DependsOn
+     └─ @@ -1,4 +1,7 @@
+        [ ] [
+        [+]   "BronzeJob",
+        [ ]   "IngestRoleDefaultPolicy0FA274D7",
+        [-]   "IngestRoleEE92D549"
+        [+]   "IngestRoleEE92D549",
+        [+]   "PublishJob",
+        [+]   "SilverJob"
+        [ ] ]
+[~] AWS::IAM::Role Ingest/EventsRole IngestEventsRoleD2751BEE
+ └─ [+] DependsOn
+     └─ ["BronzeJob","PublishJob","SilverJob"]
+[~] AWS::IAM::Policy Ingest/EventsRole/DefaultPolicy IngestEventsRoleDefaultPolicy9F5092AE
+ └─ [+] DependsOn
+     └─ ["BronzeJob","PublishJob","SilverJob"]
+[~] AWS::Glue::Database finora_silver finorasilver
+ └─ [~] DatabaseInput
+     ├─ [~] .Description:
+     │   ├─ [-] Silver store, one partition per run_id
+     │   └─ [+] Silver Iceberg tables; one snapshot per run, tagged <run_id>
+     └─ [+] Added: .LocationUri
+[~] AWS::Glue::Database finora_dq finoradq
+ └─ [~] DatabaseInput
+     ├─ [~] .Description:
+     │   ├─ [-] DQ store: findings and excluded rows per run_id
+     │   └─ [+] DQ store Iceberg tables: findings and excluded_rows (quarantine)
+     └─ [+] Added: .LocationUri
+
+Outputs
+[+] Output GlueJobs GlueJobs: {"Value":"finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish"}
+
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+start: Building FinoraDqAuth Template
+success: Built FinoraDqAuth Template
+start: Publishing FinoraDqAuth Template (962482423379-us-west-2-770ab543)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDqAuth Template (962482423379-us-west-2-770ab543)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDqAuth
+There were no differences
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+start: Building FinoraDqApi Template
+success: Built FinoraDqApi Template
+start: Publishing FinoraDqApi Template (962482423379-us-west-2-fb67d3d8)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDqApi Template (962482423379-us-west-2-fb67d3d8)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDqApi
+There were no differences
+
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+start: Building FinoraDqWeb Template
+success: Built FinoraDqWeb Template
+start: Publishing FinoraDqWeb Template (962482423379-us-west-2-893e511c)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDqWeb Template (962482423379-us-west-2-893e511c)
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDqWeb
+There were no differences
+
+
+✨  Number of stacks with differences: 1
+
+
+===== Second deploy (2026-11-17): library fix, no empty Iceberg write tasks (cdk diff FinoraDlEtl) =====
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+Lookup role arn:aws:iam::962482423379:role/cdk-hnb659fds-lookup-role-962482423379-us-west-2 was not assumed. Proceeding with default credentials.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+start: Building FinoraDlEtl Template
+success: Built FinoraDlEtl Template
+start: Publishing FinoraDlEtl Template (962482423379-us-west-2-39b145fe)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+success: Published FinoraDlEtl Template (962482423379-us-west-2-39b145fe)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
+
+Stack FinoraDlEtl
+Resources
+[~] AWS::Glue::Job BronzeJob BronzeJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/196ccd9c54229f3eb10e052688f3afe228eace7e2a999d546bafb94d8ee0ab1f.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/3c5c352311574b615504be3d9fa37b7106256516f63c8f893e996166e686f5b0.zip
+[~] AWS::Glue::Job SilverJob SilverJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/196ccd9c54229f3eb10e052688f3afe228eace7e2a999d546bafb94d8ee0ab1f.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/3c5c352311574b615504be3d9fa37b7106256516f63c8f893e996166e686f5b0.zip
+[~] AWS::Glue::Job PublishJob PublishJob
+ └─ [~] DefaultArguments
+     └─ [~] .--extra-py-files:
+         ├─ [-] s3://cdk-hnb659fds-assets-962482423379-us-west-2/196ccd9c54229f3eb10e052688f3afe228eace7e2a999d546bafb94d8ee0ab1f.zip
+         └─ [+] s3://cdk-hnb659fds-assets-962482423379-us-west-2/3c5c352311574b615504be3d9fa37b7106256516f63c8f893e996166e686f5b0.zip
+
+
+
+✨  Number of stacks with differences: 1
+

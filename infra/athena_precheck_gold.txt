@@ -1,0 +1,31 @@
+# gold_athena_ddl.py precheck at 2026-11-17T18:47:54Z (workgroup finora-dl, account 962482423379)
+== status / current
+  v_funnel_scenario_status: 10 rows, query 20,394 chars, 1873 ms, scanned 0 B
+  [ok] v_funnel_scenario_status = reference (GR-01..06, future changed_at, extreme rates)
+== v_funnel_month
+  v_funnel_month: 1386 rows, query 61,553 chars, 3847 ms, scanned 0 B
+  [ok] v_funnel_month: 1386 rows = exact reference (incl. tiny_rates, no overflow)
+== v_funnel_period
+  v_funnel_period: 756 rows, query 63,415 chars, 5174 ms, scanned 0 B
+  [ok] v_funnel_period: 756 rows = exact reference
+  [ok] §12.5 base, full period: New 58928.571429 / 128660.85, Won 1584 / 4786489.90
+== v_funnel_scenario_compare
+  v_funnel_scenario_compare: 108 rows, query 63,893 chars, 7120 ms, scanned 0 B
+  [ok] §12.6 sql_demo_080: 1810.285714 / +226.285714 / +14.285714 / 51562.5 / -7366.071429 / 4188178.66
+  [ok] v_funnel_scenario_compare: 108 rows x 7 columns = exact reference
+== v_funnel_rate_sensitivity
+  v_funnel_rate_sensitivity: 36 rows, query 59,730 chars, 5267 ms, scanned 0 B
+  [ok] v_funnel_rate_sensitivity: 36 rows = exact reference
+== v_acquisition_month / _finance / v_sm_spend_shared / v_corr_signal_summary
+  v_acquisition_month: 33 rows, query 51,744 chars, 1292 ms, scanned 0 B
+  [ok] v_acquisition_month: 33 rows, Won 1584, spend 7581800000
+  v_acquisition_month_finance: 33 rows, query 57,010 chars, 1462 ms, scanned 0 B
+  [ok] v_acquisition_month_finance pivots the HR partition (placeholder values)
+  v_sm_spend_shared: 4 rows, query 5,179 chars, 285 ms, scanned 0 B
+  [ok] v_sm_spend_shared keeps only hr_sensitive = false
+  v_corr_signal_summary: 12 rows, query 38,810 chars, 548 ms, scanned 0 B
+  [ok] v_corr_signal_summary = reference on a 48-row subset
+== API INSERT expression
+  [ok] timestamp(6) in UTC, DECIMAL(5,4), quote escaping
+precheck: 0 failures; data scanned 0 B
+

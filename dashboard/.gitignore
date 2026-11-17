@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+out-mock/
+test-results/*
+!test-results/screenshots/
+playwright-report/
+next-env.d.ts
+*.tsbuildinfo
+# Copied by scripts/voice-assets.mjs for voice builds only
+public/voice/

@@ -1,0 +1,747 @@
+{
+  "gold_run_id": "r20261117T201211Z",
+  "catalog_version": "sl-2026-11-17",
+  "mode": "lambda",
+  "passed": 22,
+  "total": 22,
+  "results": [
+    {
+      "n": 1,
+      "role": "revops",
+      "question": "¿Qué conjunto de datos tiene peor calidad hoy?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "Industria tiene el cumplimiento de filas más bajo: 99,95 %, 1 fila excluida por la regla SQ-02 (registro vacío).",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "dq",
+        "metrics": [
+          "dq.row_compliance_pct",
+          "dq.rows_excluded"
+        ],
+        "dimensions": [
+          "dataset"
+        ],
+        "filters": {
+          "time": {
+            "relative": "latest_run"
+          }
+        },
+        "won_definition": "first_payment",
+        "limit": 1,
+        "chart": {
+          "type": "table"
+        },
+        "sort": {
+          "by": "dq.row_compliance_pct",
+          "dir": "asc"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "dq.scorecard.industry"
+      ],
+      "result_id": "r_998f1293062e255220968198",
+      "ms": 5601
+    },
+    {
+      "n": 2,
+      "role": "revops",
+      "question": "¿Qué reglas de calidad están en advertencia?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "3 en advertencia: SQ-02 Industria 1; SB-10 Gasto S&M 5; SB-11 Transacciones 22.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "dq",
+        "metrics": [
+          "dq.rule_failed_count"
+        ],
+        "dimensions": [
+          "rule",
+          "dataset"
+        ],
+        "filters": {
+          "time": {
+            "relative": "latest_run"
+          },
+          "rule_status": [
+            "warn"
+          ]
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "table"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "dq.rule_cell.SQ-02.industry",
+        "dq.rule_cell.SB-10.sm_spend",
+        "dq.rule_cell.SB-11.transactions"
+      ],
+      "result_id": "r_c32fbd4b8e7117fc65f1f24d",
+      "ms": 9161
+    },
+    {
+      "n": 3,
+      "role": "revops",
+      "question": "¿Cuántos clientes nuevos ganamos en 2022?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "En 2022: 380 clientes nuevos. 2022 tiene 11 meses de datos.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.won_count"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {
+            "year": 2022
+          }
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "acq.time.new_customers"
+      ],
+      "result_id": "r_252c347e97a63048e13aa180",
+      "ms": 7833
+    },
+    {
+      "n": 4,
+      "role": "revops",
+      "question": "¿Y sin los que probablemente ya estaban activos?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "En 2022: 337 clientes nuevos. 2022 tiene 11 meses de datos.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.won_count"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {
+            "year": 2022
+          }
+        },
+        "won_definition": "new_logo",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "acq.time.new_customers"
+      ],
+      "result_id": "r_70e652304f9f06c6d283e030",
+      "ms": 6236
+    },
+    {
+      "n": 5,
+      "role": "revops",
+      "question": "¿Cuánto paga al mes un cliente nuevo hoy comparado con antes?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "Ticket inicial, antes de junio de 2023 frente a desde junio de 2023: de 55.768 a 42.551, 23,7 % menos. El corte de junio de 2023 es una referencia inferida, no la causa del cambio.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.run_rate_per_won"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {}
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "bar"
+        },
+        "derived": [
+          {
+            "op": "growth",
+            "of": "acq.run_rate_per_won",
+            "from_period": "pre_2023_06",
+            "to_period": "from_2023_06"
+          }
+        ]
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "acq.lost.starting_revenue"
+      ],
+      "result_id": "r_649f4bd02c6fa620871839cf",
+      "ms": 7433
+    },
+    {
+      "n": 6,
+      "role": "revops",
+      "question": "¿Qué industria bajó más su ticket?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "Ticket inicial, antes de junio de 2023 frente a desde junio de 2023. Retail es la que más bajó: de 43.671 a 29.407, 32,7 % menos. El corte de junio de 2023 es una referencia inferida, no la causa del cambio.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.run_rate_per_won"
+        ],
+        "dimensions": [
+          "industry"
+        ],
+        "filters": {
+          "time": {}
+        },
+        "won_definition": "first_payment",
+        "limit": 1,
+        "chart": {
+          "type": "bar"
+        },
+        "derived": [
+          {
+            "op": "growth",
+            "of": "acq.run_rate_per_won",
+            "from_period": "pre_2023_06",
+            "to_period": "from_2023_06"
+          }
+        ],
+        "sort": {
+          "by": "acq.run_rate_per_won",
+          "dir": "asc"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "acq.lost.ticket_by_industry"
+      ],
+      "result_id": "r_6b012c3587af742df78caa02",
+      "ms": 10903
+    },
+    {
+      "n": 7,
+      "role": "revops",
+      "question": "¿Cuál es el payback de un cliente nuevo y cuánto nos cuesta?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "Payback y costo por cliente nuevo por periodo: desde junio de 2023, 71,6 meses y 3,05 millones; antes de junio de 2023, 136,1 meses y 7,59 millones. Es una estimación a partir de los pagos. Es gasto de S&M por cliente nuevo, no un CAC: el gasto parece presupuesto y no se asigna por canal.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.payback_months",
+          "acq.cost_per_won"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {}
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": null,
+      "evidence": "inferido",
+      "kpi_ids": [
+        "acq.plan.payback",
+        "acq.funnel.won_cost"
+      ],
+      "result_id": "r_37ab139315d94cc555a95066",
+      "ms": 4695
+    },
+    {
+      "n": 8,
+      "role": "revops",
+      "question": "¿Qué porcentaje de los clientes nuevos sigue pagando al mes 12?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "Retención a 12 meses por periodo: desde junio de 2023, 90,0 % (332 de 369); antes de junio de 2023, 87,1 %. El corte de junio de 2023 es una referencia inferida, no la causa del cambio.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.paying_m12_share"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {}
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "acq.lost.keep_paying"
+      ],
+      "result_id": "r_6e38f8c0d6e03c95b6ba3093",
+      "ms": 6618
+    },
+    {
+      "n": 9,
+      "role": "revops",
+      "question": "Si pasamos 10 puntos de clientes nuevos de Retail a Tecnología, ¿qué pasa con el MRR nuevo?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "Con ese cambio de mezcla de Retail a Tecnología, el MRR nuevo pasaría de 2,45 millones a 2,59 millones al mes; el ticket inicial subiría 2.447, a 44.998, y el payback quedaría en 67,7 meses. Es un payback simple sobre ingreso, no sobre margen, y supone que el cliente no se va.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.new_mrr_per_month",
+          "acq.run_rate_per_won",
+          "acq.payback_months"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {}
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "table"
+        },
+        "derived": [
+          {
+            "op": "lever_scenario",
+            "baseline_period": "from_2023_06",
+            "mix": {
+              "from_industry": "RETAIL",
+              "to_industry": "TECHNOLOGY",
+              "points": 10
+            }
+          }
+        ]
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "acq.plan.won",
+        "acq.plan.new_mrr",
+        "acq.plan.payback",
+        "acq.lever.mix"
+      ],
+      "result_id": "r_bf59a7fb1a18bddb39a74e22",
+      "ms": 6683
+    },
+    {
+      "n": 10,
+      "role": "finance",
+      "question": "¿Cuánto gastamos en el equipo de S&M en 2023?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "Ese gasto es información de personal y solo Finanzas puede verlo. Puedo darte el gasto total de S&M o el total de personal sin desglose; el detalle ábrelo en la tabla mensual de Adquisición.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "hr_restricted",
+          "slots": {
+            "falta": "gasto del equipo de S&M (categoría de个人)"
+          }
+        }
+      },
+      "reason_code": "hr_restricted",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_1932b80af0db2e0646bd0ba8",
+      "ms": 4579
+    },
+    {
+      "n": 10,
+      "role": "revops",
+      "question": "¿Cuánto gastamos en el equipo de S&M en 2023?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "Ese gasto es información de personal y solo Finanzas puede verlo. Puedo darte el gasto total de S&M, el de medios o el total de personal sin desglose.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "hr_restricted",
+          "slots": {
+            "falta": "gasto de equipo de S&M",
+            "closest": "acq.spend_total"
+          }
+        }
+      },
+      "reason_code": "hr_restricted",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_60188b22937e007b459a7a3b",
+      "ms": 3928
+    },
+    {
+      "n": 11,
+      "role": "revops",
+      "question": "¿Cuál es el MRR a octubre de 2024?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "A octubre de 2024: MRR 96,4 millones; 1.678 clientes pagando. Es una estimación a partir de los pagos. El MRR se calcula a partir de los pagos, no de la facturación.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "mrr",
+        "metrics": [
+          "mrr.closing",
+          "mrr.paying_customers"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {
+            "from": "2024-10",
+            "to": "2024-10"
+          }
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": null,
+      "evidence": "inferido",
+      "kpi_ids": [
+        "mrr.bridge.closing"
+      ],
+      "result_id": "r_df68104ef84bcca4583846bb",
+      "ms": 6050
+    },
+    {
+      "n": 12,
+      "role": "revops",
+      "question": "¿Cuánto MRR perdimos por bajas en 2024?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "En 2024: perdimos 11,7 millones por bajas; 110 movimientos. El MRR se calcula a partir de los pagos, no de la facturación.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "mrr",
+        "metrics": [
+          "mrr.line_amount",
+          "mrr.line_events"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {
+            "year": 2024
+          },
+          "mrr_line": [
+            "churn"
+          ]
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": null,
+      "evidence": "observado",
+      "kpi_ids": [
+        "mrr.bridge.churn"
+      ],
+      "result_id": "r_19aaa70599a9138cdb1370a3",
+      "ms": 7496
+    },
+    {
+      "n": 13,
+      "role": "revops",
+      "question": "¿Qué industria aporta más MRR hoy?",
+      "status": "answered",
+      "pass": true,
+      "fails": [],
+      "spoken": "MRR y clientes pagando por industria a octubre de 2024, de mayor a menor: Restaurantes, 31,2 millones y 459 clientes pagando y 32,4 % del total. Es una estimación a partir de los pagos. El MRR se calcula a partir de los pagos, no de la facturación.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "mrr",
+        "metrics": [
+          "mrr.closing",
+          "mrr.paying_customers"
+        ],
+        "dimensions": [
+          "industry"
+        ],
+        "filters": {
+          "time": {
+            "relative": "latest_month"
+          }
+        },
+        "won_definition": "first_payment",
+        "limit": 1,
+        "chart": {
+          "type": "bar"
+        },
+        "derived": [
+          {
+            "op": "share",
+            "of": "mrr.closing",
+            "over": "industry"
+          }
+        ],
+        "sort": {
+          "by": "mrr.closing",
+          "dir": "desc"
+        }
+      },
+      "reason_code": null,
+      "evidence": "inferido",
+      "kpi_ids": [
+        "mrr.bridge.closing"
+      ],
+      "result_id": "r_6f18f05f52787f470e867f7d",
+      "ms": 9733
+    },
+    {
+      "n": 14,
+      "role": "revops",
+      "question": "¿Cuál es el cliente que más paga?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "Por privacidad no doy datos de clientes individuales. Puedo darte el MRR promedio por cliente o el reparto por industria: el MRR por cliente es 57.426 y la industria con el promedio más alto es Tecnología, con 74.192. El detalle por cliente está en la tabla 'Top movers' de la página de MRR, con tu sesión.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "customer_level",
+          "slots": {
+            "falta": "datos a nivel de cliente individual",
+            "closest": "mrr.per_paying_customer"
+          }
+        }
+      },
+      "reason_code": "customer_level",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_1fa27b7de0cbcc93a50c7f01",
+      "ms": 5435
+    },
+    {
+      "n": 15,
+      "role": "revops",
+      "question": "Si invertimos 20 % más en medios pagados, ¿cuántos clientes más ganamos?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "Con estos datos no se puede medir cuántos clientes trae el gasto: no hay datos por canal ni campaña, y las correlaciones sin tendencia salen al nivel del azar. Puedo mostrarte cómo cambiaría el costo por cliente nuevo y el payback si cambia el gasto, con los clientes nuevos fijos, o la prueba de correlaciones: 3 de 44 pruebas, frente a 2,2 esperadas por azar.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "causal_spend_won",
+          "slots": {}
+        }
+      },
+      "reason_code": "causal_spend_won",
+      "evidence": "no probado",
+      "kpi_ids": [],
+      "result_id": "r_cb5ebfe157291db001c8dc20",
+      "ms": 6025
+    },
+    {
+      "n": 16,
+      "role": "revops",
+      "question": "¿En qué etapa del embudo perdemos más clientes?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "No hay datos de etapas antes del primer pago: solo se observa 'ganado'. Las etapas del embudo son estimaciones con tasas supuestas. Puedo mostrarte el embudo estimado con las tasas supuestas, o qué tasa movería más clientes por álgebra, marcado como supuesto.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "funnel_stage_observed",
+          "slots": {
+            "falta": "la conversión observada entre etapas del",
+            "closest": "acq.funnel_stage_count"
+          }
+        }
+      },
+      "reason_code": "funnel_stage_observed",
+      "evidence": "supuesto",
+      "kpi_ids": [],
+      "result_id": "r_790608aeaa3fb83e6e945a8b",
+      "ms": 3935
+    },
+    {
+      "n": 17,
+      "role": "revops",
+      "question": "¿Cuánto MRR perdemos por descuentos?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "Los descuentos aún no se pueden medir: faltan los datos de facturación con precio de lista y descuento. Puedo darte las caídas temporales de pago que vuelven al monto anterior en 1 a 3 meses, que es la huella que dejaría un descuento, marcado como inferido: 31 caídas temporales que suman 1,10 millones.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "discounts_billing",
+          "slots": {
+            "falta": "fuga por descuentos",
+            "closest": "mrr.temporary_dip"
+          }
+        }
+      },
+      "reason_code": "discounts_billing",
+      "evidence": "inferido",
+      "kpi_ids": [],
+      "result_id": "r_b436b0f7915d1fed514aafc7",
+      "ms": 4383
+    },
+    {
+      "n": 18,
+      "role": "revops",
+      "question": "¿Cuánto es eso en dólares?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "La moneda no está confirmada por Finanzas; los montos están en unidades completas y no los puedo convertir. Puedo darte la misma cifra en unidades completas, o una medida sin moneda como el payback en meses o el cambio en porcentaje.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "currency",
+          "slots": {
+            "falta": "conversión a dólares / tipo de cambio"
+          }
+        }
+      },
+      "reason_code": "currency",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_0e17eefbf2e49f8b649e5a42",
+      "ms": 1919
+    },
+    {
+      "n": 19,
+      "role": "revops",
+      "question": "¿Cuánto gana el gerente de marketing?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "No tengo datos por persona y no doy montos que puedan revelar el pago de alguien. Puedo darte el gasto total de S&M o el de medios.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "single_person_pay",
+          "slots": {
+            "pregunta": "salario de una persona o cargo",
+            "closest": "acq.spend_hr_category"
+          }
+        }
+      },
+      "reason_code": "single_person_pay",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_4dc72988144c8780eb9c15d9",
+      "ms": 4045
+    },
+    {
+      "n": 19,
+      "role": "finance",
+      "question": "¿Cuánto gana el gerente de marketing?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "No tengo datos por persona y no doy montos que puedan revelar el pago de alguien. Puedo mostrarte el gasto total de personal de S&M en el gráfico.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "out_of_scope",
+        "out_of_scope": {
+          "reason_code": "single_person_pay",
+          "slots": {
+            "falta": "el sueldo del gerente de marketing"
+          }
+        }
+      },
+      "reason_code": "single_person_pay",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_3d99137e5021cb013762c689",
+      "ms": 3909
+    },
+    {
+      "n": 20,
+      "role": "revops",
+      "question": "¿Cuántos clientes nuevos tuvimos en noviembre de 2024?",
+      "status": "out_of_scope",
+      "pass": true,
+      "fails": [],
+      "spoken": "Los datos llegan hasta octubre de 2024; no tengo noviembre de 2024 todavía. Puedo darte octubre de 2024, el último mes completo, o la tendencia de los últimos 12 meses. En octubre de 2024: 50 clientes nuevos.",
+      "spec": {
+        "catalog_version": "sl-2026-11-17",
+        "intent": "answer",
+        "domain": "acquisition",
+        "metrics": [
+          "acq.won_count"
+        ],
+        "dimensions": [],
+        "filters": {
+          "time": {
+            "from": "2024-11",
+            "to": "2024-11"
+          }
+        },
+        "won_definition": "first_payment",
+        "limit": 12,
+        "chart": {
+          "type": "kpi"
+        }
+      },
+      "reason_code": "beyond_data_complete_through",
+      "evidence": "observado",
+      "kpi_ids": [],
+      "result_id": "r_5c7ab0945deac53441b2c9ee",
+      "ms": 8958
+    }
+  ]
+}

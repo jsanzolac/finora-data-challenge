@@ -1,0 +1,55 @@
+
+✨  Synthesis time: 2.68s
+
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: start: Building GlueGoldMrrLib
+FinoraDlEtl: success: Built GlueGoldMrrLib
+FinoraDlEtl: start: Building MrrScript
+FinoraDlEtl: success: Built MrrScript
+FinoraDlEtl: start: Building FinoraDlEtl Template
+FinoraDlEtl: success: Built FinoraDlEtl Template
+FinoraDlEtl: start: Publishing GlueGoldMrrLib (962482423379-us-west-2-021e56cb)
+FinoraDlEtl: start: Publishing FinoraDlEtl Template (962482423379-us-west-2-cb6c91dd)
+FinoraDlEtl: start: Publishing MrrScript (962482423379-us-west-2-8a862f56)
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-file-publishing-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: success: Published MrrScript (962482423379-us-west-2-8a862f56)
+FinoraDlEtl: success: Published GlueGoldMrrLib (962482423379-us-west-2-021e56cb)
+FinoraDlEtl: success: Published FinoraDlEtl Template (962482423379-us-west-2-cb6c91dd)
+FinoraDlEtl: deploying... [1/1]
+current credentials could not be used to assume 'arn:aws:iam::962482423379:role/cdk-hnb659fds-deploy-role-962482423379-us-west-2', but are for the right account. Proceeding anyway.
+FinoraDlEtl: creating CloudFormation changeset...
+FinoraDlEtl | 0/7 | 2:37:00 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack       | FinoraDlEtl User Initiated
+FinoraDlEtl | 0/7 | 2:37:03 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | MrrRole (MrrRole06F4A443) 
+FinoraDlEtl | 0/7 | 2:37:04 PM | CREATE_IN_PROGRESS   | AWS::IAM::Role                   | MrrRole (MrrRole06F4A443) Resource creation Initiated
+FinoraDlEtl | 1/7 | 2:37:21 PM | CREATE_COMPLETE      | AWS::IAM::Role                   | MrrRole (MrrRole06F4A443) 
+FinoraDlEtl | 1/7 | 2:37:22 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | MrrRole/DefaultPolicy (MrrRoleDefaultPolicy20123C8A) 
+FinoraDlEtl | 1/7 | 2:37:23 PM | CREATE_IN_PROGRESS   | AWS::IAM::Policy                 | MrrRole/DefaultPolicy (MrrRoleDefaultPolicy20123C8A) Resource creation Initiated
+FinoraDlEtl | 2/7 | 2:37:38 PM | CREATE_COMPLETE      | AWS::IAM::Policy                 | MrrRole/DefaultPolicy (MrrRoleDefaultPolicy20123C8A) 
+FinoraDlEtl | 2/7 | 2:37:39 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | MrrJob 
+FinoraDlEtl | 2/7 | 2:37:40 PM | CREATE_IN_PROGRESS   | AWS::Glue::Job                   | MrrJob Resource creation Initiated
+FinoraDlEtl | 3/7 | 2:37:42 PM | CREATE_COMPLETE      | AWS::Glue::Job                   | MrrJob 
+FinoraDlEtl | 4/7 | 2:37:43 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/EventsRole (IngestEventsRoleD2751BEE) 
+FinoraDlEtl | 5/7 | 2:37:43 PM | UPDATE_COMPLETE      | AWS::IAM::Role                   | Ingest/Role (IngestRoleEE92D549) 
+FinoraDlEtl | 5/7 | 2:37:44 PM | UPDATE_IN_PROGRESS   | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 6/7 | 2:38:00 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/Role/DefaultPolicy (IngestRoleDefaultPolicy0FA274D7) 
+FinoraDlEtl | 6/7 | 2:38:01 PM | UPDATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 7/7 | 2:38:13 PM | UPDATE_COMPLETE      | AWS::StepFunctions::StateMachine | Ingest (Ingest4069586C) 
+FinoraDlEtl | 8/7 | 2:38:14 PM | UPDATE_COMPLETE      | AWS::IAM::Policy                 | Ingest/EventsRole/DefaultPolicy (IngestEventsRoleDefaultPolicy9F5092AE) 
+FinoraDlEtl | 9/7 | 2:38:16 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack       | FinoraDlEtl 
+FinoraDlEtl | 10/7 | 2:38:16 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack       | FinoraDlEtl 
+
+ ✅  FinoraDlEtl
+
+✨  Deployment time: 116.72s
+
+Outputs:
+FinoraDlEtl.AlertTopicArn = arn:aws:sns:us-west-2:962482423379:finora-dl-alerts
+FinoraDlEtl.GlueJobs = finora-dl-bronze-ingest,finora-dl-silver-build,finora-dl-dq-publish,finora-dl-gold-build,finora-dl-gold-mrr
+FinoraDlEtl.StateMachineArn = arn:aws:states:us-west-2:962482423379:stateMachine:finora-dl-ingest
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDlEtl/e488e7b0-e229-11f1-9ae1-02a0e5349927
+
+✨  Total time: 119.4s
+

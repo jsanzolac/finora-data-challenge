@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data lake voice dashboard — architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f4ee;
+    --sheet: #fffdf8;
+    --ink: #1d1c1a;
+    --muted: #5f5b53;
+    --rule: #d9d3c7;
+    --a1: #1f4e79;
+    --a2: #a1461f;
+    --code: #efebe2;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --display: "Fraunces", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--serif); font-size: 18px; line-height: 1.6;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 24px 96px; }
+  header { border-bottom: 1px solid var(--ink); padding-bottom: 24px; margin-bottom: 32px; }
+  .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: 40px; line-height: 1.12; margin: 0 0 12px; letter-spacing: -.01em; }
+  .dek { font-size: 20px; color: var(--muted); margin: 0; font-style: italic; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.25; margin: 56px 0 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  h2 .n { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--muted); margin-right: 10px; vertical-align: 3px; }
+  h3 { font-family: var(--display); font-weight: 600; font-size: 19px; margin: 32px 0 8px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin: 0 0 6px; }
+  li::marker { color: var(--muted); }
+  strong { font-weight: 600; }
+  a { color: var(--a1); text-underline-offset: 2px; }
+  code { font-family: var(--mono); font-size: .8em; background: var(--code); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+  pre { background: var(--code); border-left: 3px solid var(--ink); padding: 14px 16px; overflow-x: auto; margin: 0 0 18px; }
+  pre code { background: none; padding: 0; font-size: 13px; line-height: 1.55; overflow-wrap: normal; white-space: pre; }
+  .table { overflow-x: auto; margin: 0 0 20px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  table { border-collapse: collapse; width: 100%; font-size: 15.5px; line-height: 1.45; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); }
+  th { font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { min-width: 140px; }
+  td code { overflow-wrap: normal; }
+  figure { margin: 24px 0 28px; }
+  figure svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; background: var(--sheet); border: 1px solid var(--rule); }
+  figcaption { font-size: 15px; color: var(--muted); margin-top: 10px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .toc { font-size: 16px; columns: 2; column-gap: 32px; padding-left: 22px; margin: 0; }
+  .toc li { break-inside: avoid; }
+  .decisions li { margin-bottom: 10px; }
+  .note { font-size: 15.5px; color: var(--muted); }
+  .refs li { font-size: 16px; }
+  footer { margin-top: 64px; border-top: 1px solid var(--ink); padding-top: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    main { padding: 32px 18px 72px; }
+    h1 { font-size: 30px; }
+    .dek { font-size: 18px; }
+    h2 { font-size: 22px; margin-top: 44px; }
+    .toc { columns: 1; }
+    table { font-size: 14.5px; }
+    td:first-child { min-width: 120px; }
+  }
+  @media print {
+    body { background: #fff; }
+    main { padding: 0; }
+    h2 { break-after: avoid; }
+    figure, .table, pre { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <p class="kicker">Architecture recap · 15 November 2026</p>
+  <h1>Data lake voice dashboard</h1>
+  <p class="dek">S3 lake from landing to gold, a Next.js + D3 dashboard, an ElevenLabs voice agent, and Claude on Bedrock for analysis.</p>
+</header>
+
+<nav aria-label="Contents">
+  <ol class="toc">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#scope">Goals and scope</a></li>
+    <li><a href="#overview">Architecture overview</a></li>
+    <li><a href="#lake">Data lake</a></li>
+    <li><a href="#refresh">Refresh pipeline</a></li>
+    <li><a href="#semantic">Semantic layer</a></li>
+    <li><a href="#api">Analytics API</a></li>
+    <li><a href="#frontend">Frontend</a></li>
+    <li><a href="#voice">Voice agent</a></li>
+    <li><a href="#security">Security and access</a></li>
+    <li><a href="#cases">Worked cases</a></li>
+    <li><a href="#ops">Operations</a></li>
+    <li><a href="#build">Build order and open decisions</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<h2 id="summary"><span class="n">01</span>Summary</h2>
+<p>The system has two read paths over one gold layer. A precomputed path serves every page load in milliseconds. A governed on-demand path answers new questions with Athena, without leaving the agreed use cases.</p>
+<ol class="decisions">
+  <li><strong>Two read paths.</strong> Dashboard snapshots and the Claude briefing are built once per gold refresh. Athena runs only for questions the snapshots cannot answer.</li>
+  <li><strong>The semantic layer is the contract.</strong> Every question becomes a structured query spec, checked against a metric catalog and compiled to SQL by code. No model writes SQL.</li>
+  <li><strong>Claude on Bedrock does the analysis.</strong> It writes the briefing on each refresh and turns spoken questions into query specs. Every number it states comes from SQL results.</li>
+  <li><strong>The voice agent pulls its own data.</strong> At session start, an ElevenLabs webhook tool calls the analytics API with the user's OAuth token. The briefing and the catalog never pass through the browser.</li>
+  <li><strong>Access is enforced in the API, not the prompt.</strong> A JWT authorizer checks scopes, and the compiler adds row-level filters from the token's claims to every query.</li>
+</ol>
+
+<!-- 2 -->
+<h2 id="scope"><span class="n">02</span>Goals and scope</h2>
+<p>Users get a dashboard of fixed base analyses, plus a voice agent that explains them and answers follow-up questions. A <em>base use case</em> is one agreed analysis, such as sales performance by channel and region. Each one maps to a set of gold views and catalog metrics.</p>
+<div class="table"><table>
+  <thead><tr><th>Requirement</th><th>How the design meets it</th></tr></thead>
+  <tbody>
+    <tr><td>Dashboard loads fast and cheaply</td><td>Precomputed snapshots per view and data partition; no Athena on page load</td></tr>
+    <tr><td>Agent knows the latest numbers at session start</td><td>Briefing built on each refresh, fetched by the agent's <code>get_briefing</code> tool</td></tr>
+    <tr><td>Key analysis facts written by Claude</td><td>Bedrock call in the refresh pipeline, checked against the KPI table</td></tr>
+    <tr><td>Users can ask for new measures or cuts</td><td><code>run_analysis</code> tool → query spec → semantic layer → Athena</td></tr>
+    <tr><td>New analysis stays within the base use cases</td><td>Catalog defines allowed views, metrics, dimensions and derived-metric operations</td></tr>
+    <tr><td>Semantic context and data stay protected</td><td>OAuth token with scopes, server-to-server tool calls, row-level filters</td></tr>
+  </tbody>
+</table></div>
+<p>Out of scope for this version: writing to the lake from the dashboard, free-form SQL, and questions that need data outside gold.</p>
+
+<!-- 3 -->
+<h2 id="overview"><span class="n">03</span>Architecture overview</h2>
+<p>Read the diagram top to bottom. The left column runs once per gold refresh and serves every page load. The right column runs only when someone asks something the snapshots cannot answer. Both meet in one analytics API, the only backend the browser and the voice agent talk to.</p>
+
+<figure>
+<svg viewBox="0 0 440 500" role="img" aria-labelledby="ov-title ov-desc" font-family="Newsreader, Georgia, serif">
+  <title id="ov-title">Architecture overview</title>
+  <desc id="ov-desc">The S3 data lake feeds two paths. On the precomputed path, the refresh pipeline writes snapshots and the Claude briefing to a serving store. On the on-demand path, the semantic layer compiles governed queries that run in Athena. Both feed the analytics API, which serves the Next.js dashboard and the ElevenLabs agent. The dashboard and the agent also talk to each other through the session and client tools.</desc>
+  <defs>
+    <marker id="m-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5f5b53"/></marker>
+    <marker id="m-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f4e79"/></marker>
+    <marker id="m-a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a1461f"/></marker>
+  </defs>
+
+  <!-- Lake -->
+  <rect x="20" y="12" width="400" height="86" rx="8" fill="#fffdf8" stroke="#8a857b" stroke-width="1"/>
+  <text x="34" y="34" font-size="14" font-weight="600" fill="#1d1c1a">S3 data lake</text>
+  <g font-size="12.5" text-anchor="middle" fill="#1d1c1a">
+    <rect x="34" y="46" width="84" height="36" rx="6" fill="none" stroke="#8a857b"/>
+    <text x="76" y="68">Landing</text>
+    <rect x="130" y="46" width="84" height="36" rx="6" fill="none" stroke="#8a857b"/>
+    <text x="172" y="68">Bronze</text>
+    <rect x="226" y="46" width="84" height="36" rx="6" fill="none" stroke="#8a857b"/>
+    <text x="268" y="68">Silver</text>
+    <rect x="322" y="46" width="84" height="36" rx="6" fill="#efe6cf" stroke="#8c6d1f" stroke-width="1.25"/>
+    <text x="364" y="68" font-weight="600">Gold</text>
+  </g>
+  <g stroke="#5f5b53" stroke-width="1">
+    <line x1="119" y1="64" x2="128" y2="64" marker-end="url(#m-ink)"/>
+    <line x1="215" y1="64" x2="224" y2="64" marker-end="url(#m-ink)"/>
+    <line x1="311" y1="64" x2="320" y2="64" marker-end="url(#m-ink)"/>
+  </g>
+
+  <!-- Lake to row A -->
+  <line x1="110" y1="98" x2="110" y2="134" stroke="#1f4e79" stroke-width="1.25" marker-end="url(#m-a1)"/>
+  <text x="118" y="120" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#5f5b53">gold.refreshed</text>
+  <line x1="330" y1="98" x2="330" y2="134" stroke="#a1461f" stroke-width="1.25" stroke-dasharray="4 3" marker-end="url(#m-a2)"/>
+  <text x="338" y="120" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#5f5b53">reads gold</text>
+
+  <!-- Row A -->
+  <rect x="20" y="136" width="180" height="70" rx="8" fill="#1f4e79" fill-opacity="0.08" stroke="#1f4e79" stroke-width="1.25"/>
+  <text x="110" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">Refresh pipeline</text>
+  <text x="110" y="178" text-anchor="middle" font-size="12.5" fill="#5f5b53">KPIs + Claude briefing</text>
+  <text x="110" y="194" text-anchor="middle" font-size="12.5" fill="#5f5b53">Step Functions</text>
+
+  <rect x="240" y="136" width="180" height="70" rx="8" fill="#a1461f" fill-opacity="0.08" stroke="#a1461f" stroke-width="1.25"/>
+  <text x="330" y="160" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">Semantic layer</text>
+  <text x="330" y="178" text-anchor="middle" font-size="12.5" fill="#5f5b53">Catalog + compiler</text>
+  <text x="330" y="194" text-anchor="middle" font-size="12.5" fill="#5f5b53">Claude writes the spec</text>
+
+  <line x1="110" y1="206" x2="110" y2="232" stroke="#1f4e79" stroke-width="1.25" marker-end="url(#m-a1)"/>
+  <line x1="330" y1="206" x2="330" y2="232" stroke="#a1461f" stroke-width="1.25" marker-end="url(#m-a2)"/>
+
+  <!-- Row B -->
+  <rect x="20" y="234" width="180" height="54" rx="8" fill="#1f4e79" fill-opacity="0.08" stroke="#1f4e79" stroke-width="1.25"/>
+  <text x="110" y="257" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">Serving store</text>
+  <text x="110" y="275" text-anchor="middle" font-size="12.5" fill="#5f5b53">Snapshots + briefing</text>
+
+  <rect x="240" y="234" width="180" height="54" rx="8" fill="#a1461f" fill-opacity="0.08" stroke="#a1461f" stroke-width="1.25"/>
+  <text x="330" y="257" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">Athena</text>
+  <text x="330" y="275" text-anchor="middle" font-size="12.5" fill="#5f5b53">Gold views, scan cap</text>
+
+  <line x1="110" y1="288" x2="110" y2="314" stroke="#1f4e79" stroke-width="1.25" marker-end="url(#m-a1)"/>
+  <line x1="330" y1="288" x2="330" y2="314" stroke="#a1461f" stroke-width="1.25" marker-end="url(#m-a2)"/>
+
+  <!-- API -->
+  <rect x="20" y="316" width="400" height="56" rx="8" fill="#fffdf8" stroke="#1d1c1a" stroke-width="1.25"/>
+  <text x="220" y="339" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">Analytics API</text>
+  <text x="220" y="357" text-anchor="middle" font-size="12.5" fill="#5f5b53">API Gateway + JWT authorizer → Lambda</text>
+
+  <line x1="110" y1="372" x2="110" y2="398" stroke="#5f5b53" stroke-width="1.25" marker-end="url(#m-ink)"/>
+  <text x="118" y="390" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#5f5b53">snapshots, results</text>
+  <line x1="330" y1="374" x2="330" y2="398" stroke="#5f5b53" stroke-width="1.25" marker-start="url(#m-ink)" marker-end="url(#m-ink)"/>
+  <text x="338" y="390" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#5f5b53">webhook tools</text>
+
+  <!-- Bottom row -->
+  <rect x="20" y="400" width="180" height="54" rx="8" fill="#fffdf8" stroke="#1d1c1a" stroke-width="1"/>
+  <text x="110" y="423" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">Next.js + D3</text>
+  <text x="110" y="441" text-anchor="middle" font-size="12.5" fill="#5f5b53">Dashboard + voice UI</text>
+
+  <rect x="240" y="400" width="180" height="54" rx="8" fill="#fffdf8" stroke="#1d1c1a" stroke-width="1"/>
+  <text x="330" y="423" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1c1a">ElevenLabs agent</text>
+  <text x="330" y="441" text-anchor="middle" font-size="12.5" fill="#5f5b53">Voice, tool calls</text>
+
+  <line x1="203" y1="427" x2="237" y2="427" stroke="#5f5b53" stroke-width="1.25" marker-start="url(#m-ink)" marker-end="url(#m-ink)"/>
+
+  <!-- Legend -->
+  <rect x="20" y="474" width="12" height="12" rx="2" fill="#1f4e79" fill-opacity="0.15" stroke="#1f4e79"/>
+  <text x="38" y="484" font-size="12.5" fill="#5f5b53">Precomputed on each refresh</text>
+  <rect x="240" y="474" width="12" height="12" rx="2" fill="#a1461f" fill-opacity="0.15" stroke="#a1461f"/>
+  <text x="258" y="484" font-size="12.5" fill="#5f5b53">On demand, governed</text>
+</svg>
+<figcaption>The browser and the agent only ever talk to the analytics API. The short arrow between them is the voice session and the client tools, such as <code>render_chart</code>.</figcaption>
+</figure>
+
+<h3>Components at a glance</h3>
+<div class="table"><table>
+  <thead><tr><th>Component</th><th>Service</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td>Landing, bronze, silver, gold</td><td>S3, Glue Data Catalog, Apache Iceberg</td><td>Store data by stage of refinement</td></tr>
+    <tr><td>Orchestration</td><td>EventBridge, Step Functions</td><td>Move files between layers; publish <code>gold.refreshed</code></td></tr>
+    <tr><td>Transforms</td><td>Glue Spark jobs or dbt on Athena</td><td>Clean data (silver) and model marts (gold)</td></tr>
+    <tr><td>Refresh pipeline</td><td>Step Functions, Athena, Bedrock (Claude)</td><td>KPIs, snapshots and the briefing</td></tr>
+    <tr><td>Serving store</td><td>S3, plus a DynamoDB pointer</td><td>Snapshots and briefing per data partition</td></tr>
+    <tr><td>Semantic layer</td><td>YAML catalog, compiler in Lambda (sqlglot)</td><td>Turn query specs into governed SQL</td></tr>
+    <tr><td>Query engine</td><td>Athena, dedicated workgroup</td><td>Run on-demand SQL over gold</td></tr>
+    <tr><td>Analytics API</td><td>API Gateway HTTP API, Lambda</td><td>Single entry point, checked by JWT</td></tr>
+    <tr><td>Identity</td><td>Cognito or your existing identity provider</td><td>Login; tokens with scopes and claims</td></tr>
+    <tr><td>Frontend</td><td>Next.js and D3, on Amplify Hosting or ECS Fargate</td><td>Dashboard and voice UI</td></tr>
+    <tr><td>Voice agent</td><td>ElevenLabs Agents</td><td>Conversation, webhook tools and client tools</td></tr>
+  </tbody>
+</table></div>
+
+<!-- 4 -->
+<h2 id="lake"><span class="n">04</span>Data lake</h2>
+<p>Each layer has one job, its own S3 prefix or bucket, and its own Glue Data Catalog database.</p>
+<div class="table"><table>
+  <thead><tr><th>Layer</th><th>What it holds</th><th>Format</th><th>Written by</th></tr></thead>
+  <tbody>
+    <tr><td>Landing (staging)</td><td>Files exactly as sources deliver them</td><td>As delivered (CSV, JSON, Excel)</td><td>Source systems, SFTP, uploads</td></tr>
+    <tr><td>Bronze</td><td>Immutable raw copy, plus ingestion metadata (source file, load time, hash)</td><td>Parquet, partitioned by ingest date</td><td>Ingest job</td></tr>
+    <tr><td>Silver</td><td>Cleaned, typed, deduplicated, with conformed keys and quality checks</td><td>Iceberg tables</td><td>Glue Spark jobs or dbt on Athena</td></tr>
+    <tr><td>Gold</td><td>Business marts per use case: facts, dimensions, aggregates</td><td>Iceberg tables and views</td><td>dbt on Athena or Glue</td></tr>
+  </tbody>
+</table></div>
+
+<h3>How a file moves through the layers</h3>
+<ol>
+  <li>A file lands in <code>s3://&lt;lake&gt;-landing/source=&lt;system&gt;/ingest_date=YYYY-MM-DD/</code>. S3 sends an Object Created event to EventBridge.</li>
+  <li>EventBridge starts the ingest state machine in Step Functions. It writes the file to bronze as Parquet with its metadata, then tags the landing object as processed. S3 has no real move: it is a copy, then a delete or expiry.</li>
+  <li>A lifecycle rule keeps landing files for a set number of days, so any load can be replayed.</li>
+  <li>Bronze to silver applies types, deduplication and data quality rules (Glue Data Quality or dbt tests). Rows that fail go to a quarantine table instead of being dropped silently.</li>
+  <li>Silver to gold builds the marts. When it finishes, Step Functions publishes a <code>gold.refreshed</code> event with the refresh version and the tables that changed.</li>
+</ol>
+
+<h3>Rules for gold</h3>
+<ul>
+  <li>Gold column names and meanings are a contract. The semantic layer points at gold views, so a renamed column ships with its catalog change in the same release.</li>
+  <li>Partition gold facts by date and keep files compacted. Athena bills by data scanned, so this sets the cost of every on-demand question.</li>
+  <li>Use Iceberg so late or corrected records can be merged, and earlier versions queried.</li>
+  <li>Restrict the analytics role to gold with IAM policies on the gold S3 prefix and Glue databases. Lake Formation also works, but Athena cannot reuse query results on tables registered with it.</li>
+</ul>
+
+<!-- 5 -->
+<h2 id="refresh"><span class="n">05</span>Refresh pipeline: snapshots and the Claude briefing</h2>
+<p>The <code>gold.refreshed</code> event starts one state machine that prepares everything the dashboard and the agent read. Nothing here runs when a user opens the page: the data only changes on refresh, so once per refresh is enough.</p>
+<ol>
+  <li><strong>Compute KPIs.</strong> Run the base dashboard queries from the catalog in Athena, once per view and per data partition a role can see (for example, per region or per client).</li>
+  <li><strong>Compute changes in code.</strong> Period-over-period change, change against the trailing average, and simple anomaly flags. These numbers come from code, not from the model.</li>
+  <li><strong>Write snapshots.</strong> Save one JSON file per view and partition to <code>s3://&lt;serving&gt;/v=&lt;refresh_version&gt;/&lt;partition&gt;/&lt;view&gt;.json</code>.</li>
+  <li><strong>Ask Claude for the briefing.</strong> Send Claude on Bedrock the KPI table, the changes and the metric definitions. Ask for 5 to 8 key facts through a tool-use JSON schema, so the output is structured.</li>
+  <li><strong>Check the briefing.</strong> Every number in the text must match a value in the input, within rounding. If one doesn't, regenerate once, then fall back to a template briefing built from the changes alone.</li>
+  <li><strong>Publish.</strong> Write <code>briefing.json</code> next to the snapshots, then switch the <code>latest</code> pointer (one DynamoDB item per partition) to the new version. The dashboard and the agent move to the new data at the same moment.</li>
+</ol>
+<p>The briefing also carries short definitions of the metrics it mentions, so the agent never needs the full catalog.</p>
+<p class="note">Briefing format, with example values:</p>
+<pre><code>{
+  "as_of": "2026-11-15T06:00",
+  "partition": "region=Andina",
+  "facts": [
+    {
+      "metric_id": "revenue",
+      "label": "Revenue",
+      "period": "2026-10",
+      "value": 1250000,
+      "unit": "USD",
+      "change_pct": -4.2,
+      "compared_to": "2026-09",
+      "statement": "October revenue fell 4.2% from September, driven by the online channel.",
+      "drivers": [{ "dimension": "channel", "value": "online", "change_pct": -11.0 }]
+    }
+  ],
+  "definitions": {
+    "revenue": "Net order value after returns, before tax."
+  },
+  "caveats": ["Returns for the last week of October are still being processed."]
+}</code></pre>
+
+<!-- 6 -->
+<h2 id="semantic"><span class="n">06</span>Semantic layer</h2>
+<p>The semantic layer is what lets users ask for new analysis without leaving the base use cases. A question can combine catalog parts in new ways, but it can never reach anything outside the catalog.</p>
+<p>It has three parts:</p>
+<ol>
+  <li><strong>Metric catalog:</strong> YAML files in the repo, versioned and reviewed like code.</li>
+  <li><strong>Query spec:</strong> a small JSON format that every question is translated into.</li>
+  <li><strong>Compiler:</strong> code that validates a spec and turns it into one Athena SQL query.</li>
+</ol>
+
+<h3>Metric catalog</h3>
+<p>For each base use case, the catalog lists:</p>
+<ul>
+  <li><strong>Sources:</strong> the gold views it may read, and how they join.</li>
+  <li><strong>Dimensions:</strong> name, column, type, allowed values and synonyms ("canal" means channel).</li>
+  <li><strong>Measures:</strong> an aggregation over a column, such as <code>sum(net_amount)</code>.</li>
+  <li><strong>Metrics:</strong> named business metrics built from measures, each with a plain-language description.</li>
+  <li><strong>Time:</strong> the time column, allowed grains (day, week, month) and the longest allowed range.</li>
+  <li><strong>Access:</strong> the scope a metric requires, and which token claims become row filters.</li>
+</ul>
+<p class="note">Example for an illustrative retail use case:</p>
+<pre><code>use_case: sales_performance
+sources:
+  orders: { view: gold.v_orders, time: order_date }
+  stores: { view: gold.v_stores, join: "orders.store_id = stores.store_id" }
+dimensions:
+  channel:  { column: orders.channel, values: [online, store], synonyms: [canal] }
+  region:   { column: stores.region, synonyms: [zona] }
+  category: { column: orders.category }
+measures:
+  net_amount:  { expr: "sum(orders.net_amount)" }
+  order_count: { expr: "count(distinct orders.order_id)" }
+metrics:
+  revenue: { measure: net_amount, description: "Net order value after returns, before tax" }
+  orders:  { measure: order_count, description: "Number of distinct orders" }
+  aov:     { ratio: [revenue, orders], description: "Average order value" }
+time: { grains: [day, week, month], max_range_days: 730 }
+access:
+  scope: analytics/sales.read
+  row_filters: { region: claims.regions }</code></pre>
+
+<h3>Query spec</h3>
+<p>Every question, spoken or typed, becomes this shape before anything runs. This one asks for the online share of revenue, by week, over the last 8 weeks:</p>
+<pre><code>{
+  "use_case": "sales_performance",
+  "metrics": [],
+  "derived": [
+    { "name": "online_share", "op": "share", "of": "revenue", "where": { "channel": "online" } }
+  ],
+  "dimensions": [],
+  "filters": [],
+  "time": { "range": "last_8_weeks", "grain": "week" },
+  "compare": null,
+  "limit": 50
+}</code></pre>
+
+<h3>What counts as in scope</h3>
+<div class="table"><table>
+  <thead><tr><th>Request type</th><th>Example</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>Catalog metric, new cut</td><td>"Revenue by region last month"</td><td>In scope: runs directly</td></tr>
+    <tr><td>New filter or time window</td><td>"Electronics only, last 8 weeks"</td><td>In scope: runs directly</td></tr>
+    <tr><td>Derived metric from catalog parts</td><td>"Online share of revenue by week"</td><td>Extension: runs, logged as ad hoc</td></tr>
+    <tr><td>Needs data that is not in the catalog</td><td>"Customer churn this quarter" (no customer data in gold)</td><td>Out of scope: agent explains, request is logged</td></tr>
+    <tr><td>Use case the user has no scope for</td><td>"Payroll costs by store"</td><td>Refused by access rules</td></tr>
+  </tbody>
+</table></div>
+<p>A metric can be created at question time only through these operations, and only from catalog metrics and dimensions:</p>
+<div class="table"><table>
+  <thead><tr><th>Operation</th><th>Meaning</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td><code>ratio(a, b)</code></td><td>a divided by b</td><td>Revenue per order</td></tr>
+    <tr><td><code>share(a, where)</code></td><td>The part of a that meets a condition, over all of a</td><td>Online share of revenue</td></tr>
+    <tr><td><code>growth(a, period)</code></td><td>Change of a against an earlier period</td><td>Revenue vs. the same month last year</td></tr>
+    <tr><td><code>rolling(a, window)</code></td><td>Moving sum or average</td><td>4-week rolling orders</td></tr>
+    <tr><td><code>filtered(a, where)</code></td><td>a under a fixed condition</td><td>Revenue from electronics only</td></tr>
+    <tr><td><code>top_n(a, by, n)</code></td><td>Ranking</td><td>Top 5 categories by revenue</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Compiler rules</h3>
+<ul>
+  <li>Reject any spec that names something outside the catalog, or an operation outside the list above.</li>
+  <li>Build the SQL with a library (sqlglot, Athena/Trino dialect), never by pasting model text into a template.</li>
+  <li>Always add the row filters from the token's claims and a time filter on the partition column. The spec cannot remove them.</li>
+  <li>Cap the row count and the time range.</li>
+  <li>Output exactly one <code>SELECT</code> over gold views.</li>
+</ul>
+
+<h3>Who writes the spec</h3>
+<p>Claude on Bedrock writes it, inside the analytics API. The voice agent only passes the user's words. The API sends Claude the question, the matching catalog entries and the previous result, and Claude returns a spec through a tool-use schema. This keeps the catalog out of ElevenLabs and puts all the semantic reasoning in one place you control.</p>
+
+<!-- 7 -->
+<h2 id="api"><span class="n">07</span>Analytics API</h2>
+<p>One API Gateway HTTP API serves both the dashboard and the voice agent. Every route requires a valid JWT and the scope listed below.</p>
+<div class="table"><table>
+  <thead><tr><th>Route</th><th>Called by</th><th>What it does</th><th>Scope</th><th>Target latency</th></tr></thead>
+  <tbody>
+    <tr><td><code>GET /dashboard/{view}</code></td><td>Next.js server</td><td>Returns the latest snapshot for the caller's partition</td><td><code>analytics/dashboard.read</code></td><td>Under 200 ms</td></tr>
+    <tr><td><code>GET /agent/briefing</code></td><td>ElevenLabs webhook tool</td><td>Returns <code>briefing.json</code> for the caller's partition</td><td><code>analytics/briefing.read</code></td><td>Under 200 ms</td></tr>
+    <tr><td><code>POST /analysis</code></td><td>ElevenLabs webhook tool, dashboard ask box</td><td>Question → spec → SQL → Athena, then result and summary</td><td><code>analytics/query.run</code></td><td>3 to 15 s</td></tr>
+    <tr><td><code>GET /results/{id}</code></td><td>Browser, after <code>render_chart</code></td><td>Returns the rows and chart spec of a finished analysis</td><td><code>analytics/query.run</code></td><td>Under 200 ms</td></tr>
+  </tbody>
+</table></div>
+
+<h3>What <code>POST /analysis</code> does</h3>
+<ol>
+  <li>Read the user's claims from the validated token: user, roles, regions.</li>
+  <li>Ask Claude on Bedrock to turn the question into a query spec, or to mark it out of scope with a reason.</li>
+  <li>Validate and compile the spec with the semantic layer rules.</li>
+  <li>Run the SQL in Athena: <code>StartQueryExecution</code>, then poll until it finishes.</li>
+  <li>Store the rows under a <code>result_id</code> (S3 or DynamoDB, with an expiry).</li>
+  <li>Ask Claude for a two-sentence spoken summary built only from the rows, and check its numbers against them.</li>
+  <li>Return <code>{status, result_id, summary, chart_hint, scope_class}</code>. The rows are not sent to the agent.</li>
+</ol>
+
+<h3>Athena settings</h3>
+<ul>
+  <li>Use a dedicated workgroup with a per-query data-scanned limit, so a bad query fails instead of scanning the whole lake.</li>
+  <li>Turn on query result reuse. Athena reuses a matching result from the same workgroup if it is younger than the maximum age you set: 60 minutes by default, up to 7 days. It does not work on tables registered with Lake Formation, which is why gold access uses IAM.</li>
+  <li>Also cache in your own code: a spec with the same normalized hash, partition and refresh version returns the stored result without calling Athena.</li>
+</ul>
+
+<h3>Timeouts</h3>
+<p>An HTTP API stops waiting for its integration after 30 seconds at most, and this cannot be raised. Keep the Lambda's wait for Athena under about 20 seconds. If the query is still running, return <code>status: "running"</code> with the <code>result_id</code>. The agent then says the chart will appear on screen, and the browser polls <code>GET /results/{id}</code>.</p>
+<p>Athena keeps running the query after the Lambda returns. <code>GET /results/{id}</code> checks its status, then stores the rows and summary once it finishes.</p>
+
+<!-- 8 -->
+<h2 id="frontend"><span class="n">08</span>Frontend: Next.js and D3</h2>
+<p>The site draws the base dashboard from snapshots and hosts the voice session. It only ever holds data the logged-in user is allowed to see.</p>
+<ul>
+  <li><strong>Hosting:</strong> AWS Amplify Hosting, or a container on ECS Fargate behind CloudFront.</li>
+  <li><strong>Login:</strong> OAuth 2.0 / OIDC with Cognito or your existing identity provider, through Auth.js in Next.js. The access token carries the user, roles, partitions and scopes.</li>
+  <li><strong>Data loading:</strong> server components call <code>GET /dashboard/{view}</code> with the user's token and pass the JSON to client components.</li>
+  <li><strong>Charts:</strong> D3 inside React client components. One component per chart type (line, bar, table), driven by a chart spec <code>{type, x, y, series, unit}</code>. Base charts and agent-requested charts use the same components.</li>
+  <li><strong>Agent session route:</strong> <code>/api/agent-session</code> runs on the server. It gets an ElevenLabs signed URL using the ElevenLabs API key from Secrets Manager, and returns it with the agent token (see <a href="#security">Security</a>).</li>
+  <li><strong>Voice UI:</strong> <code>useConversation</code> from <code>@elevenlabs/react</code>, started with the signed URL, <code>secret__access_token</code> as the only dynamic variable, and the client tools below.</li>
+  <li><strong>Ask box (optional):</strong> a text field that calls <code>POST /analysis</code>, so typed and spoken questions share one path.</li>
+</ul>
+<p>Client tools the page registers:</p>
+<div class="table"><table>
+  <thead><tr><th>Tool</th><th>Parameters</th><th>What the page does</th></tr></thead>
+  <tbody>
+    <tr><td><code>render_chart</code></td><td><code>result_id</code></td><td>Fetches <code>GET /results/{id}</code> with the user's token and draws the chart in the analysis panel</td></tr>
+    <tr><td><code>focus_view</code></td><td><code>view</code>, <code>filters</code></td><td>Switches the dashboard tab or applies filters to a base view</td></tr>
+    <tr><td><code>highlight_metric</code></td><td><code>metric_id</code></td><td>Highlights the KPI card the agent is talking about</td></tr>
+  </tbody>
+</table></div>
+<p>The agent only ever passes IDs to the browser. The browser fetches the data itself, with the user's own token.</p>
+
+<!-- 9 -->
+<h2 id="voice"><span class="n">09</span>Voice agent (ElevenLabs)</h2>
+<p>The agent handles the conversation: it talks, decides which tool to call, and reads out results. All data and analysis come from your API through its tools.</p>
+
+<h3>Configuration</h3>
+<ul>
+  <li><strong>Authentication:</strong> require signed URLs, so no one can open the agent without going through your server.</li>
+  <li><strong>First message:</strong> fixed, for example "Hi, I'm loading today's numbers." It covers the first tool call.</li>
+  <li><strong>Dynamic variables:</strong> only <code>secret__access_token</code>. ElevenLabs uses secret variables in tool headers and never sends them to the LLM.</li>
+  <li><strong>Conversation LLM:</strong> chosen in the agent settings. If conversation text must stay inside your AWS account, evaluate ElevenLabs' custom model option pointed at Bedrock.</li>
+  <li><strong>Retention:</strong> ElevenLabs stores transcripts and tool results. Set retention to the minimum you need; zero retention is an Enterprise option.</li>
+</ul>
+
+<h3>Tools</h3>
+<div class="table"><table>
+  <thead><tr><th>Tool</th><th>Type</th><th>Call</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><code>get_briefing</code></td><td>Webhook</td><td><code>GET /agent/briefing</code>, header <code>Authorization: Bearer {{secret__access_token}}</code></td><td>Latest metrics, definitions and key facts for this user</td></tr>
+    <tr><td><code>run_analysis</code></td><td>Webhook</td><td><code>POST /analysis</code> with <code>{question, previous_result_id}</code>, same header</td><td>New cut, derived metric or comparison</td></tr>
+    <tr><td><code>render_chart</code></td><td>Client</td><td><code>result_id</code></td><td>Draws the result in the browser</td></tr>
+    <tr><td><code>focus_view</code></td><td>Client</td><td><code>view</code>, <code>filters</code></td><td>Moves the dashboard to what is being discussed</td></tr>
+    <tr><td><code>highlight_metric</code></td><td>Client</td><td><code>metric_id</code></td><td>Points at a KPI card while talking about it</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Session and question flow</h3>
+<figure>
+<svg viewBox="0 0 440 470" role="img" aria-labelledby="sq-title sq-desc" font-family="Newsreader, Georgia, serif">
+  <title id="sq-title">Session start and question flow</title>
+  <desc id="sq-desc">Twelve numbered messages between the browser, the Next.js server, ElevenLabs and the analytics API. Only the token passes through the browser. The briefing and the analysis summary go directly from the API to ElevenLabs. The result rows go to the browser only through an authorized call made with the user's token.</desc>
+  <defs>
+    <marker id="s-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5f5b53"/></marker>
+    <marker id="s-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f4e79"/></marker>
+  </defs>
+
+  <!-- Lane headers -->
+  <g font-size="13" font-weight="600" fill="#1d1c1a" text-anchor="middle">
+    <rect x="21" y="12" width="88" height="44" rx="8" fill="#fffdf8" stroke="#1d1c1a"/>
+    <text x="65" y="38">Browser</text>
+    <rect x="124" y="12" width="88" height="44" rx="8" fill="#fffdf8" stroke="#1d1c1a"/>
+    <text x="168" y="31">Next.js</text>
+    <text x="168" y="47">server</text>
+    <rect x="228" y="12" width="88" height="44" rx="8" fill="#fffdf8" stroke="#1d1c1a"/>
+    <text x="272" y="38">ElevenLabs</text>
+    <rect x="331" y="12" width="88" height="44" rx="8" fill="#fffdf8" stroke="#1d1c1a"/>
+    <text x="375" y="31">Analytics</text>
+    <text x="375" y="47">API</text>
+  </g>
+
+  <!-- Lifelines -->
+  <g stroke="#d9d3c7" stroke-width="1" stroke-dasharray="3 4">
+    <line x1="65" y1="56" x2="65" y2="456"/>
+    <line x1="168" y1="56" x2="168" y2="456"/>
+    <line x1="272" y1="56" x2="272" y2="456"/>
+    <line x1="375" y1="56" x2="375" y2="456"/>
+  </g>
+
+  <!-- Messages: solid = request, dashed = response, blue = carries data -->
+  <g stroke-width="1.25" fill="none">
+    <line x1="91" y1="84" x2="164" y2="84" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="194" y1="116" x2="268" y2="116" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="246" y1="148" x2="172" y2="148" stroke="#5f5b53" stroke-dasharray="5 3" marker-end="url(#s-ink)"/>
+    <line x1="142" y1="180" x2="69" y2="180" stroke="#5f5b53" stroke-dasharray="5 3" marker-end="url(#s-ink)"/>
+    <line x1="91" y1="212" x2="268" y2="212" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="298" y1="244" x2="371" y2="244" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="349" y1="276" x2="276" y2="276" stroke="#1f4e79" stroke-dasharray="5 3" marker-end="url(#s-a1)"/>
+    <line x1="298" y1="308" x2="371" y2="308" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="349" y1="340" x2="276" y2="340" stroke="#1f4e79" stroke-dasharray="5 3" marker-end="url(#s-a1)"/>
+    <line x1="246" y1="372" x2="69" y2="372" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="91" y1="404" x2="371" y2="404" stroke="#5f5b53" marker-end="url(#s-ink)"/>
+    <line x1="349" y1="436" x2="69" y2="436" stroke="#1f4e79" stroke-dasharray="5 3" marker-end="url(#s-a1)"/>
+  </g>
+
+  <!-- Step numbers -->
+  <g font-family="IBM Plex Mono, monospace" font-size="10" text-anchor="middle">
+    <circle cx="81" cy="84" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="81" y="87.5" fill="#1d1c1a">1</text>
+    <circle cx="184" cy="116" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="184" y="119.5" fill="#1d1c1a">2</text>
+    <circle cx="256" cy="148" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="256" y="151.5" fill="#1d1c1a">3</text>
+    <circle cx="152" cy="180" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="152" y="183.5" fill="#1d1c1a">4</text>
+    <circle cx="81" cy="212" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="81" y="215.5" fill="#1d1c1a">5</text>
+    <circle cx="288" cy="244" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="288" y="247.5" fill="#1d1c1a">6</text>
+    <circle cx="359" cy="276" r="9" fill="#fffdf8" stroke="#1f4e79"/><text x="359" y="279.5" fill="#1f4e79">7</text>
+    <circle cx="288" cy="308" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="288" y="311.5" fill="#1d1c1a">8</text>
+    <circle cx="359" cy="340" r="9" fill="#fffdf8" stroke="#1f4e79"/><text x="359" y="343.5" fill="#1f4e79">9</text>
+    <circle cx="256" cy="372" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="256" y="375.5" fill="#1d1c1a">10</text>
+    <circle cx="81" cy="404" r="9" fill="#fffdf8" stroke="#5f5b53"/><text x="81" y="407.5" fill="#1d1c1a">11</text>
+    <circle cx="359" cy="436" r="9" fill="#fffdf8" stroke="#1f4e79"/><text x="359" y="439.5" fill="#1f4e79">12</text>
+  </g>
+</svg>
+<figcaption>Solid lines are requests and dashed lines are responses. Blue marks the three responses that carry data. None of them passes through the browser except step 12, which the browser fetches with the user's own token.</figcaption>
+</figure>
+<ol>
+  <li>The user clicks the microphone. The browser calls <code>/api/agent-session</code> on the Next.js server.</li>
+  <li>The server asks ElevenLabs for a signed URL, using the ElevenLabs API key.</li>
+  <li>ElevenLabs returns the signed URL.</li>
+  <li>The server returns the signed URL and the user's agent token to the browser.</li>
+  <li>The browser starts the session with the token as <code>secret__access_token</code> and registers the client tools. The agent says its fixed first message.</li>
+  <li>The agent calls <code>get_briefing</code>. ElevenLabs calls the API directly, with the token in the <code>Authorization</code> header.</li>
+  <li>The JWT authorizer validates the token, and the Lambda returns that user's briefing. The agent states the two or three most important facts.</li>
+  <li>The user asks a new question. The agent calls <code>run_analysis</code> with the user's words.</li>
+  <li>The API returns the spoken summary and a <code>result_id</code>, not the rows.</li>
+  <li>The agent reads the summary and calls the client tool <code>render_chart(result_id)</code> in the browser.</li>
+  <li>The browser calls <code>GET /results/{id}</code> with the user's token.</li>
+  <li>The API returns the rows and chart spec, and D3 draws the chart.</li>
+</ol>
+
+<h3>Core prompt rules</h3>
+<ul>
+  <li>Call <code>get_briefing</code> before discussing any number.</li>
+  <li>Never state a number that did not come from a tool result.</li>
+  <li>For any question the briefing cannot answer, call <code>run_analysis</code> with the user's own words.</li>
+  <li>Say a short filler before <code>run_analysis</code>, such as "Let me pull that."</li>
+  <li>When a result has a <code>result_id</code>, call <code>render_chart</code> so the user can see it.</li>
+  <li>If the result is out of scope, say what data is missing and offer the closest analysis that is in scope.</li>
+  <li>If a tool returns 401, ask the user to refresh the page to continue.</li>
+</ul>
+
+<!-- 10 -->
+<h2 id="security"><span class="n">10</span>Security and access control</h2>
+<p>The browser only carries the user's own token. Data moves server to server, or through authorized API calls made with that token.</p>
+
+<h3>The token (OAuth ticket)</h3>
+<ul>
+  <li>Your identity provider issues it after login. Claims: <code>sub</code> (the user), roles, data partitions (such as <code>regions</code>), scopes, <code>aud</code> (the analytics API) and <code>exp</code>.</li>
+  <li>Use a token dedicated to the agent: read-only scopes, audience limited to the analytics API, and a lifetime a little longer than the longest expected session (for example 30 to 60 minutes).</li>
+  <li>To issue it, use OAuth token exchange if your provider supports it, or a separate app client with short token validity.</li>
+  <li>In Cognito, a version 2 pre-token-generation Lambda trigger adds custom claims and scopes to access tokens. It needs the Cognito Essentials or Plus feature plan.</li>
+  <li>Never give the agent a refresh token or the main session cookie.</li>
+</ul>
+
+<h3>Where access is enforced</h3>
+<div class="table"><table>
+  <thead><tr><th>Layer</th><th>Check</th></tr></thead>
+  <tbody>
+    <tr><td>API Gateway</td><td>JWT authorizer: signature, issuer, audience, expiry, and the route's scope</td></tr>
+    <tr><td>Analytics Lambda</td><td>Maps claims to row filters; checks each metric's catalog scope</td></tr>
+    <tr><td>Compiler</td><td>Adds the row filters to every SQL query; the spec cannot override them</td></tr>
+    <tr><td>Athena and IAM</td><td>The Lambda's role reads gold views only; the workgroup caps data scanned per query</td></tr>
+    <tr><td>ElevenLabs</td><td>Signed URLs required; token held as a secret variable, used in headers only, never in the LLM prompt</td></tr>
+    <tr><td>Browser</td><td>Gets snapshots and results only through authorized calls with the user's token</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Known exposures and how each is handled</h3>
+<ul>
+  <li><strong>The token is visible in the browser.</strong> It is the user's own short-lived, read-only token. Used outside the agent, it returns only what the user can already see.</li>
+  <li><strong>ElevenLabs holds the token for the session.</strong> Post-call webhooks deliver secret variables in their original form. Keep tokens short-lived and send post-call webhooks only to your own endpoint.</li>
+  <li><strong>Transcripts are stored at ElevenLabs.</strong> Tools return summaries and IDs, not raw rows. Set retention to the minimum.</li>
+  <li><strong>Prompt injection through a question.</strong> The worst case is a bad spec, which the compiler rejects. Model output never becomes SQL directly and cannot remove row filters.</li>
+  <li><strong>The token expires mid-session.</strong> Tools get a 401 and the agent asks the user to refresh. The page can also start a new session with a fresh token.</li>
+</ul>
+
+<!-- 11 -->
+<h2 id="cases"><span class="n">11</span>Worked cases</h2>
+<p>Four end-to-end flows, using the illustrative retail catalog from the <a href="#semantic">semantic layer</a> section. All numbers are examples.</p>
+
+<h3>Case 1: gold refreshes at 06:00</h3>
+<ol>
+  <li>The silver-to-gold job finishes and publishes <code>gold.refreshed</code> with version <code>2026-11-15T06:00</code>.</li>
+  <li>The refresh state machine runs the base KPI queries once for each region partition.</li>
+  <li>Code computes the changes. For Andina: October revenue down 4.2% from September; online channel down 11%.</li>
+  <li>Claude writes the key facts. The checker confirms that 4.2% and 11% appear in the input table.</li>
+  <li>Snapshots and <code>briefing.json</code> are written under the new version, then the <code>latest</code> pointer switches.</li>
+</ol>
+<p><strong>Result:</strong> every page load and every new voice session now sees the 06:00 data, and no Athena query runs at read time.</p>
+
+<h3>Case 2: a regional manager opens the dashboard and starts the agent</h3>
+<ol>
+  <li>She logs in. Her token has <code>regions: [Andina]</code> and the scopes <code>dashboard.read</code>, <code>briefing.read</code> and <code>query.run</code>.</li>
+  <li>Next.js calls <code>GET /dashboard/sales</code> with her token. The Lambda returns the Andina snapshot, and D3 draws the charts.</li>
+  <li>She clicks the microphone. <code>/api/agent-session</code> returns a signed URL and her agent token.</li>
+  <li>The agent says "Hi, I'm loading today's numbers" and calls <code>get_briefing</code>.</li>
+  <li>The API returns the Andina briefing. The agent says: "October revenue in Andina fell 4.2%, mostly from online. Want to dig into that?"</li>
+</ol>
+
+<h3>Case 3: she asks for a new measure within the use case</h3>
+<p>She asks: "What share of our revenue was online, week by week, for the last eight weeks?"</p>
+<ol>
+  <li>The agent says "Let me pull that" and calls <code>run_analysis</code> with her words.</li>
+  <li>Claude maps the question to <code>sales_performance</code>: derived metric <code>share(revenue, channel = online)</code>, weekly grain, last 8 weeks. It classifies it as an extension, because it is built from catalog parts.</li>
+  <li>The compiler validates the spec, adds <code>region IN ('Andina')</code> from her token and the date filter, and builds one <code>SELECT</code>.</li>
+  <li>Athena runs it in a few seconds. The rows are stored as <code>result_id = r_81f2</code>.</li>
+  <li>Claude writes a two-sentence summary from the rows, and its numbers are checked.</li>
+  <li>The API returns the summary and <code>r_81f2</code> to the agent. The agent reads the summary and calls <code>render_chart(r_81f2)</code>.</li>
+  <li>The page fetches <code>GET /results/r_81f2</code> with her token and draws a weekly line chart.</li>
+</ol>
+<p class="note">The compiled SQL, simplified:</p>
+<pre><code>SELECT date_trunc('week', o.order_date) AS week,
+       sum(CASE WHEN o.channel = 'online' THEN o.net_amount ELSE 0 END)
+         / sum(o.net_amount) AS online_share
+FROM gold.v_orders o
+JOIN gold.v_stores s ON o.store_id = s.store_id
+WHERE s.region IN ('Andina')                              -- from her token, always added
+  AND o.order_date &gt;= date_add('week', -8, current_date)   -- time filter, always added
+GROUP BY 1
+ORDER BY 1
+LIMIT 50</code></pre>
+
+<h3>Case 4: she asks for something outside the catalog</h3>
+<p>She asks: "How many customers did we lose this quarter?"</p>
+<ol>
+  <li>The agent calls <code>run_analysis</code>.</li>
+  <li>Claude finds no customer or churn data in the catalog. It returns <code>out_of_scope</code> with the reason "needs customer-level data, which is not in gold".</li>
+  <li>Nothing runs in Athena. The question and the reason are logged for the backlog.</li>
+  <li>The agent says: "I don't have customer-level data, so I can't measure churn. The closest I can show is weekly order counts. Want that?"</li>
+</ol>
+
+<!-- 12 -->
+<h2 id="ops"><span class="n">12</span>Operations</h2>
+
+<h3>Observability</h3>
+<ul>
+  <li>Log every analysis as one structured record: question, spec, scope class, SQL hash, bytes scanned, Athena time, total time, user and refresh version.</li>
+  <li>Trace the voice path end to end, from tool call to Athena, with X-Ray or OpenTelemetry.</li>
+  <li>Use ElevenLabs conversation analytics to find failed tool calls and sessions that drop off.</li>
+</ul>
+
+<h3>Cost drivers</h3>
+<div class="table"><table>
+  <thead><tr><th>Component</th><th>Driven by</th><th>Control</th></tr></thead>
+  <tbody>
+    <tr><td>Athena</td><td>Data scanned per refresh and per on-demand question</td><td>Partitioning, compaction, result reuse, per-query scan limit</td></tr>
+    <tr><td>Bedrock (Claude)</td><td>One briefing per partition per refresh, plus two calls per question</td><td>Send only the matching catalog entries; cache repeated specs</td></tr>
+    <tr><td>ElevenLabs</td><td>Conversation minutes</td><td>Session timeout, short agent replies</td></tr>
+    <tr><td>Serving (S3, Lambda, API Gateway)</td><td>Requests</td><td>Small at dashboard scale</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Testing</h3>
+<ul>
+  <li><strong>Golden questions:</strong> 50 to 100 questions, each with its expected spec and scope class. Run them on every catalog or prompt change, and fail the build if accuracy drops.</li>
+  <li><strong>SQL snapshots:</strong> each golden spec must compile to its expected SQL.</li>
+  <li><strong>Briefing checker:</strong> feed it briefings with planted wrong numbers; it must reject every one.</li>
+  <li><strong>Access:</strong> a token for one region must never return another region's rows.</li>
+</ul>
+
+<h3>Governance loop (weekly)</h3>
+<ul>
+  <li>Derived metrics that users ask for repeatedly are reviewed and promoted into the catalog, with a name and a description.</li>
+  <li>Out-of-scope requests go to the product backlog. A cluster of similar requests is a candidate new use case.</li>
+  <li>Catalog changes go through pull requests and ship together with the gold views they depend on.</li>
+</ul>
+
+<!-- 13 -->
+<h2 id="build"><span class="n">13</span>Build order and open decisions</h2>
+<p>Build one use case end to end first, then add use cases to the catalog.</p>
+<ol>
+  <li>Lake ingest to gold for one use case, ending in the <code>gold.refreshed</code> event.</li>
+  <li>Metric catalog and compiler for that use case, with the golden-question tests.</li>
+  <li>Refresh pipeline: snapshots, Claude briefing and checker.</li>
+  <li>Analytics API with the JWT authorizer and row filters.</li>
+  <li>Next.js dashboard reading snapshots, with the D3 chart components.</li>
+  <li>ElevenLabs agent with <code>get_briefing</code> first, then <code>run_analysis</code> and the client tools.</li>
+  <li>Observability, cost limits and the governance loop. Then the next use case.</li>
+</ol>
+<p>Open decisions, each of which changes part of the design:</p>
+<div class="table"><table>
+  <thead><tr><th>Decision</th><th>What it changes</th></tr></thead>
+  <tbody>
+    <tr><td>Who the users are, how many at once, internal or client-facing</td><td>Number of partitions to precompute; depth of tenant isolation</td></tr>
+    <tr><td>How often gold refreshes</td><td>Hourly or faster may justify a serving database instead of S3 snapshots</td></tr>
+    <tr><td>The 3 to 5 base use cases</td><td>They define the first catalog</td></tr>
+    <tr><td>Whether users may create new formulas, or only cuts and the listed operations</td><td>Size of the derived-metric grammar</td></tr>
+    <tr><td>Whether ad-hoc results can be saved to the dashboard</td><td>Needs a saved-analysis store and a job that refreshes saved specs</td></tr>
+    <tr><td>Voice role and languages (narration or Q&amp;A; Spanish, English)</td><td>Prompt design, voice and speech-recognition settings</td></tr>
+    <tr><td>Gold size and current tooling (dbt, Glue, Iceberg)</td><td>Transform tool choice; Athena cost per question</td></tr>
+    <tr><td>Acceptable spoken wait for a new analysis</td><td>Whether <code>status: "running"</code> is the normal case or the exception</td></tr>
+    <tr><td>Which identity provider</td><td>How the agent token is issued (token exchange or separate app client)</td></tr>
+  </tbody>
+</table></div>
+
+<!-- References -->
+<h2 id="refs"><span class="n">—</span>References</h2>
+<ul class="refs">
+  <li><a href="https://elevenlabs.io/docs/eleven-agents/customization/personalization">ElevenLabs: Personalization</a>. In web and SDK sessions, initiation data comes from the client; initiation webhooks cover telephony and messaging only.</li>
+  <li><a href="https://elevenlabs.io/docs/eleven-agents/customization/personalization/dynamic-variables">ElevenLabs: Dynamic variables</a>. Secret variables, use in tool headers and parameters, post-call webhook behaviour.</li>
+  <li><a href="https://elevenlabs.io/docs/eleven-agents/customization/tools">ElevenLabs: Tools</a>. Client, webhook, code, MCP and system tools; custom models; Zero Retention Mode on Enterprise.</li>
+  <li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-quotas.html">Amazon API Gateway: HTTP API quotas</a>. 30-second integration timeout; JWT authorizer limits.</li>
+  <li><a href="https://docs.aws.amazon.com/athena/latest/ug/reusing-query-results.html">Amazon Athena: Reuse query results</a>. Default and maximum age, workgroup scope, Lake Formation limitation.</li>
+  <li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-token-generation.html">Amazon Cognito: Pre token generation Lambda trigger</a>. Access-token claims and scopes; required feature plans.</li>
+</ul>
+
+<footer>Data lake voice dashboard · architecture recap · 15 November 2026</footer>
+</main>
+</body>
+</html>

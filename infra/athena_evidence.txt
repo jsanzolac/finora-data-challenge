@@ -1,0 +1,20 @@
+SELECT count(*), sum(amount), sum(amount_value) FROM finora_silver.transactions WHERE run_id='r20261117T020252Z'
+66674	221441.504508	2214415045.08
+SELECT count(*) FROM finora_silver.industry WHERE run_id='r20261117T020252Z'
+1961
+SELECT count(*), sum(spend), sum(spend_value) FROM finora_silver.sm_spend WHERE run_id='r20261117T020252Z'
+238	77.818	7781800000
+SELECT hr_sensitive, count(*) FROM finora_silver.sm_spend WHERE run_id='r20261117T020252Z' GROUP BY hr_sensitive ORDER BY 1
+false	136	true	102
+SELECT count(*), sum(CASE WHEN is_new_logo THEN 1 ELSE 0 END), sum(CASE WHEN cohort_censoring='probable_left' THEN 1 ELSE 0 END) FROM finora_silver.customer WHERE run_id='r20261117T020252Z'
+1961	1541	43
+SELECT lifecycle_state, count(*) FROM finora_silver.customer_month WHERE run_id='r20261117T020252Z' GROUP BY 1 ORDER BY 2 DESC
+paying	31366	pre_acquisition	29321	churned	3811	new	1541	settled_gap	281	paused	231	reactivated	64	grace	59
+SELECT settlement_type, count(*) FROM finora_silver.gap WHERE run_id='r20261117T020252Z' AND settlement_type IS NOT NULL GROUP BY 1 ORDER BY 2 DESC
+arrears	155	prepay	47	split	9
+SELECT array_join(array_agg(customer_id ORDER BY customer_id), ',') FROM finora_silver.customer WHERE run_id='r20261117T020252Z' AND is_outlier_customer
+94,322
+SELECT rule_id, dataset_id, action, count(*) FROM finora_dq.findings WHERE run_id='r20261117T020252Z' AND hr_sensitive='false' GROUP BY 1,2,3 ORDER BY 1
+SB-10	sm_spend	flagged	5	SQ-02	industry	excluded	1
+SELECT dataset, count(*), max(source_line) FROM finora_dq.excluded WHERE run_id='r20261117T020252Z' AND hr_sensitive='false' GROUP BY 1
+industry	1	1963

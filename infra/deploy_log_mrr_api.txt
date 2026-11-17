@@ -1,0 +1,45 @@
+
+✨  Synthesis time: 2.83s
+
+FinoraDqApi: start: Building DqApi/Code
+FinoraDqApi: success: Built DqApi/Code
+FinoraDqApi: start: Building FinoraDqApi Template
+FinoraDqApi: success: Built FinoraDqApi Template
+FinoraDqApi: start: Publishing FinoraDqApi Template (962482423379-us-west-2-db071e8c)
+FinoraDqApi: start: Publishing DqApi/Code (962482423379-us-west-2-b27996e9)
+FinoraDqApi: success: Published DqApi/Code (962482423379-us-west-2-b27996e9)
+FinoraDqApi: success: Published FinoraDqApi Template (962482423379-us-west-2-db071e8c)
+FinoraDqApi: deploying... [1/1]
+FinoraDqApi: creating CloudFormation changeset...
+FinoraDqApi |  0/15 | 2:51:31 PM | UPDATE_IN_PROGRESS   | AWS::CloudFormation::Stack     | FinoraDqApi User Initiated
+FinoraDqApi |  0/15 | 2:51:34 PM | UPDATE_IN_PROGRESS   | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) 
+FinoraDqApi |  1/15 | 2:51:50 PM | UPDATE_COMPLETE      | AWS::IAM::Policy               | DqApi/ServiceRole/DefaultPolicy (DqApiServiceRoleDefaultPolicyA87369A7) 
+FinoraDqApi |  1/15 | 2:51:52 PM | UPDATE_IN_PROGRESS   | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi |  2/15 | 2:51:59 PM | UPDATE_COMPLETE      | AWS::Lambda::Function          | DqApi (DqApi8C0F6B53) 
+FinoraDqApi |  2/15 | 2:52:00 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--mrr--movements/DqInt-Permission (HttpApiGETapimrrmovementsDqIntPermissionECD84EE0) 
+FinoraDqApi |  2/15 | 2:52:00 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--mrr--summary/DqInt-Permission (HttpApiGETapimrrsummaryDqIntPermission9B190E61) 
+FinoraDqApi |  2/15 | 2:52:00 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--mrr--summary (HttpApiGETapimrrsummaryDBDF76B6) 
+FinoraDqApi |  2/15 | 2:52:00 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--mrr--movements (HttpApiGETapimrrmovementsB23FDD93) 
+FinoraDqApi |  2/15 | 2:52:01 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--mrr--movements/DqInt-Permission (HttpApiGETapimrrmovementsDqIntPermissionECD84EE0) Resource creation Initiated
+FinoraDqApi |  2/15 | 2:52:01 PM | CREATE_IN_PROGRESS   | AWS::Lambda::Permission        | HttpApi/GET--api--mrr--summary/DqInt-Permission (HttpApiGETapimrrsummaryDqIntPermission9B190E61) Resource creation Initiated
+FinoraDqApi |  2/15 | 2:52:01 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--mrr--movements (HttpApiGETapimrrmovementsB23FDD93) Resource creation Initiated
+FinoraDqApi |  3/15 | 2:52:01 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--mrr--movements/DqInt-Permission (HttpApiGETapimrrmovementsDqIntPermissionECD84EE0) 
+FinoraDqApi |  4/15 | 2:52:02 PM | CREATE_COMPLETE      | AWS::Lambda::Permission        | HttpApi/GET--api--mrr--summary/DqInt-Permission (HttpApiGETapimrrsummaryDqIntPermission9B190E61) 
+FinoraDqApi |  5/15 | 2:52:02 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--mrr--movements (HttpApiGETapimrrmovementsB23FDD93) 
+FinoraDqApi |  5/15 | 2:52:02 PM | CREATE_IN_PROGRESS   | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--mrr--summary (HttpApiGETapimrrsummaryDBDF76B6) Resource creation Initiated
+FinoraDqApi |  6/15 | 2:52:03 PM | CREATE_COMPLETE      | AWS::ApiGatewayV2::Route       | HttpApi/GET--api--mrr--summary (HttpApiGETapimrrsummaryDBDF76B6) 
+FinoraDqApi |  7/15 | 2:52:04 PM | UPDATE_COMPLETE_CLEA | AWS::CloudFormation::Stack     | FinoraDqApi 
+FinoraDqApi |  8/15 | 2:52:05 PM | UPDATE_COMPLETE      | AWS::CloudFormation::Stack     | FinoraDqApi 
+
+ ✅  FinoraDqApi
+
+✨  Deployment time: 55.17s
+
+Outputs:
+FinoraDqApi.ApiEndpoint = https://dx2tg0v3a8.execute-api.us-west-2.amazonaws.com
+FinoraDqApi.ExportsOutputRefHttpApiF5A9A8A7F70B5BDD = dx2tg0v3a8
+Stack ARN:
+arn:aws:cloudformation:us-west-2:962482423379:stack/FinoraDqApi/0e4ae850-e22a-11f1-acef-06ffedd3c539
+
+✨  Total time: 58s
+
